@@ -21,3 +21,15 @@ Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\Dom
 Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\refint\Domain.dll
 Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.pdb
 Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\ref\Domain.dll
+Z:\EduTrack\SummerPracticeAC\Domain\bin\Debug\net8.0\Domain.deps.json
+Z:\EduTrack\SummerPracticeAC\Domain\bin\Debug\net8.0\Domain.dll
+Z:\EduTrack\SummerPracticeAC\Domain\bin\Debug\net8.0\Domain.pdb
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.dll
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\refint\Domain.dll
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.pdb
+Z:\EduTrack\SummerPracticeAC\Domain\obj\Debug\net8.0\ref\Domain.dll

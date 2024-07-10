@@ -11,7 +11,8 @@ namespace WebApiContracts.Mappers
             {
                 Username = credentials.Username,
                 Password = credentials.Password,
-                Email = credentials.Email
+                Email = credentials.Email,
+                Phone = credentials.Phone
             };
         } 
 

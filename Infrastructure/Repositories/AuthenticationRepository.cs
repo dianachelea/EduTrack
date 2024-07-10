@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories
 
         public Task<IEnumerable<UserCredentials>> GetUser(string email)
         {
-            var sql = "SELECT [Username], [Password], [Email], [Role] FROM [SummerPractice].[User] WHERE [Email] = @Email";
+            var sql = "SELECT [Username], [Password], [Email], [Role], [Phone_number] FROM [SummerPractice].[User] WHERE [Email] = @Email";
 
             var connection = _databaseContext.GetDbConnection();
             var users = connection.QueryAsync<UserCredentials>(sql, new {Email = email});
@@ -27,12 +27,13 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> RegisterUser(UserCredentials credentials)
         {
-            var query = "INSERT INTO [SummerPractice].[User] ([Username], [Password], [Email], [Role]) VALUES (@Username, @Password, @Email, @Role)";
+            var query = "INSERT INTO [SummerPractice].[User] ([Username], [Password], [Email], [Role], [Phone_number]) VALUES (@Username, @Password, @Email, @Role, @Phone)";
             var parameters = new DynamicParameters();
             parameters.Add("Username", credentials.Username, DbType.String);
             parameters.Add("Password", credentials.Password, DbType.String);
             parameters.Add("Email", credentials.Email, DbType.String);
             parameters.Add("Role", credentials.Role, DbType.String);
+            parameters.Add("Phone", credentials.Phone, DbType.String);
 
             var connection = _databaseContext.GetDbConnection();
             var result = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
