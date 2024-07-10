@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3lT9J/6a63sraVpMVg74psL3VyQE2clik3WsTTFwQWakEG2w8Z3bS2QJolvMiXguNGxwocAGggCb0vP2AN/XJQ==",
+  "dgSpecHash": "WO1oMTSg4z3MdaesVLbjO5Beh5Bt9Y/wh5kEZW241uSROwwNrfEct45rJWWq39230zTZ/IX63hbLvKSO818/5g==",
   "success": true,
-  "projectFilePath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Application\\Application.csproj",
+  "projectFilePath": "Z:\\EduTrack\\SummerPracticeAC\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diana\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Diana\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

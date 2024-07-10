@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RX8EVhjYg/nfZPMx4YjI64qAxixaDz08rO1hrILEykvndPvXro5IJJI9ft2b++g7mqS+9O85cdyYXkrLXxFlBw==",
+  "dgSpecHash": "Dk9Dz65wMIgBmHysJsA28hFlvgD7WWQ2gYdC51Dt7U2t1yMhJCxIjPMwKqUN+t9VGvQomhqhhSGucE3wQ3fuKQ==",
   "success": true,
-  "projectFilePath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diana\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Diana\\.nuget\\packages\\azure.identity\\1.11.3\\azure.identity.1.11.3.nupkg.sha512",

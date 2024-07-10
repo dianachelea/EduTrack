@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WmsaxsZ7W7J7bL1WxvUcN+aWdwXD+JSvrQr2QdcY9r+5TyUFYjQ4zRLeybwEZsbytxSg81EAsX4e3bKv/0ynkQ==",
+  "dgSpecHash": "I896ei4CeXy0DlF85XnFqrlS3LTlgrlFCFUqCdft0b8mqmF7wgWeP9bkGb1Il5phT4aejBTIRx+h7nyrJ94rjQ==",
   "success": true,
-  "projectFilePath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
+  "projectFilePath": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diana\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Diana\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

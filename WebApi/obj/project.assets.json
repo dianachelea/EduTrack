@@ -3125,11 +3125,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\WebApi.csproj",
+      "projectPath": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\Diana\\.nuget\\packages\\",
-      "outputPath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\obj\\",
+      "outputPath": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3150,14 +3150,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Application\\Application.csproj": {
-              "projectPath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Application\\Application.csproj"
+            "Z:\\EduTrack\\SummerPracticeAC\\Application\\Application.csproj": {
+              "projectPath": "Z:\\EduTrack\\SummerPracticeAC\\Application\\Application.csproj"
             },
-            "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Infrastructure.csproj"
+            "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Infrastructure.csproj"
             },
-            "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApiContracts\\WebApiContracts.csproj": {
-              "projectPath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApiContracts\\WebApiContracts.csproj"
+            "Z:\\EduTrack\\SummerPracticeAC\\WebApiContracts\\WebApiContracts.csproj": {
+              "projectPath": "Z:\\EduTrack\\SummerPracticeAC\\WebApiContracts\\WebApiContracts.csproj"
             }
           }
         }

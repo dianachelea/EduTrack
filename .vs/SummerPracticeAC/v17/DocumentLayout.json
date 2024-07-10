@@ -1,118 +1,94 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\",
+  "WorkspaceRootPath": "Z:\\EduTrack\\SummerPracticeAC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|solutionrelative:webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\dbupgrader.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\dbupgrader.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\dbupgrader.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00009- create table feedback.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00009- create table feedback.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00008- create table grade.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00008- create table grade.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00008- create table grade.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00007 - create table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00007 - create table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00010- alter table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00010- alter table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00006 - create table students-courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00006 - create table students-courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00005- create table courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00005- create table courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00004- alter table users.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00004- alter table users.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00004- alter table users.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00001-create db schema and user table.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00005- create table courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00005- create table courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\edutrack\\summerpracticeac\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|solutionrelative:webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00001-create db schema and user table.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00001-create db schema and user table.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00003-add file table.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00003-add file table.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00002-add role to user table.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00002-add role to user table.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\webapi\\webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\edutrack\\summerpracticeac\\webapi\\webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|solutionrelative:webapi\\webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{82678F2B-C55D-44FD-8913-04DB59FDCDB2}|Solution Items{82678F2B-C55D-44FD-8913-04DB59FDCDB2}|Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\README.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{82678F2B-C55D-44FD-8913-04DB59FDCDB2}|Solution Items{82678F2B-C55D-44FD-8913-04DB59FDCDB2}|Z:\\EduTrack\\SummerPracticeAC\\README.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{82678F2B-C55D-44FD-8913-04DB59FDCDB2}|Solution Items{82678F2B-C55D-44FD-8913-04DB59FDCDB2}|solutionrelative:README.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\infrastructure\\repositories\\authenticationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\edutrack\\summerpracticeac\\infrastructure\\repositories\\authenticationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\authenticationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\edutrack\\summerpracticeac\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|solutionrelative:webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\infrastructure\\handlers\\genericerrorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\edutrack\\summerpracticeac\\infrastructure\\handlers\\genericerrorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\handlers\\genericerrorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\webapi\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|z:\\edutrack\\summerpracticeac\\webapi\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F0E97495-F135-4362-8B58-4A15E30ED31D}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\infrastructure\\handlers\\identityhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\edutrack\\summerpracticeac\\infrastructure\\handlers\\identityhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\handlers\\identityhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\infrastructure\\handlers\\passwordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|z:\\edutrack\\summerpracticeac\\infrastructure\\handlers\\passwordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{398C8671-DDFC-41D2-8960-C900E8A508B0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\handlers\\passwordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D57A06BB-BA85-4D51-9E74-8298BD4082B2}|Application\\Application.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\application\\services\\authorizationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D57A06BB-BA85-4D51-9E74-8298BD4082B2}|Application\\Application.csproj|z:\\edutrack\\summerpracticeac\\application\\services\\authorizationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D57A06BB-BA85-4D51-9E74-8298BD4082B2}|Application\\Application.csproj|solutionrelative:application\\services\\authorizationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D57A06BB-BA85-4D51-9E74-8298BD4082B2}|Application\\Application.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\application\\interfaces\\ipasswordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D57A06BB-BA85-4D51-9E74-8298BD4082B2}|Application\\Application.csproj|z:\\edutrack\\summerpracticeac\\application\\interfaces\\ipasswordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D57A06BB-BA85-4D51-9E74-8298BD4082B2}|Application\\Application.csproj|solutionrelative:application\\interfaces\\ipasswordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00004- alter table users.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00004- alter table users.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00004- alter table users.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00005- create table courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00005- create table courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00005- create table courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00006 - create table students-courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00006 - create table students-courses.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00007 - create table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00007 - create table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00008- create table grade.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00008- create table grade.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
       "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00008- create table grade.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\proiect centric\\summerpracticeac\\summerpracticeac\\dbupgrader\\scripts\\step00009- create table feedback.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00009- create table feedback.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+      "AbsoluteMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|z:\\edutrack\\summerpracticeac\\dbupgrader\\scripts\\step00010- alter table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{9D5D9407-7096-46B7-B124-83B0BDA38016}|DbUpgrader\\DbUpgrader.csproj|solutionrelative:dbupgrader\\scripts\\step00010- alter table lessons.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -122,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1341,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -130,26 +106,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\appsettings.json",
-              "RelativeDocumentMoniker": "WebApi\\appsettings.json",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\appsettings.json",
-              "RelativeToolTip": "WebApi\\appsettings.json",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABYAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-08T16:36:09.28Z",
+              "DocumentIndex": 2,
+              "Title": "Step00010- Alter table Lessons.sql ",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00010- Alter table Lessons.sql",
+              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00010- Alter table Lessons.sql",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00010- Alter table Lessons.sql",
+              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00010- Alter table Lessons.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-07-10T14:58:12.566Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "DbUpgrader.csproj",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
               "RelativeDocumentMoniker": "DbUpgrader\\DbUpgrader.csproj",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
               "RelativeToolTip": "DbUpgrader\\DbUpgrader.csproj",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAiwBUAAAAAAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAcwA4AAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-07-09T16:21:37.633Z",
               "EditorCaption": ""
@@ -157,70 +132,10 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Step00008- Create table Grade.sql ",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
-              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
-              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T15:38:31.215Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Step00009- Create table Feedback.sql ",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00009- Create table Feedback.sql",
-              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00009- Create table Feedback.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00009- Create table Feedback.sql",
-              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00009- Create table Feedback.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T15:45:49.354Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Step00007 - Create table Lessons.sql ",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00007 - Create table Lessons.sql",
-              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00007 - Create table Lessons.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00007 - Create table Lessons.sql",
-              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00007 - Create table Lessons.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T15:26:27.346Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Step00006 - Create table Students-Courses.sql ",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00006 - Create table Students-Courses.sql",
-              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00006 - Create table Students-Courses.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00006 - Create table Students-Courses.sql",
-              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00006 - Create table Students-Courses.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T15:17:53.198Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Step00005- Create table Courses.sql ",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
-              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
-              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T15:13:47.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Step00004- Alter table Users.sql ",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00004- Alter table Users.sql",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00004- Alter table Users.sql",
               "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00004- Alter table Users.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00004- Alter table Users.sql",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00004- Alter table Users.sql",
               "RelativeToolTip": "DbUpgrader\\Scripts\\Step00004- Alter table Users.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
               "WhenOpened": "2024-07-09T14:58:29.586Z",
@@ -228,44 +143,60 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
+              "Title": "Step00008- Create table Grade.sql ",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
+              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
+              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00008- Create table Grade.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-07-10T14:53:10.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Step00005- Create table Courses.sql ",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
+              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
+              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00005- Create table Courses.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-07-09T15:13:47.596Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApi\\appsettings.json",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\appsettings.json",
+              "RelativeToolTip": "WebApi\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-08T16:36:09.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Step00001-Create db schema and user table.sql",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00001-Create db schema and user table.sql",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00001-Create db schema and user table.sql",
               "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00001-Create db schema and user table.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00001-Create db schema and user table.sql",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00001-Create db schema and user table.sql",
               "RelativeToolTip": "DbUpgrader\\Scripts\\Step00001-Create db schema and user table.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T14:33:23.731Z"
+              "WhenOpened": "2024-07-09T14:33:23.731Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Step00003-Add file table.sql",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00003-Add file table.sql",
-              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00003-Add file table.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00003-Add file table.sql",
-              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00003-Add file table.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T15:14:31.878Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Step00002-Add role to user table.sql",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00002-Add role to user table.sql",
-              "RelativeDocumentMoniker": "DbUpgrader\\Scripts\\Step00002-Add role to user table.sql",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Scripts\\Step00002-Add role to user table.sql",
-              "RelativeToolTip": "DbUpgrader\\Scripts\\Step00002-Add role to user table.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-07-09T16:24:49.146Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 7,
               "Title": "WebApi.csproj",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\WebApi.csproj",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\WebApi.csproj",
               "RelativeDocumentMoniker": "WebApi\\WebApi.csproj",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\WebApi.csproj",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\WebApi.csproj",
               "RelativeToolTip": "WebApi\\WebApi.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -274,123 +205,133 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Program.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Program.cs",
               "RelativeDocumentMoniker": "DbUpgrader\\Program.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\DbUpgrader\\Program.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\Program.cs",
               "RelativeToolTip": "DbUpgrader\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAACWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T16:32:52.166Z"
+              "WhenOpened": "2024-07-08T16:32:52.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "README.txt",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\README.txt",
+              "RelativeDocumentMoniker": "README.txt",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\README.txt",
+              "RelativeToolTip": "README.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-07-08T16:34:19.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AuthenticationRepository.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Repositories\\AuthenticationRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\AuthenticationRepository.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Repositories\\AuthenticationRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\AuthenticationRepository.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T17:46:22.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GenericErrorHandler.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Handlers\\GenericErrorHandler.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Handlers\\GenericErrorHandler.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Handlers\\GenericErrorHandler.cs",
+              "RelativeToolTip": "Infrastructure\\Handlers\\GenericErrorHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T15:57:30.46Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "README.txt",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\README.txt",
-              "RelativeDocumentMoniker": "README.txt",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\README.txt",
-              "RelativeToolTip": "README.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-07-08T16:34:19.566Z"
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\AuthenticationController.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\AuthenticationController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T15:12:53.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "WebApi\\Program.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\WebApi\\Program.cs",
+              "RelativeToolTip": "WebApi\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T15:08:43.766Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "AuthenticationRepository.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Repositories\\AuthenticationRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\AuthenticationRepository.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Repositories\\AuthenticationRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\AuthenticationRepository.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "IdentityHandler.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Handlers\\IdentityHandler.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Handlers\\IdentityHandler.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Handlers\\IdentityHandler.cs",
+              "RelativeToolTip": "Infrastructure\\Handlers\\IdentityHandler.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T17:46:22.514Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "GenericErrorHandler.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Handlers\\GenericErrorHandler.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Handlers\\GenericErrorHandler.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Handlers\\GenericErrorHandler.cs",
-              "RelativeToolTip": "Infrastructure\\Handlers\\GenericErrorHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA3AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T15:57:30.46Z"
+              "WhenOpened": "2024-07-07T14:57:31.933Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "AuthenticationController.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\Controllers\\AuthenticationController.cs",
-              "RelativeDocumentMoniker": "WebApi\\Controllers\\AuthenticationController.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\Controllers\\AuthenticationController.cs",
-              "RelativeToolTip": "WebApi\\Controllers\\AuthenticationController.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAACoAAAAIAAAA",
+              "Title": "IPasswordHasher.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\Application\\Interfaces\\IPasswordHasher.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\IPasswordHasher.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\Application\\Interfaces\\IPasswordHasher.cs",
+              "RelativeToolTip": "Application\\Interfaces\\IPasswordHasher.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T15:12:53.311Z"
+              "WhenOpened": "2024-07-07T14:54:40.2Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\Program.cs",
-              "RelativeDocumentMoniker": "WebApi\\Program.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\WebApi\\Program.cs",
-              "RelativeToolTip": "WebApi\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA9AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T15:08:43.766Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IdentityHandler.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Handlers\\IdentityHandler.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Handlers\\IdentityHandler.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Handlers\\IdentityHandler.cs",
-              "RelativeToolTip": "Infrastructure\\Handlers\\IdentityHandler.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAAAcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T14:57:31.933Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "IPasswordHasher.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Application\\Interfaces\\IPasswordHasher.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\IPasswordHasher.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Application\\Interfaces\\IPasswordHasher.cs",
-              "RelativeToolTip": "Application\\Interfaces\\IPasswordHasher.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T14:54:40.2Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
               "Title": "PasswordHandler.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Handlers\\PasswordHandler.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Handlers\\PasswordHandler.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Handlers\\PasswordHandler.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Infrastructure\\Handlers\\PasswordHandler.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\Infrastructure\\Handlers\\PasswordHandler.cs",
               "RelativeToolTip": "Infrastructure\\Handlers\\PasswordHandler.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T14:38:53.063Z"
+              "WhenOpened": "2024-07-07T14:38:53.063Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 16,
               "Title": "AuthorizationService.cs",
-              "DocumentMoniker": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Application\\Services\\AuthorizationService.cs",
+              "DocumentMoniker": "Z:\\EduTrack\\SummerPracticeAC\\Application\\Services\\AuthorizationService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\AuthorizationService.cs",
-              "ToolTip": "Z:\\proiect centric\\SummerPracticeAC\\SummerPracticeAC\\Application\\Services\\AuthorizationService.cs",
+              "ToolTip": "Z:\\EduTrack\\SummerPracticeAC\\Application\\Services\\AuthorizationService.cs",
               "RelativeToolTip": "Application\\Services\\AuthorizationService.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAAC4AAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T14:35:50.761Z"
+              "WhenOpened": "2024-07-07T14:35:50.761Z",
+              "EditorCaption": ""
             }
           ]
         }
