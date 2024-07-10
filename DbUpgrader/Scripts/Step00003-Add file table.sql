@@ -1,0 +1,7 @@
+﻿IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'File' AND TABLE_SCHEMA = 'SummerPractice')
+BEGIN
+	CREATE TABLE [SummerPractice].[file](
+		[FileName]			nvarchar(50)	NOT NULL,
+		[Path]			nvarchar(250)	NOT NULL
+	CONSTRAINT [PK_FileName] PRIMARY KEY CLUSTERED ([FileName] ASC) ON [PRIMARY]) ON [PRIMARY]
+END

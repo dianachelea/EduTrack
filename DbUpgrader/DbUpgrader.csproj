@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\Step00001-Create db schema and user table.sql" />
+    <None Remove="Scripts\Step00002-Add role to user table.sql" />
+    <None Remove="Scripts\Step00003-Add file table.sql" />
+    <None Remove="Scripts\Step00004- Alter table Users.sql" />
+    <None Remove="Scripts\Step00005- Create table Courses.sql" />
+    <None Remove="Scripts\Step00006 - Create table Students-Courses.sql" />
+    <None Remove="Scripts\Step00007 - Create table Lessons.sql" />
+    <None Remove="Scripts\Step00008- Create table Grade.sql" />
+    <None Remove="Scripts\Step00009- Create table Feedback.sql" />
+	 
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Step00001-Create db schema and user table.sql" />
+    <EmbeddedResource Include="Scripts\Step00002-Add role to user table.sql" />
+    <EmbeddedResource Include="Scripts\Step00003-Add file table.sql" />
+    <EmbeddedResource Include="Scripts\Step00004- Alter table Users.sql" />
+    <EmbeddedResource Include="Scripts\Step00005- Create table Courses.sql" />
+    <EmbeddedResource Include="Scripts\Step00006 - Create table Students-Courses.sql" />
+    <EmbeddedResource Include="Scripts\Step00007 - Create table Lessons.sql" />
+    <EmbeddedResource Include="Scripts\Step00008- Create table Grade.sql" />
+    <EmbeddedResource Include="Scripts\Step00009- Create table Feedback.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup" Version="5.0.40" />
+  </ItemGroup>
+
+</Project>
