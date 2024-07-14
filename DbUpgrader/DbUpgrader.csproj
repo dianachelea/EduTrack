@@ -19,7 +19,9 @@
     <None Remove="Scripts\Step00009- Create table Feedback.sql" />
     <None Remove="Scripts\Step00010- Alter table Lessons.sql" />
     <None Remove="Scripts\Step00011- Create table Attendance.sql" />
-	 
+	<None Remove="Scripts\Step00012 - Alter table Lessons add new column.sql" />
+	  
+
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +36,7 @@
     <EmbeddedResource Include="Scripts\Step00009- Create table Feedback.sql" />
     <EmbeddedResource Include="Scripts\Step00010- Alter table Lessons.sql" />
     <EmbeddedResource Include="Scripts\Step00011- Create table Attendance.sql" />
+	<EmbeddedResource Include="Scripts\Step00012 - Alter table Lessons add new column.sql" />
   </ItemGroup>
 
   <ItemGroup>
