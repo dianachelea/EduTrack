@@ -10,7 +10,7 @@ namespace DbUpgrader
 
             var connectionString =
                 args.FirstOrDefault()
-                ?? "data source=DESKTOP-J4EKKM8\\SQLEXPRESS;initial catalog=CentricSummerPractice;trusted_connection=true;TrustServerCertificate=True;";
+                ?? "data source=DESKTOP-8NI2ROK\\SQLEXPRESS;initial catalog=CentricSummerPractice;trusted_connection=true;TrustServerCertificate=True;";
             EnsureDatabase.For.SqlDatabase(connectionString);
 
             var upgrader =
@@ -27,9 +27,9 @@ namespace DbUpgrader
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(result.Error);
                 Console.ResetColor();
-#if DEBUG
+                #if DEBUG
                 Console.ReadLine();
-#endif
+                #endif
                 return -1;
             }
 
