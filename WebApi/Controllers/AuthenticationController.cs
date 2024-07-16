@@ -24,21 +24,21 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<bool>> RegisterUser([FromQuery] RegisterUserCredentialsContract credentialsContract)
+        public async Task<ActionResult<bool>> RegisterUser([FromBody] RegisterUserCredentialsContract credentialsContract)
         {
             var result = await this._userService.RegisterUser(credentialsContract.MapToUserRegister());
             return Ok(result);
         }
         [HttpPost]
         [Authorize(Policy = IdentityData.AdminUserPolicyName)]
-        public async Task<ActionResult<bool>> RegisterTeacher([FromQuery] RegisterUserCredentialsContract credentialsContract)
+        public async Task<ActionResult<bool>> RegisterTeacher([FromBody] RegisterUserCredentialsContract credentialsContract)
         {
             var result = await this._userService.RegisterTeacher(credentialsContract.MapToUserRegister());
             return Ok(result);
         }
 		[HttpPost]
 		[AllowAnonymous]
-		public async Task<ActionResult<bool>> DevRegisterAdmin([FromQuery] RegisterUserCredentialsContract credentialsContract)
+		public async Task<ActionResult<bool>> DevRegisterAdmin([FromBody] RegisterUserCredentialsContract credentialsContract)
 		{
 			var result = await this._userService.RegisterAdmin(credentialsContract.MapToUserRegister());
 			return Ok(result);
@@ -46,11 +46,31 @@ namespace WebApi.Controllers
 
 		[HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<string>> LoginUser([FromQuery] LoginUserCredentialsContract credentialsContract)
+        public async Task<ActionResult<string>> LoginUser([FromBody] LoginUserCredentialsContract credentialsContract)
         {
             var result = await this._authorizationService.LoginUser(credentialsContract.MapToUserCredentials());
 
             _logger.LogInformation("Logged in as user: "+result.Username);
+
+            return Ok(result);
+        }
+		[HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult<string>> RecoverPassword([FromQuery] string email)
+        {
+            var result = await this._userService.RecoverPassword(email);
+
+            _logger.LogInformation(email + " wants to recover his password");
+
+            return Ok(result);
+        }
+		[HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult<string>> ResetPassword([FromQuery] string token,[FromBody] string password)
+        {
+            var result = await this._userService.ResetPassword(token, password);
+
+            _logger.LogInformation("Password reseted with succes for token: " + token);
 
             return Ok(result);
         }
@@ -65,6 +85,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<string> TestMethod()
         {
             return Ok("Test works!");

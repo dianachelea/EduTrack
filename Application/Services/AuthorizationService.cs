@@ -6,11 +6,11 @@ namespace Application.Services
     public class AuthorizationService
     {
         private readonly IPasswordHasher _passwordHasher;
-        private readonly IAuthenticationRepository _authenticationRepository;
+        private readonly IUsersRepository _authenticationRepository;
         private readonly IIdentityHandler _identityHandler;
 
         public AuthorizationService(IPasswordHasher passwordHasher,
-            IAuthenticationRepository authenticationRepository,
+            IUsersRepository authenticationRepository,
             IIdentityHandler identityHandler)
         {
             _passwordHasher = passwordHasher;

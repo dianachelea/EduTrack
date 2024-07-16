@@ -7,11 +7,11 @@ using Infrastructure.Interfaces;
 
 namespace Infrastructure.Repositories
 {
-    public class AuthenticationRepository: IAuthenticationRepository
+    public class UsersRepository: IUsersRepository
     {
         private readonly IDatabaseContext _databaseContext;
 
-        public AuthenticationRepository(IDatabaseContext databaseContext)
+        public UsersRepository(IDatabaseContext databaseContext)
         {
             this._databaseContext = databaseContext;
         }
@@ -46,6 +46,19 @@ namespace Infrastructure.Repositories
 
             var connection = _databaseContext.GetDbConnection();
             var result = await connection.ExecuteAsync(sql, new { Email = email });
+            return result != 0;
+        }
+        public async Task<bool> UpdatePassword(string email, string newPassword)
+        {
+            var sql = "UPDATE [SummerPractice].[User] SET [Password] = @Password WHERE [Email] = @Email";
+
+            var connection = _databaseContext.GetDbConnection();
+
+			var parameters = new DynamicParameters();
+			parameters.Add("Password", newPassword, DbType.String);
+			parameters.Add("Email", email, DbType.String);
+
+			var result = await connection.ExecuteAsync(sql, parameters, _databaseContext.GetDbTransaction());
             return result != 0;
         }
     }
