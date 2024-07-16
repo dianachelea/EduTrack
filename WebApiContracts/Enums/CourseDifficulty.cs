@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.enums
+namespace WebApiContracts.Enums
 {
-	 public enum CourseDifficulty
+	public enum CourseDifficulty
 	{
-		Beginner, 
-		Intermediate, 
-		Advanced
+		Beginner = 0,
+		Intermediate = 1,
+		Advanced = 2
 	}
 }
