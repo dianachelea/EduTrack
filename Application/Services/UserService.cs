@@ -81,20 +81,20 @@ namespace Application.Services
 
 		public async Task<bool> ResetPassword(string token, string password)
 		{
-			var validationToken = _tokenRepository.GetToken(token);
+			var validationToken =  await _tokenRepository.GetToken(token);
 
-			/*if (validationToken.ToList().Count == 0)
+			if (validationToken.ToList().Count == 0)
 			{
 				throw new Exception("Token not found!");
-			}*/
+			}
 
-			if(validationToken.expirationDate < DateTime.Now)
+			if (validationToken.FirstOrDefault()?.expirationDate < DateTime.Now)
 			{
 				throw new Exception("Token expired!");
 			}
 
 			var hashedPassword = _passwordHasher.Hash(password);
-			var result = await _usersRepository.UpdatePassword(validationToken.userEmail, hashedPassword);
+			var result = await _usersRepository.UpdatePassword(validationToken.FirstOrDefault()?.userEmail, hashedPassword);
 			var deleteResult = await _tokenRepository.DeleteToken(token);
 			return result;
 		}

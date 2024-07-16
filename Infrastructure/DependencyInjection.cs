@@ -21,8 +21,8 @@ namespace Infrastructure
 
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<ITokenRepository, TokensRepository>();
 
-            services.AddSingleton<ITokenRepository, TokensRepository>();
             return services;
         }
     }
