@@ -36,6 +36,7 @@ namespace WebApi
 
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices();
+            builder.Services.DapperConfig();
 
             builder.Services.AddAuthentication(options =>
             {
@@ -66,8 +67,9 @@ namespace WebApi
             });
 
             builder.Services.AddControllers();
+			
 
-            var app = builder.Build();
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
 
