@@ -27,6 +27,7 @@ namespace Application.Services
 			ILogger<UserService> logger)
 		{
 			_passwordHasher = passwordHasher;
+			_identityHandler = identityHandler;
 			_authenticationRepository = authenticationRepository;
 			_generateToken = generateToken;
 			_tokenRepository = tokenRepository;
