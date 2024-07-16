@@ -22,6 +22,8 @@ namespace Infrastructure.Repositories
 			this._databaseContext = databaseContext;
 		}
 
+		private Dictionary<string, ValidationTokenDo> tokenRepository = new Dictionary<string, ValidationTokenDo>();
+
 		public async Task<bool> AddToken(ValidationTokenDo token)
 		{
 			var query = "INSERT INTO [SummerPractice].[Tokens] ([UserEmail], [Token], [ExpirationDate]) VALUES (@UserEmail, @Token, @ExpirationDate)";
@@ -42,6 +44,10 @@ namespace Infrastructure.Repositories
 			var connection = _databaseContext.GetDbConnection();
 			var validationToken = connection.QueryAsync<ValidationTokenDo>(sql, new { Token = token });
 			return validationToken;
+		}*/
+		public ValidationTokenDo GetToken(string token)
+		{
+			return tokenRepository[token];
 		}
 		public async Task<bool> DeleteToken(string token)
 		{
