@@ -100,7 +100,7 @@ namespace Application.Services
 		}
 		public async Task<bool> RecoverPassword(string email)
 		{
-			var userCheck = await _authenticationRepository.GetUser(email);
+			var userCheck = await _authenticationRepository.GetUserInfo(email);
 
 			if (userCheck.ToList().Count == 0)
 			{
@@ -119,6 +119,13 @@ namespace Application.Services
 			return result;
 		}
 
+		public async Task<IEnumerable<UserCredentials>> GetAllStudents()
+		{
+			var users = await _usersRepository.GetAllStudents();
+
+			return users;
+		}
+
 		/// <summary>
 		/// Verify if there is any user with the same email registered
 		/// If so - throw an exception
@@ -129,7 +136,7 @@ namespace Application.Services
 		/// <exception cref="Exception">If the user is already registred</exception>
 		private async Task<string> RegisterPasswordHasher(UserCredentials credentials)
 		{
-			var userCheck = await _authenticationRepository.GetUser(credentials.Email);
+			var userCheck = await _authenticationRepository.GetUserInfo(credentials.Email);
 
 			if (userCheck.ToList().Count != 0)
 			{

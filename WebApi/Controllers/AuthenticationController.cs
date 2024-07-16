@@ -85,10 +85,11 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
-        public ActionResult<string> TestMethod()
+        public async Task<ActionResult<string>> TestMethod()
         {
-            return Ok("Test works!");
+            var result = await _userService.GetAllStudents();
+
+			return Ok(result);
         }
 
         [HttpGet]

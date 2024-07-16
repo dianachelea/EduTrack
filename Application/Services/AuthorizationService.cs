@@ -22,7 +22,7 @@ namespace Application.Services
 
         public async Task<User> LoginUser(UserCredentials credentials)
         {
-            var userHashed = await this._authenticationRepository.GetUser(credentials.Email);
+            var userHashed = await this._authenticationRepository.GetUserInfo(credentials.Email);
 
             if (!_passwordHasher.Verify(userHashed.FirstOrDefault().Password, credentials.Password))
             {
@@ -44,7 +44,7 @@ namespace Application.Services
 
         public async Task<bool> GiveUserAdminRights(string email)
         {
-            var userCheck = await this._authenticationRepository.GetUser(email);
+            var userCheck = await this._authenticationRepository.GetUserInfo(email);
 
             if (userCheck.ToList().Count == 0)
             {

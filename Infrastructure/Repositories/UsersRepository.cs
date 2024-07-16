@@ -16,9 +16,9 @@ namespace Infrastructure.Repositories
             this._databaseContext = databaseContext;
         }
 
-        public Task<IEnumerable<UserCredentials>> GetUser(string email)
+        public Task<IEnumerable<UserCredentials>> GetUserInfo(string email)
         {
-            var sql = "SELECT [Username], [Password], [Email], [Role], [Phone_number] FROM [SummerPractice].[User] WHERE [Email] = @Email";
+            var sql = "SELECT [Username], [Password], [Email], [Role], [First_Name], [Last_name], [Phone_number] FROM [SummerPractice].[User] WHERE [Email] = @Email";
 
             var connection = _databaseContext.GetDbConnection();
             var users = connection.QueryAsync<UserCredentials>(sql, new {Email = email});
@@ -61,5 +61,14 @@ namespace Infrastructure.Repositories
 			var result = await connection.ExecuteAsync(sql, parameters, _databaseContext.GetDbTransaction());
             return result != 0;
         }
-    }
+
+		public Task<IEnumerable<UserCredentials>> GetAllStudents()
+		{
+			var sql = "SELECT [Username], [Email], [Role], [First_name], [Last_Name], [Phone_number] FROM [SummerPractice].[User]";
+            
+			var connection = _databaseContext.GetDbConnection();
+			var users = connection.QueryAsync<UserCredentials>(sql);
+			return users;
+		}
+	}
 }
