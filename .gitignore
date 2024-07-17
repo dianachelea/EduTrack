@@ -4,3 +4,4 @@
 **/bin
 **/obj
 .vs/
+/WebApi/bin/Debug/net8.0/WebApiContracts.pdb
