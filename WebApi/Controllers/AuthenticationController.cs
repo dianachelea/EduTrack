@@ -13,11 +13,13 @@ namespace WebApi.Controllers
     {
         private readonly AuthorizationService _authorizationService;
         private readonly UserService _userService;
+        private readonly NotificationService _notificationSender;
         private readonly ILogger<AuthenticationController> _logger;
 
-        public AuthenticationController(AuthorizationService authorizationService, UserService userService, ILogger<AuthenticationController> logger)
+        public AuthenticationController(AuthorizationService authorizationService, UserService userService, NotificationService notificationSender, ILogger<AuthenticationController> logger)
         {
             _authorizationService = authorizationService;
+            _notificationSender = notificationSender;
             _logger = logger;
             _userService = userService;
 		}
@@ -87,9 +89,8 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<string>> TestMethod()
         {
-            var result = await _userService.GetAllStudents();
-
-			return Ok(result);
+            _notificationSender.NotifyTeacher("asmarandei.catalin@yahoo.com", "Test notification message");
+            return Ok("Test works!");
         }
 
         [HttpGet]

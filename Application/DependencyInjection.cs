@@ -11,7 +11,8 @@ namespace Application
 			services.AddScoped<AuthorizationService>();
 			services.AddScoped<UserService>();
 			services.AddScoped<FileService>();
-            return services;
+			services.AddScoped<NotificationService>();
+			return services;
         }
     }
 }
