@@ -12,7 +12,10 @@ namespace Application
             services.AddScoped<LessonInventoryService>();
             services.AddScoped<LessonService>();
             services.AddScoped<FileService>();
-            return services;
+            
+            services.AddScoped<CourseInventoryService>();
+			services.AddScoped<CourseService>();
+			return services;
         }
     }
 }
