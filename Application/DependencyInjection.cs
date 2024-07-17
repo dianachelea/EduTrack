@@ -10,7 +10,10 @@ namespace Application
         {
             services.AddScoped<AuthorizationService>();
             services.AddScoped<FileService>();
-            return services;
+            
+            services.AddScoped<CourseInventoryService>();
+			services.AddScoped<CourseService>();
+			return services;
         }
     }
 }

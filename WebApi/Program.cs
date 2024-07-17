@@ -34,7 +34,9 @@ namespace WebApi
             builder.Services.AddExceptionHandler<NullReferenceErrorHandler>();
             builder.Services.AddExceptionHandler<GenericErrorHandler>();
 
-            builder.Services.AddApplicationServices();
+			Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+
+			builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices();
 
             builder.Services.AddAuthentication(options =>

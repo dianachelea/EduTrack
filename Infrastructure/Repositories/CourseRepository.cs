@@ -16,11 +16,11 @@ namespace Infrastructure.Repositories
 			this._databaseContext = databaseContext;
 		}
 
-		public async Task<bool> AddCourse(Course course)
+		public async Task<bool> AddCourse(string email, Course course)
 		{
 			var query = "INSERT INTO [CentricSummerPractice].[Courses] " +
-				"([Name_course], [Description], [Preview], [ImageData], [Category], [Difficulty], [Time], [Learning_topics], [Perequisities]) " +
-				"VALUES (@Name, @Description, @Preview, @ImageData, @Category, @Difficulty, @Duration, @LearningTopics, @Prerequisites)";
+				"([Name_course], [Description], [Preview], [ImageData], [Category], [Difficulty], [Time], [Learning_topics], [Perequisities], [TeacherEmail]) " +
+				"VALUES (@Name, @Description, @Preview, @ImageData, @Category, @Difficulty, @Duration, @LearningTopics, @Prerequisites, @TeacherEmail)";
 			var parameters = new DynamicParameters();
 			parameters.Add("Name", course.Name, DbType.String);
 			parameters.Add("Description", course.Description, DbType.String);
@@ -31,17 +31,19 @@ namespace Infrastructure.Repositories
 			parameters.Add("ImageData", course.Image, DbType.Binary);
 			parameters.Add("LearningTopics", course.LearningTopics, DbType.String);
 			parameters.Add("Prerequisites", course.Prerequisites, DbType.String);
-			
+			parameters.Add("TeacherEmail", email, DbType.String);
+
 			var connection = _databaseContext.GetDbConnection();
 			var result = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
 			return result != 0;
 		}
 
-		public async Task<bool> DeleteCourse(string name)
+		public async Task<bool> DeleteCourse(string email, string name)
 		{
-			var query = "DELETE FROM [CentricSummerPractice].[Courses] WHERE [Name_course] = @Name";
+			var query = "DELETE FROM [CentricSummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
 			var parameters = new DynamicParameters();
 			parameters.Add("Name", name, DbType.String);
+			parameters.Add("TeacherEmail", email, DbType.String);
 
 			var connection = _databaseContext.GetDbConnection();
 			var result = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
@@ -57,6 +59,17 @@ namespace Infrastructure.Repositories
 			var connection = _databaseContext.GetDbConnection();
 			var courses = connection.QueryAsync<CourseDisplay>(query);
 			return courses;
+
+		}
+		public Task<IEnumerable<string>> GetTeacherCourses(string email)
+		{
+
+			var query = "SELECT [Name_course] FROM [CentricSummerPractice].[Courses] WHERE [TeacherEmail]=@TeacherEmail";
+
+			var connection = _databaseContext.GetDbConnection();
+			
+			var coursesNames = connection.QueryAsync<string>(query, new { TeacherEmail = email });
+			return coursesNames;
 
 		}
 
@@ -133,13 +146,13 @@ namespace Infrastructure.Repositories
 			return course;
 		}
 
-		public async Task<bool> UpdateCourse(string name, Course course)
+		public async Task<bool> UpdateCourse(string email, string name, Course course)
 		{
 			var query = "UPDATE [CentricSummerPractice].[Courses] " +
 				"SET [Name_course] = @NewName, [Description] = @Description, [Preview] = @Preview, [ImageData] = @ImageData, " +
 				"[Category] = @Category, [Difficulty] = @Difficulty," +
 				"[Time] = @Duration, [Learning_topics] = @LearningTopics,[Perequisities] = @Prerequisites" +
-				"WHERE [Name_course] = @Name";
+				"WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
 
 			var parameters = new DynamicParameters();
 			parameters.Add("NewName", name, DbType.String);
@@ -152,10 +165,31 @@ namespace Infrastructure.Repositories
 			parameters.Add("ImageData", course.Image, DbType.Binary);
 			parameters.Add("LearningTopics", course.LearningTopics, DbType.String);
 			parameters.Add("Prerequisites", course.Prerequisites, DbType.String);
+			parameters.Add("TeacherEmail", email, DbType.String);
 
 			var connection = _databaseContext.GetDbConnection();
 			var result = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
 			return result != 0;
+
+		}
+
+		public async Task<IEnumerable<Student>> GetStudentsEnrolledInCourse(string name, string teacherEmail)
+		{
+			var query = "SELECT Email FROM [CentricSummerPractice].[Students-Courses] " +
+				"WHERE Course_id = (SELECT Course_id FROM [CentricSummerPractice].[Students-Courses] WHERE Name_course = @Name" +
+				"AND TeacherEmail = @TeacherEmail";
+
+			var parameters = new DynamicParameters();
+			parameters.Add("Name", name, DbType.String);
+			parameters.Add("TeacherEmail", teacherEmail, DbType.String);
+			
+			var connection = _databaseContext.GetDbConnection();
+			var emails = connection.Query<string>(query, parameters, _databaseContext.GetDbTransaction());
+
+			query = "SELECT First_name, Last_Name, Email FORM [CentricSummerPractice].[User] WHERE Email IN @Emails";
+			var students = connection.Query<Student>(query, new { Emails = emails }, _databaseContext.GetDbTransaction());
+
+			return students;
 
 		}
 	}
