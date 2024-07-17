@@ -11,5 +11,7 @@ namespace Domain
 		
 		//FileContentResult este specific web mvc ului asa ca putem sa salvam doar partea de bytes in loc de tot obiectul
 		public Byte[] Image { get; set; }
+
+		public string ShortDescription { get; set; }
 	}
 }
