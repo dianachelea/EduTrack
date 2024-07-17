@@ -17,7 +17,10 @@ namespace Infrastructure.Utils
 				byte[] tokenData = new byte[length];
 				rng.GetBytes(tokenData);
 
-				return Convert.ToBase64String(tokenData);
+				return Convert.ToBase64String(tokenData)
+							.Replace('+', '-')
+							.Replace('/', '_')
+							.Replace("=", string.Empty);
 			}
 		}
 	}

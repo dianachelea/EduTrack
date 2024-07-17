@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace Application.Services
 		private readonly IGenerateToken _generateToken;
 		private readonly ITokenRepository _tokenRepository;
 		private readonly IUsersRepository _usersRepository;
+		private readonly NotificationService _notificationSender;
+		private readonly ILinkCreator _linkCreator;
 		private readonly ILogger<UserService> _logger;
 
 		public UserService(IPasswordHasher passwordHasher,
@@ -24,14 +27,17 @@ namespace Application.Services
 			IGenerateToken generateToken,
 			ITokenRepository tokenRepository,
 			IUsersRepository usersRepository,
+			NotificationService notificationSender,
+			ILinkCreator linkCreator,
 			ILogger<UserService> logger)
 		{
 			_passwordHasher = passwordHasher;
 			_authenticationRepository = authenticationRepository;
 			_generateToken = generateToken;
 			_tokenRepository = tokenRepository;
-			_usersRepository = usersRepository;
+			_linkCreator = linkCreator;
 			_logger = logger;
+			_notificationSender = notificationSender;
 		}
 
 		public async Task<bool> RegisterUser(UserCredentials credentials)
@@ -107,7 +113,7 @@ namespace Application.Services
 				throw new Exception("User is not registered");
 			}
 
-			string token = this._passwordHasher.Hash(_generateToken.GenerateToken(64));
+			string token = _generateToken.GenerateToken(32);
 			DateTime expiryDate = DateTime.Now.AddMinutes(15);
 
 			var result = await _tokenRepository.AddToken(new ValidationTokenDo
@@ -116,6 +122,9 @@ namespace Application.Services
 				token = token,
 				expirationDate = expiryDate
 			});
+			string link = _linkCreator.CreateLink("resetpassword?token="+token);
+			await _notificationSender.NotifyTeacher(email, link);
+
 			return result;
 		}
 

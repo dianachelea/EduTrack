@@ -19,6 +19,7 @@ namespace Infrastructure
             services.AddScoped<IPasswordHasher, PasswordHandler>();
             services.AddScoped<IGenerateToken, GenerateToken>();
             services.AddScoped<ISendNotification, SendEmailNotification>();
+            services.AddScoped<ILinkCreator, LinkCreator>();
 
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IFileRepository, FileRepository>();

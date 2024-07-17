@@ -44,11 +44,8 @@ namespace Infrastructure.Repositories
 			var connection = _databaseContext.GetDbConnection();
 			var validationToken = connection.QueryAsync<ValidationTokenDo>(sql, new { Token = token });
 			return validationToken;
-		}*/
-		public ValidationTokenDo GetToken(string token)
-		{
-			return tokenRepository[token];
 		}
+
 		public async Task<bool> DeleteToken(string token)
 		{
 			var sql = "DELETE FROM [SummerPractice].[Tokens] WHERE [Token] = @Token";

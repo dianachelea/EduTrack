@@ -14,7 +14,6 @@ namespace WebApi.Controllers
         private readonly AuthorizationService _authorizationService;
         private readonly UserService _userService;
         private readonly NotificationService _notificationSender;
-        private readonly UserService _userService;
         private readonly ILogger<AuthenticationController> _logger;
 
         public AuthenticationController(AuthorizationService authorizationService, UserService userService, NotificationService notificationSender, ILogger<AuthenticationController> logger)

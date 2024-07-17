@@ -70,19 +70,5 @@ namespace Infrastructure.Repositories
 			var users = connection.QueryAsync<UserCredentials>(sql);
 			return users;
 		}
-	
-        public async Task<bool> UpdatePassword(string email, string newPassword)
-        {
-            var sql = "UPDATE [SummerPractice].[User] SET [Password] = @Password WHERE [Email] = @Email";
-
-            var connection = _databaseContext.GetDbConnection();
-
-			var parameters = new DynamicParameters();
-			parameters.Add("Password", newPassword, DbType.String);
-			parameters.Add("Email", email, DbType.String);
-
-			var result = await connection.ExecuteAsync(sql, parameters, _databaseContext.GetDbTransaction());
-            return result != 0;
-        }
     }
 }
