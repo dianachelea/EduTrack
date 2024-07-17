@@ -21,6 +21,10 @@
     <None Remove="Scripts\Step00011- Create table Attendance.sql" />
 	<None Remove="Scripts\Step00012 - Alter table Lessons add new column.sql" />
 	<None Remove="Scripts\Step00013 - Alter table Courses topics + perequisites.sql" />
+	<None Remove="Scripts\Step00014 - Create table Tokens.sql" />
+	<None Remove="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
+
+
 
 
   </ItemGroup>
@@ -39,6 +43,8 @@
     <EmbeddedResource Include="Scripts\Step00011- Create table Attendance.sql" />
 	<EmbeddedResource Include="Scripts\Step00012 - Alter table Lessons add new column.sql" />
 	<EmbeddedResource Include="Scripts\Step00013 - Alter table Courses topics + perequisites.sql" />
+	<EmbeddedResource Include="Scripts\Step00014 - Create table Tokens.sql" />
+	<EmbeddedResource Include="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
   </ItemGroup>
 
   <ItemGroup>
