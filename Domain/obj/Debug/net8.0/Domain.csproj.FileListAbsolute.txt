@@ -21,3 +21,15 @@ Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\Dom
 Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\refint\Domain.dll
 Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\Domain.pdb
 Z:\proiect centric\SummerPracticeAC\SummerPracticeAC\Domain\obj\Debug\net8.0\ref\Domain.dll
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\bin\Debug\net8.0\Domain.deps.json
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\bin\Debug\net8.0\Domain.dll
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\bin\Debug\net8.0\Domain.pdb
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\Domain.dll
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\refint\Domain.dll
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\Domain.pdb
+C:\Users\andre\OneDrive\Desktop\Projects\Centric_Summer_Practice\EduTrack\Domain\obj\Debug\net8.0\ref\Domain.dll

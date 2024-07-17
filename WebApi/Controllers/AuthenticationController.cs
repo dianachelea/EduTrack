@@ -5,6 +5,8 @@ using Application.Services;
 using WebApiContracts;
 using WebApiContracts.Mappers;
 
+using Domain;
+
 namespace WebApi.Controllers
 {
     [ApiController]

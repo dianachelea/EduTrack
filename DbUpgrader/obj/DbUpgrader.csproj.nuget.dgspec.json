@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj": {}
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Projects\\Centric_Summer_Practice\\EduTrack\\DbUpgrader\\DbUpgrader.csproj": {}
   },
   "projects": {
-    "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj": {
+    "C:\\Users\\andre\\OneDrive\\Desktop\\Projects\\Centric_Summer_Practice\\EduTrack\\DbUpgrader\\DbUpgrader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
+        "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Desktop\\Projects\\Centric_Summer_Practice\\EduTrack\\DbUpgrader\\DbUpgrader.csproj",
         "projectName": "DbUpgrader",
-        "projectPath": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\DbUpgrader.csproj",
-        "packagesPath": "C:\\Users\\Diana\\.nuget\\packages\\",
-        "outputPath": "Z:\\EduTrack\\SummerPracticeAC\\DbUpgrader\\obj\\",
+        "projectPath": "C:\\Users\\andre\\OneDrive\\Desktop\\Projects\\Centric_Summer_Practice\\EduTrack\\DbUpgrader\\DbUpgrader.csproj",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\andre\\OneDrive\\Desktop\\Projects\\Centric_Summer_Practice\\EduTrack\\DbUpgrader\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Diana\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

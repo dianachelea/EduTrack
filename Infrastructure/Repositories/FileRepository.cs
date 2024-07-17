@@ -26,6 +26,12 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> SaveFile(string fileName, string fileLocation)
         {
+            var checkDuplicate = await this.GetFile(fileName);
+            if (checkDuplicate.ToList().Count > 0)
+            {
+                throw new Exception("File already exists");
+            }
+
             var query = "INSERT INTO [SummerPractice].[File] ([FileName], [Path]) VALUES (@FileName, @Path)";
             var parameters = new DynamicParameters();
             parameters.Add("FileName", fileName, DbType.String);
