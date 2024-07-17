@@ -38,7 +38,8 @@ namespace Infrastructure.Handlers
                 Subject = new ClaimsIdentity(jwtBearerAuthenticatedClient, new List<Claim>
                 {
                     new(JwtRegisteredClaimNames.Name, "SummerPracticeAC"),
-                    new("admin",user.Role == "admin" ? "true" : "false")
+                    new("admin",user.Role == "admin" ? "true" : "false"),
+                    new("teacher",(user.Role == "teacher" || user.Role == "admin") ? "true" : "false")
                 }),
                 Expires = expiry,
                 Issuer = _configuration.GetSection("JwtSettings:Issuer").Value!,
