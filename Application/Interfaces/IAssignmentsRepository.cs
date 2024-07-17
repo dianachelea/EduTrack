@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain;
 
 namespace Application.Interfaces
 {
     public interface IAssignmentsRepository
     {
+        Task<IEnumerable<AssignmentDo>> GetAssignment(string coursename, string lessontitle);
+        Task<bool> AddAssignment(string coursename, string lessontitle, AssignmentDo assignmentData);
     }
 }

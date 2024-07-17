@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    internal class AssignmentGradeDo
+    public class AssignmentGradeDo
     {
     }
 }
