@@ -8,10 +8,11 @@ namespace Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<AuthorizationService>();
-            services.AddScoped<FileService>();
-            services.AddScoped<NotificationService>();
-            return services;
+			services.AddScoped<AuthorizationService>();
+			services.AddScoped<UserService>();
+			services.AddScoped<FileService>();
+			services.AddScoped<NotificationService>();
+			return services;
         }
     }
 }

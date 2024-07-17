@@ -17,10 +17,13 @@ namespace Infrastructure
 
             services.AddScoped<IIdentityHandler, IdentityHandler>();
             services.AddScoped<IPasswordHasher, PasswordHandler>();
+            services.AddScoped<IGenerateToken, GenerateToken>();
             services.AddScoped<ISendNotification, SendEmailNotification>();
 
-            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<ITokenRepository, TokensRepository>();
+
             return services;
         }
     }
