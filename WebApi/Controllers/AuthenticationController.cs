@@ -12,11 +12,13 @@ namespace WebApi.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly AuthorizationService _authorizationService;
+        private readonly NotificationService _notificationSender;
         private readonly ILogger<AuthenticationController> _logger;
 
-        public AuthenticationController(AuthorizationService authorizationService, ILogger<AuthenticationController> logger)
+        public AuthenticationController(AuthorizationService authorizationService, NotificationService notificationSender, ILogger<AuthenticationController> logger)
         {
             _authorizationService = authorizationService;
+            _notificationSender = notificationSender;
             _logger = logger;
         }
 
@@ -51,6 +53,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public ActionResult<string> TestMethod()
         {
+            _notificationSender.NotifyTeacher("asmarandei.catalin@yahoo.com", "Test notification message");
             return Ok("Test works!");
         }
 
