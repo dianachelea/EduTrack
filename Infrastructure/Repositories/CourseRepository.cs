@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories
 
 		public async Task<bool> AddCourse(string email, Course course)
 		{
-			var query = "INSERT INTO [CentricSummerPractice].[Courses] " +
+			var query = "INSERT INTO [SummerPractice].[Courses] " +
 				"([Name_course], [Description], [Preview], [ImageData], [Category], [Difficulty], [Time], [Learning_topics], [Perequisities], [TeacherEmail]) " +
 				"VALUES (@Name, @Description, @Preview, @ImageData, @Category, @Difficulty, @Duration, @LearningTopics, @Prerequisites, @TeacherEmail)";
 			var parameters = new DynamicParameters();
@@ -40,7 +40,7 @@ namespace Infrastructure.Repositories
 
 		public async Task<bool> DeleteCourse(string email, string name)
 		{
-			var query = "DELETE FROM [CentricSummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
+			var query = "DELETE FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
 			var parameters = new DynamicParameters();
 			parameters.Add("Name", name, DbType.String);
 			parameters.Add("TeacherEmail", email, DbType.String);
@@ -51,10 +51,10 @@ namespace Infrastructure.Repositories
 
 		}
 
-		public Task<IEnumerable<CourseDisplay>> GetAllCourses()
+		public Task<IEnumerable<CourseDisplay>> GetAllCourses() //works
 		{
 			
-			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [CentricSummerPractice].[Courses]";
+			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]";
 
 			var connection = _databaseContext.GetDbConnection();
 			var courses = connection.QueryAsync<CourseDisplay>(query);
@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories
 		public Task<IEnumerable<string>> GetTeacherCourses(string email)
 		{
 
-			var query = "SELECT [Name_course] FROM [CentricSummerPractice].[Courses] WHERE [TeacherEmail]=@TeacherEmail";
+			var query = "SELECT [Name_course] FROM [SummerPractice].[Courses] WHERE [TeacherEmail]=@TeacherEmail";
 
 			var connection = _databaseContext.GetDbConnection();
 			
@@ -76,7 +76,7 @@ namespace Infrastructure.Repositories
 		public async Task<IEnumerable<Student>> GetAllStudentsEnrolled(string name)
 		{
 			//get course id based on its name in c
-			var getId = "SELECT [Course_id] FROM [CentricSummerPractice].[Courses] WHERE [Name_course] = @Name";
+			var getId = "SELECT [Course_id] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name";
 
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
@@ -98,7 +98,7 @@ namespace Infrastructure.Repositories
 
 		public Task<IEnumerable<Course>> GetCourse(string name)
 		{
-			var query = "SELECT * FROM [CentricSummerPractice].[Courses] WHERE [Name_course] = @Name";
+			var query = "SELECT * FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name";
 
 			var connection = _databaseContext.GetDbConnection();
 			var course = connection.QueryAsync<Course>(query, new { Name = name });
@@ -107,28 +107,43 @@ namespace Infrastructure.Repositories
 
 		public Task<IEnumerable<CourseDisplay>> GetCoursesByFilter(CourseFilter filter)
 		{
-			//throw new NotImplementedException();
-			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [CentricSummerPractice].[Courses]" +
-				"WHERE [Name_course] = @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisties] IN @Prerequisites SORT BY @Sort";
-
+			var query = "";
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
-			parameters.Add("Name", filter.Title, DbType.String);
-			parameters.Add("Categories", filter.Categories);
-			parameters.Add("Difficulties", filter.Difficulties);
-			parameters.Add("Prerequisites", filter.Prerequistes);
-			parameters.Add("Sort", filter.SortBy); //asc or desc
 
-			var filterResults = connection.QueryAsync<CourseDisplay>(query, parameters, _databaseContext.GetDbTransaction());
+			if (filter.SortBy != "")
+			{
+				query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
+				"WHERE [Name_course] = @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] IN @Prerequisites SORT BY @Sort";
+				parameters.Add("Name", filter.Title, DbType.String);
+				parameters.Add("Categories", filter.Categories);
+				parameters.Add("Difficulties", filter.Difficulties);
+				parameters.Add("Prerequisites", filter.Prerequistes);
+				parameters.Add("Sort", filter.SortBy); //asc or desc
+			}
+
+			else
+			{
+				query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
+				"WHERE [Name_course] = @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] IN @Prerequisites";
+				parameters.Add("Name", filter.Title, DbType.String);
+				parameters.Add("Categories", filter.Categories);
+				parameters.Add("Difficulties", filter.Difficulties);
+				parameters.Add("Prerequisites", filter.Prerequistes);
+				
+			}
+
+
+			var filterResults =  connection.QueryAsync<CourseDisplay>(query, parameters);
 			return filterResults;
 
 		}
 
 		public Task<IEnumerable<Course>> GetCoursesByStudentEmail(string studentEmail)
 		{
-			var query = "SELECT * FROM  [CentricSummerPractice].[Courses] LEFT JOIN [CentricSummerPractice].[Students-Courses] " +
-				"ON  [CentricSummerPractice].[Courses].[Course_id] = [CentricSummerPractice].[Students-Courses].[Course_id] " +
-				"WHERE [CentricSummerPractice].[Students-Courses].[Email] = @Email";
+			var query = "SELECT * FROM  [SummerPractice].[Courses] LEFT JOIN [SummerPractice].[Students-Courses] " +
+				"ON  [SummerPractice].[Courses].[Course_id] = [SummerPractice].[Students-Courses].[Course_id] " +
+				"WHERE [SummerPractice].[Students-Courses].[Email] = @Email";
 
 			var connection = _databaseContext.GetDbConnection();
 			var courses = connection.QueryAsync<Course>(query);
@@ -138,8 +153,8 @@ namespace Infrastructure.Repositories
 		public Task<IEnumerable<CourseDisplay>> GetRelatedCourses(string name)
 		{
 
-			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [CentricSummerPractice].[Courses]" +
-				" WHERE [Category] = (SELECT [Category] FROM [CentricSummerPractice].[Courses] WHERE [Name_Course] = @Name";
+			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
+				" WHERE [Category] = (SELECT [Category] FROM [SummerPractice].[Courses] WHERE [Name_Course] = @Name";
 
 			var connection = _databaseContext.GetDbConnection();
 			var course = connection.QueryAsync<CourseDisplay>(query, new { Name = name });
@@ -148,7 +163,7 @@ namespace Infrastructure.Repositories
 
 		public async Task<bool> UpdateCourse(string email, string name, Course course)
 		{
-			var query = "UPDATE [CentricSummerPractice].[Courses] " +
+			var query = "UPDATE [SummerPractice].[Courses] " +
 				"SET [Name_course] = @NewName, [Description] = @Description, [Preview] = @Preview, [ImageData] = @ImageData, " +
 				"[Category] = @Category, [Difficulty] = @Difficulty," +
 				"[Time] = @Duration, [Learning_topics] = @LearningTopics,[Perequisities] = @Prerequisites" +
@@ -175,8 +190,8 @@ namespace Infrastructure.Repositories
 
 		public async Task<IEnumerable<Student>> GetStudentsEnrolledInCourse(string name, string teacherEmail)
 		{
-			var query = "SELECT Email FROM [CentricSummerPractice].[Students-Courses] " +
-				"WHERE Course_id = (SELECT Course_id FROM [CentricSummerPractice].[Students-Courses] WHERE Name_course = @Name" +
+			var query = "SELECT Email FROM [SummerPractice].[Students-Courses] " +
+				"WHERE Course_id = (SELECT Course_id FROM [SummerPractice].[Students-Courses] WHERE Name_course = @Name" +
 				"AND TeacherEmail = @TeacherEmail";
 
 			var parameters = new DynamicParameters();
@@ -186,7 +201,7 @@ namespace Infrastructure.Repositories
 			var connection = _databaseContext.GetDbConnection();
 			var emails = connection.Query<string>(query, parameters, _databaseContext.GetDbTransaction());
 
-			query = "SELECT First_name, Last_Name, Email FORM [CentricSummerPractice].[User] WHERE Email IN @Emails";
+			query = "SELECT First_name, Last_Name, Email FORM [SummerPractice].[User] WHERE Email IN @Emails";
 			var students = connection.Query<Student>(query, new { Emails = emails }, _databaseContext.GetDbTransaction());
 
 			return students;

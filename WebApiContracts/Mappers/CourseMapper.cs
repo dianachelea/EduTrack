@@ -16,7 +16,7 @@ namespace WebApiContracts.Mappers
 				LearningTopics = courseContract.LearningTopics,
 				Category = courseContract.Category,
 				Duration = courseContract.Duration,
-				Difficulty = (int)courseContract.Difficulty,
+				Difficulty = courseContract.Difficulty.ToString(),
 				Image = courseContract.Image
 
 			};

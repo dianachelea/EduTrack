@@ -16,7 +16,7 @@ namespace WebApi.Controllers
 		private readonly CourseService _courseService;
 		private readonly CourseInventoryService _courseInventoryService;
 
-		CourseController(AuthorizationService authorizationService, CourseService courseService, 
+		public CourseController(AuthorizationService authorizationService, CourseService courseService, 
 			CourseInventoryService courseInventoryService) {
 			this._authorizationService = authorizationService;
 			this._courseService = courseService;	

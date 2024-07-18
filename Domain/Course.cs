@@ -16,7 +16,7 @@ namespace Domain
 		public string Prerequisites { get; set; }
 		
 		[Column("Difficulty")]
-		public int Difficulty { get; set; }
+		public string Difficulty { get; set; }
 
 		//FileContentResult este specific web mvc ului asa ca putem sa salvam doar partea de bytes in loc de tot obiectul
 		[Column("ImageData")]

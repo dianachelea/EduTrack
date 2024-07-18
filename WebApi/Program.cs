@@ -35,7 +35,7 @@ namespace WebApi
             builder.Services.AddExceptionHandler<NullReferenceErrorHandler>();
             builder.Services.AddExceptionHandler<GenericErrorHandler>();
 
-            builder.Services.DapperConfig();
+			builder.Services.DapperConfig();
 
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices();

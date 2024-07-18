@@ -9,10 +9,10 @@ namespace WebApiContracts
 {
 	public class CourseFilterContract
 	{
-		public string Title { get; set; }
-		public List<string> Categories { get; set; }
-		public List<int> Difficulties { get; set; }
-		public List<String> Prerequistes { get; set; }
-		public List<string> SortBy { get; set; }
+		public string Title { get; set; } = "";
+		public List<string> Categories { get; set; } =	new List<string>();
+		public List<string> Difficulties { get; set; } = new List<string>();
+		public List<string> Prerequistes { get; set; } = new List<string>();
+		public string SortBy { get; set; } = "";
 	}
 }
