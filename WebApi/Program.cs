@@ -8,6 +8,7 @@ using Infrastructure;
 using Infrastructure.Handlers;
 using Microsoft.IdentityModel.Tokens;
 using WebApiContracts;
+using Infrastructure.Utils;
 
 namespace WebApi
 {
@@ -34,7 +35,7 @@ namespace WebApi
             builder.Services.AddExceptionHandler<NullReferenceErrorHandler>();
             builder.Services.AddExceptionHandler<GenericErrorHandler>();
 
-			Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+			builder.Services.DapperConfig();
 
 			builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices();
