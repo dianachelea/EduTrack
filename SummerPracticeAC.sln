@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{398C8671-DDFC-41D2-8960-C900E8A508B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbUpgrader", "DbUpgrader\DbUpgrader.csproj", "{9D5D9407-7096-46B7-B124-83B0BDA38016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbUpgrader", "DbUpgrader\DbUpgrader.csproj", "{9D5D9407-7096-46B7-B124-83B0BDA38016}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82678F2B-C55D-44FD-8913-04DB59FDCDB2}"
 	ProjectSection(SolutionItems) = preProject
