@@ -12,8 +12,10 @@ namespace Domain
         [Column("Lesson_name")]
         public string Name { get; set; }
 
-        [Column("Lesson_description")]
-        public string Description { get; set; }
+        [Column("Lesson_Content")]
+        public string Lesson_Content { get; set; }
         public DateTime StartDate { get; set; }
+        [Column("LessonStatus")]
+        public string LessonStatus { get; set; }
     }
 }
