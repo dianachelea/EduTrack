@@ -19,6 +19,9 @@
     <None Remove="Scripts\Step00009- Create table Feedback.sql" />
     <None Remove="Scripts\Step00010- Alter table Lessons.sql" />
     <None Remove="Scripts\Step00011- Create table Attendance.sql" />
+    <None Remove="Scripts\Step00012- Add Category to Feedback.sql" />
+    <None Remove="Scripts\Step00013- Add Constraint to Category.sql" />
+    <None Remove="Scripts\Step00014- Add Date to Feedback.sql" />
 	 
   </ItemGroup>
 
@@ -33,6 +36,9 @@
     <EmbeddedResource Include="Scripts\Step00008- Create table Grade.sql" />
     <EmbeddedResource Include="Scripts\Step00009- Create table Feedback.sql" />
     <EmbeddedResource Include="Scripts\Step00010- Alter table Lessons.sql" />
+    <EmbeddedResource Include="Scripts\Step00014- Add Date to Feedback.sql" />
+    <EmbeddedResource Include="Scripts\Step00013- Add Constraint to Category.sql" />
+    <EmbeddedResource Include="Scripts\Step00012- Add Category to Feedback.sql" />
     <EmbeddedResource Include="Scripts\Step00011- Create table Attendance.sql" />
   </ItemGroup>
 
