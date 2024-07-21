@@ -34,7 +34,8 @@ namespace Application.Services
                 Username = credentials.Username,
                 Password = hashedPassword,
                 Email = credentials.Email,
-                Role = "user"
+                Role = "user",
+                Phone= credentials.Phone
             });
 
             return registerResult;
