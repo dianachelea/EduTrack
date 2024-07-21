@@ -5,6 +5,7 @@ using Infrastructure.Handlers;
 using Infrastructure.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace Infrastructure
 {
@@ -19,6 +20,8 @@ namespace Infrastructure
 
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+
             return services;
         }
     }
