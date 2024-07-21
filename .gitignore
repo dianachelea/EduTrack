@@ -1,3 +1,7 @@
 *.dll
 *.mdf
 *.vsidx
+**/bin
+**/obj
+.vs/
+*.pdb
