@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DbUpgrader")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+624a7317716cfd8c38a4c78284b95512b6931652")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f300ae98ed362cc4f9c9cbac9f9a391b1ffc29d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("DbUpgrader")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DbUpgrader")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
