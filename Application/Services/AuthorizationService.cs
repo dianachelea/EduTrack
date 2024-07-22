@@ -6,11 +6,11 @@ namespace Application.Services
     public class AuthorizationService
     {
         private readonly IPasswordHasher _passwordHasher;
-        private readonly IAuthenticationRepository _authenticationRepository;
+        private readonly IUsersRepository _authenticationRepository;
         private readonly IIdentityHandler _identityHandler;
 
         public AuthorizationService(IPasswordHasher passwordHasher,
-            IAuthenticationRepository authenticationRepository,
+            IUsersRepository authenticationRepository,
             IIdentityHandler identityHandler)
         {
             _passwordHasher = passwordHasher;
@@ -18,31 +18,11 @@ namespace Application.Services
             _authenticationRepository = authenticationRepository;
         }
 
-        public async Task<bool> RegisterUser(UserCredentials credentials)
-        {
-            var userCheck = await this._authenticationRepository.GetUser(credentials.Email);
-
-            if (userCheck.ToList().Count != 0)
-            {
-                throw new Exception("User already registered");
-                //throw new NullReferenceException("User already registered");
-            }
-
-            var hashedPassword = this._passwordHasher.Hash(credentials.Password);
-            var registerResult = await this._authenticationRepository.RegisterUser(new UserCredentials
-            {
-                Username = credentials.Username,
-                Password = hashedPassword,
-                Email = credentials.Email,
-                Role = "user"
-            });
-
-            return registerResult;
-        }
+        
 
         public async Task<User> LoginUser(UserCredentials credentials)
         {
-            var userHashed = await this._authenticationRepository.GetUser(credentials.Email);
+            var userHashed = await this._authenticationRepository.GetUserInfo(credentials.Email);
 
             if (!_passwordHasher.Verify(userHashed.FirstOrDefault().Password, credentials.Password))
             {
@@ -50,7 +30,7 @@ namespace Application.Services
             }
 
             var result = new User
-            {
+			{
                 Username = userHashed.FirstOrDefault().Username,
                 Email = userHashed.FirstOrDefault().Email,
                 Role = userHashed.FirstOrDefault().Role,
@@ -64,7 +44,7 @@ namespace Application.Services
 
         public async Task<bool> GiveUserAdminRights(string email)
         {
-            var userCheck = await this._authenticationRepository.GetUser(email);
+            var userCheck = await this._authenticationRepository.GetUserInfo(email);
 
             if (userCheck.ToList().Count == 0)
             {
