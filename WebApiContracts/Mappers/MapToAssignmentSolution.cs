@@ -14,8 +14,7 @@ namespace WebApiContracts.Mappers
             return new AssignmentSolutionDo
             {
                 Solution_title = gradeData.Solution_title,
-                Solution = gradeData.Solution ,
-                FileName = gradeData.FileName
+                Solution = gradeData.Solution 
             };
         }
     }
