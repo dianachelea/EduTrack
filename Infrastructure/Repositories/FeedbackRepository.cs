@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories
             parameters.Add("FeedbackTitle", feedback.Title);
             parameters.Add("FeedbackAnonymus", feedback.IsAnonymus, DbType.Boolean);
             parameters.Add("FeedbackStars", feedback.Stars, DbType.Int32);
-            parameters.Add("FeedbackCategory", feedback.Category.GetEnumString());  // TODO correct the constraint error
+            parameters.Add("FeedbackCategory", feedback.Category.GetEnumString());
             
             var connection = _databaseContext.GetDbConnection();
             var result = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
