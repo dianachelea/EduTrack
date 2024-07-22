@@ -12,12 +12,12 @@ namespace Application.Services
     {
         private readonly IGradesRepository _gradesRepository;
 
-        public AssignmentService(IGradesRepository grades)
+        public AssignmentService(IGradesRepository grades, IFileRepository fileRepository)
         {
             _gradesRepository = grades;
         }
 
-        public async Task<bool> SolveAssignment(string courseName, string lessonTitle, string studentEmail, AssignmentSolutionDo solution)
+        public async Task<bool> SolveAssignment(string courseName, string lessonTitle, string studentEmail, AssignmentSolutionDo solution,string FileName)
         {
             var solutionCheck = await this._gradesRepository.GetStudentSolution(courseName, lessonTitle, studentEmail);
 
@@ -30,9 +30,8 @@ namespace Application.Services
             var addGradeResult = await this._gradesRepository.SolveAssignment(courseName, lessonTitle, studentEmail, new AssignmentSolutionDo
             {
                 Solution_title = solution.Solution_title,
-                Solution = solution.Solution,
-                FileName = solution.FileName
-            });
+                Solution = solution.Solution
+            },FileName);
 
             return addGradeResult;
         }

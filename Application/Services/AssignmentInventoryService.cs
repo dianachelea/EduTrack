@@ -32,22 +32,32 @@ namespace Application.Services
         }
 
 
-        public async Task<bool> AddAssignment(string coursename, string lessontitle, AssignmentDo assignmentData)
+        public async Task<bool> AddAssignment(string coursename, string lessontitle, AssignmentDo assignmentData, string FileName)
         {
             var assignmentCheck = await this._assignmentsRepository.GetAssignment(coursename, lessontitle);
-
-            
 
             var addAssignmentResult = await this._assignmentsRepository.AddAssignment(coursename, lessontitle, new AssignmentDo
             {
                 Assignment_name = assignmentData.Assignment_name,
                 Assignment_description = assignmentData.Assignment_description,
-                Assignment_preview = assignmentData.Assignment_preview,
-                Assignment_file = assignmentData.Assignment_file
-            });
+                Assignment_preview = assignmentData.Assignment_preview
+            }, FileName);
 
             return addAssignmentResult;
         }
+
+        public Task<IEnumerable<List<AssignmentDo>>> GetStudentAssignments(string coursename, string studentEmail)
+        {
+            var allAssignments = this._assignmentsRepository.GetStudentAssignments(coursename, studentEmail);
+
+            if (allAssignments.Result == null)
+            {
+                throw new Exception("No students solved this assignment");
+            }
+
+            return allAssignments;
+        }
+        
 
     }
 }

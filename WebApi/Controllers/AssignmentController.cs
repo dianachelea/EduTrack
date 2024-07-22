@@ -14,12 +14,14 @@ namespace WebApi.Controllers
         private readonly AssignmentInventoryService _assignmentInventoryService;
         private readonly AssignmentService _assignmentService;
         private readonly ILogger<AuthenticationController> _logger;
+        private readonly FileService _fileService;
 
-        public AssignmentController(AssignmentInventoryService assignmentInventoryService, ILogger<AuthenticationController> logger,AssignmentService assignmentService)
+        public AssignmentController(AssignmentInventoryService assignmentInventoryService, ILogger<AuthenticationController> logger,AssignmentService assignmentService, FileService fileService)
         {
             _assignmentInventoryService = assignmentInventoryService;
             _assignmentService = assignmentService;
             _logger = logger;
+            _fileService = fileService;
         }
 
 
@@ -35,10 +37,16 @@ namespace WebApi.Controllers
         
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<bool>> AddAssignment([FromQuery] AssignmentContentContract assignmentContract, string CourseName, string LessonTitle)
+        public async Task<ActionResult<bool>> AddAssignment([FromQuery] AssignmentContentContract assignmentContract, string CourseName, string LessonTitle, IFormFile file)
         {
-            var result = await this._assignmentInventoryService.AddAssignment(CourseName, LessonTitle, assignmentContract.MapTestToDomain());
-            return Ok(result);
+            var resultSaveFile = await this._fileService.SaveFile(file);
+            if (resultSaveFile) 
+            {
+                var result = await this._assignmentInventoryService.AddAssignment(CourseName, LessonTitle, assignmentContract.MapTestToDomain(), file.FileName);
+                return Ok(result);
+            }
+                
+            return Ok(resultSaveFile);
         }
 
         [HttpGet]
@@ -51,10 +59,16 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<bool>> Solve([FromQuery] AssignmentSolutionContract solutionContract, string CourseName, string LessonTitle, string StudentEmail)
+        public async Task<ActionResult<bool>> Solve([FromQuery] AssignmentSolutionContract solutionContract, string CourseName, string LessonTitle, string StudentEmail, IFormFile file)
         {
-            var result = await this._assignmentService.SolveAssignment(CourseName, LessonTitle, StudentEmail, solutionContract.MapTestToDomain());
-            return Ok(result);
+            var resultSaveFile = await this._fileService.SaveFile(file);
+            if (resultSaveFile)
+            {
+                var result = await this._assignmentService.SolveAssignment(CourseName, LessonTitle, StudentEmail, solutionContract.MapTestToDomain(),file.FileName);
+                return Ok(result);
+            }
+            return Ok(resultSaveFile);
+            
         }
 
         [HttpGet]
@@ -78,6 +92,13 @@ namespace WebApi.Controllers
         public async Task<ActionResult<bool>> GradeAssignment([FromQuery] string CourseName, string LessonTitle, double Grade, string StudentEmail)
         {
             var result = await this._assignmentService.GradeAssignment(CourseName, LessonTitle, Grade, StudentEmail);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<AssignmentGradeDo>>> GetStudentAssignments([FromQuery] string CourseName , string StudentEmail)
+        {
+            var result = await this._assignmentInventoryService.GetStudentAssignments(CourseName, StudentEmail);
             return Ok(result);
         }
 

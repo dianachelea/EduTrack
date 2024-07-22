@@ -11,6 +11,5 @@ namespace WebApiContracts
     {
         public string Solution_title { get; set; }
         public string Solution { get; set; }
-        public string FileName { get; set; }
     }
 }

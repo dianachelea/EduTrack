@@ -32,7 +32,7 @@ namespace Infrastructure.Repositories
         }
 
 
-        public async Task<bool> AddAssignment(string coursename,string lessontitle,AssignmentDo assignmentData)
+        public async Task<bool> AddAssignment(string coursename,string lessontitle,AssignmentDo assignmentData, string FileName)
         {
             var query = "UPDATE [SummerPractice].[Lessons]" +
             "SET"+
@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories
             var parameters = new DynamicParameters();
             parameters.Add("Name", assignmentData.Assignment_name, DbType.String);
             parameters.Add("Description", assignmentData.Assignment_description, DbType.String);
-            parameters.Add("File", assignmentData.Assignment_file, DbType.String);
+            parameters.Add("File", FileName, DbType.String);
             parameters.Add("Preview", assignmentData.Assignment_preview, DbType.String);
             parameters.Add("lessontitle", lessontitle, DbType.String);
             parameters.Add("coursename", coursename, DbType.String);
@@ -57,6 +57,53 @@ namespace Infrastructure.Repositories
             return result != 0;
         }
 
-        
+        public async Task<IEnumerable<List<AssignmentDo>>> GetStudentAssignments(string coursename, string studentemail)
+        {
+            var sql = @"
+                SELECT 
+                    [Assignment_name] AS AssignmentName,
+                    [Assignment_description] AS AssignmentDesc,
+                    [Assignment_preview] AS AssignmentPrev,
+                    [Assignment_file] AS AssignmentFile
+                FROM [SummerPractice].[Lessons]
+                WHERE [Course_id] = (
+                    SELECT [Course_id] 
+                    FROM [SummerPractice].[Courses] 
+                    WHERE [Name_course] = @courseName 
+                )
+                AND [Course_id] = (
+                    SELECT [Course_id] 
+                    FROM [SummerPractice].[Students-Courses] 
+                    WHERE [Email] = @studentEmail 
+                )";
+
+
+            var connection = _databaseContext.GetDbConnection();
+
+            var data = await connection.QueryAsync(
+                sql,
+                new { courseName = coursename, studentEmail = studentemail }
+            );
+
+            var assignments = data
+                .Select(row => new AssignmentDo
+                {
+                    Assignment_name = (string)row.AssignmentName,
+                    Assignment_description = (string)row.AssignmentDesc,
+                    Assignment_file = (string)row.AssignmentFile,
+                    Assignment_preview = (string)row.AssignmentPrev
+                })
+                .ToList();
+
+            var groupedAssignments = assignments
+                .GroupBy(a => a.Assignment_name)
+                .Select(g => g.ToList())
+                .ToList();
+
+            return groupedAssignments;
+        }
+
+
+
     }
 }

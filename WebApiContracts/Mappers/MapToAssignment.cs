@@ -10,8 +10,7 @@ namespace WebApiContracts.Mappers
             {
                 Assignment_name = assignmentData.Assignment_name,
                 Assignment_description = assignmentData.Assignment_description,
-                Assignment_preview = assignmentData.Assignment_preview,
-                Assignment_file = assignmentData.Assignment_file
+                Assignment_preview = assignmentData.Assignment_preview
             };
         }
     }
