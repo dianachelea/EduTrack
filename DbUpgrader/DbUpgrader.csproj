@@ -7,8 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Scripts\Step00001-Create db schema and user table.sql" />
+  <ItemGroup>    
+	<None Remove="Scripts\Step00001-Create db schema and user table.sql" />
     <None Remove="Scripts\Step00002-Add role to user table.sql" />
     <None Remove="Scripts\Step00003-Add file table.sql" />
     <None Remove="Scripts\Step00004- Alter table Users.sql" />
@@ -21,7 +21,9 @@
     <None Remove="Scripts\Step00011- Create table Attendance.sql" />
 	<None Remove="Scripts\Step00012 - Alter table Lessons add new column.sql" />
 	<None Remove="Scripts\Step00013 - Alter table Courses topics + perequisites.sql" />
-	<None Remove="Scripts\Step00014 - Add Constraint to Category.sql" />
+	<None Remove="Scripts\Step100Feedback- Add Category field.sql" />
+	<None Remove="Scripts\Step101Feedback - Add Constraint to Category.sql" />
+	<None Remove="Scripts\Step102Feedback - Add Date field.sql" />
 
 
   </ItemGroup>
@@ -40,7 +42,9 @@
     <EmbeddedResource Include="Scripts\Step00011- Create table Attendance.sql" />
 	<EmbeddedResource Include="Scripts\Step00012 - Alter table Lessons add new column.sql" />
 	<EmbeddedResource Include="Scripts\Step00013 - Alter table Courses topics + perequisites.sql" />
-	<EmbeddedResource Include="Scripts\Step00014 - Add Constraint to Category.sql" />
+	<EmbeddedResource Include="Scripts\Step100Feedback- Add Category field.sql" />
+	<EmbeddedResource Include="Scripts\Step101Feedback - Add Constraint to Category.sql" />
+	<EmbeddedResource Include="Scripts\Step102Feedback - Add Date field.sql" />
   </ItemGroup>
 
   <ItemGroup>
