@@ -29,6 +29,27 @@ namespace Infrastructure.Utils
 						   prop.GetCustomAttributes(false)
 							   .OfType<ColumnAttribute>()
 							   .Any(predicate: attr => attr.Name == columnName))));
+
+			
+			SqlMapper.SetTypeMap(
+				typeof(UserCredentials),
+				new CustomPropertyTypeMap(
+					typeof(UserCredentials),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));
+			/*
+			SqlMapper.SetTypeMap(
+				typeof(Attendance),
+				new CustomPropertyTypeMap(
+					typeof(UserCredentials),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));*/
 		}
     }
 }

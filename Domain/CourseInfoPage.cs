@@ -7,23 +7,24 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-	public class Course 
-	{	
+	public class CourseInfoPage
+	{
 		[Column("Name_course")]
 		public string Name { get; set; }
-		
+
 		[Column("Perequisites")]
 		public string Prerequisites { get; set; }
-		
+
 		[Column("Difficulty")]
 		public string Difficulty { get; set; }
 
+		//FileContentResult este specific web mvc ului asa ca putem sa salvam doar partea de bytes in loc de tot obiectul
 		[Column("ImageData")]
 		public string Image { get; set; }
-		
+
 		[Column("Description")]
 		public string Description { get; set; }
-		
+
 		[Column("Preview")]
 		public string ShortDescription { get; set; }
 
@@ -32,14 +33,10 @@ namespace Domain
 
 		[Column("Learning_topics")]
 		public string LearningTopics { get; set; }
-		public int StudentsEnrolled { get; set; } = 0;
-		
+
 		[Column("Time")]
 		public int Duration { get; set; }
 
-		[Column("TeacherEmail")]
-		public string TeacherEmail	{ get; set; }
-
-		public void setTeacherEmail(string email) { TeacherEmail = email; }
+	
 	}
 }

@@ -15,23 +15,55 @@ namespace Application.Services
 			_courseRepository = courseRepository;
 		}
 
-		public async Task<Course> GetCourse(string name)
+		public Course GetCourse(string name) //works
 		{
-			var course = await this._courseRepository.GetCourse(name);
+			var course = this._courseRepository.GetCourse(name);
 
 			return course.ToList().First();
 
 		}
 
-		public async Task<List<Student>> GetAllStudentsEnrolled(string name , string teacherEmail)
+		public CourseInfoPage GetCoursePresentation(string name) //works
 		{
-			var students = await this._courseRepository.GetStudentsEnrolledInCourse(name, teacherEmail);
+			var course = this._courseRepository.GetCourseForPage(name);
+
+			return course.ToList().First();
+
+		}
+
+		public List<Student> GetAllStudentsEnrolled(string courseName , string teacherEmail) //works
+		{
+			var students =  this._courseRepository.GetStudentsEnrolledInCourse(courseName, teacherEmail);
 
 			return students.ToList();
 		}
 
-		
+		public List<Lesson> GetCourseLessons(string courseName, string teacherEmail)
+		{
+			var lessons = this._courseRepository.GetCourseLessons(courseName, teacherEmail);
 
+			return lessons.ToList();
+		}
+
+		public async Task<bool> EnrollToCourse(string courseName,string studentEmail) //works
+		{
+			var result = await this._courseRepository.EnrollStudent(courseName, studentEmail);
+			
+			if(result == 1)
+				return true;
+			return false;
+
+		}
+
+		//att per course of a student (all lessons of a course)
+		public List<Attendance> GetStudentAttendance(string courseName, string studentEmail)        //works
+		{
+			var attendance = this._courseRepository.GetStudentAttendance(courseName, studentEmail);
+
+			return attendance.ToList();
+		}
+
+		
 
 	}
 }

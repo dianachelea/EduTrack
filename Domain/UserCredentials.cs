@@ -1,5 +1,6 @@
 ﻿namespace Domain
 {
+	[Table("User")]
     public class UserCredentials
     {
         public string Username { get; set; }

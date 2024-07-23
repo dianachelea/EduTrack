@@ -8,7 +8,7 @@ namespace Application.Services
     {
         private IFileRepository _fileRepository;
 
-        private static readonly List<string> allowedExtensions = new() { ".jpeg", ".cvs", ".png", ".pdf" };
+        private static readonly List<string> allowedExtensions = new() { ".jpeg", ".cvs", ".png", ".pdf", ".jpg" };
 
         public FileService(IFileRepository fileRepository)
         {
@@ -21,7 +21,8 @@ namespace Application.Services
             var checkFileExistence = await this._fileRepository.GetFile(fileName);
             if (checkFileExistence.ToList().Count == 0 || !File.Exists(path + fileName))
             {
-                throw new Exception("File does not exist");
+                //throw new Exception("File does not exist");
+                return null;
             }
 
             var fileBytes = await File.ReadAllBytesAsync(path + fileName); //should probably get the path from db since it's saved there

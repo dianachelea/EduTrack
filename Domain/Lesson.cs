@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Lesson
-    {
+	public class Lesson
+	{
         [Column("Lesson_name")]
         public string Name { get; set; }
         [Column("Lesson_description")]
@@ -27,7 +27,7 @@ namespace Domain
 		[Column("LessonStatus")]
         public string LessonStatus { get; set; }
  //       public DateTime StartDate { get; set; }
-    }
+	}
 
 
 }

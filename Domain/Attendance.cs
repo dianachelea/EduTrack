@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-
-    public class Attendance
-    {
+	
+	public class Attendance
+	{
         [Column("Attendance_verify")]
-        public bool Attended { get; set; }
+		public bool Attended { get; set; }
         [Column("Email")]
-        public string StudentEmail { get; set; }
+		public string StudentEmail { get; set; }
         [Column("Lesson_name")]
-        public string LessonName { get; set; }
-    }
+		public string LessonName { get; set; }
+	}
 }

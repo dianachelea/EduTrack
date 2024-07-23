@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApiContracts
 {
@@ -15,16 +16,15 @@ namespace WebApiContracts
 		public string ShortDescription { get; set; }
 
 		public string Category { get; set; }
-		public List<string> LearningTopics { get; set; }
+		public string LearningTopics { get; set; }
 
 		public string Prerequisites { get; set; }
 
-		public CourseDifficulty Difficulty { get; set; }
+		public string Difficulty { get; set; }
 
-		//take the byte array from the result
-		public Byte[] Image { get; set; }
+		public IFormFile Image { get; set; }
 
-		public string Duration	{ get; set; }
+		public int Duration	{ get; set; }
 
 	}
 }

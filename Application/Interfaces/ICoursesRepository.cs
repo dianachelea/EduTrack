@@ -9,23 +9,24 @@ namespace Application.Interfaces
 {
 	 public interface ICoursesRepository
 	 {
-		Task<IEnumerable<Course>> GetCourse(string name);
-		Task<bool> AddCourse(string email, Course course);
+		IEnumerable<Course> GetCourse(string name);
+		Task<bool> AddCourse( Course course);
 		Task<bool> UpdateCourse(string email, string name, Course course);
 		Task<bool> DeleteCourse(string email, string name);
-		Task<IEnumerable<CourseDisplay>> GetAllCourses();
-		Task<IEnumerable<CourseDisplay>> GetCoursesByFilter(CourseFilter filter);
-		Task<IEnumerable<Course>> GetCoursesByStudentEmail(string studentEmail);
-		Task<IEnumerable<Student>> GetAllStudentsEnrolled(string name);
-		//putem folosi o val hardcoded pt numar pt ca ar fi la fel pe toate paginile
-		Task<IEnumerable<CourseDisplay>> GetRelatedCourses(string name);
+		IEnumerable<CourseDisplay> GetAllCourses();
+		IEnumerable<CourseDisplay> GetCoursesByFilter(CourseFilter filter);
+		IEnumerable<Course> GetCoursesByStudentEmail(string studentEmail);
+	
+		IEnumerable<CourseDisplay> GetRelatedCourses(string name);
 		Task<IEnumerable<string>> GetTeacherCourses(string email);
-		Task<IEnumerable<Student>> GetStudentsEnrolledInCourse(string name, string teacherEmail);
+		IEnumerable<Student> GetStudentsEnrolledInCourse(string name, string teacherEmail);
+		IEnumerable<Lesson> GetCourseLessons(string name, string teacherEmail);
 
-
-
-
-
-
+		IEnumerable<CourseDisplay> GetCoursesWithMaxEnrollment(int numberOfCourses);
+		Task<int> EnrollStudent(string courseName, string studentEmail);
+		
+		IEnumerable<Attendance>  GetStudentAttendance(string courseName, string studentEmail);
+		IEnumerable<CourseInfoPage> GetCourseForPage(string name);
+		IEnumerable<CourseDisplay> GetSortedCourses(string order);
 	}
 }
