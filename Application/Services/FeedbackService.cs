@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Domain;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,17 @@ namespace Application.Services
 
         public async Task<bool> AddFeedback(FeedbackDO feedback)
         {
-            // TODO - data validations
             if (feedback == null) throw new ArgumentNullException(nameof(feedback));
+
+            // Data validations
+            if (!feedback.Email.Contains('@'))
+            {
+                throw new Exception("Email invalid!");
+            }
+            if (feedback.Stars < 1 || feedback.Stars > 5)
+            {
+                throw new Exception("Number of starts is not valid!");
+            }
 
             if (!feedback.IsAnonymus)
             {
@@ -52,11 +62,27 @@ namespace Application.Services
 
         public async Task<IEnumerable<FeedbackDO>> GetFeedback(FeedbackFilters feedbackFilters)
         {
-            // TODO - data validations
             var fileds = feedbackFilters.GetType().GetFields().All(field => field.GetValue(feedbackFilters) == null);
             var properties = feedbackFilters.GetType().GetProperties().All(property => property.GetValue(feedbackFilters) == null);
             if (fileds && properties)
                 return await this._feedbackRepository.GetFeedback();
+
+            // TODO - data validations
+            foreach (var email in feedbackFilters.ByEmail)
+            {
+                if (!email.Contains('@'))
+                {
+                    throw new Exception("Email invalid!");
+                }
+            }
+
+            foreach (var stars in feedbackFilters.Stars)
+            {
+                if (stars < 1 || stars > 5)
+                {
+                    throw new Exception("Number of starts is not valid!");
+                }
+            }
 
             var fbacks = await this._feedbackRepository.GetFeedback(feedbackFilters);
 
