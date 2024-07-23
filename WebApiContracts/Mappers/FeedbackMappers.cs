@@ -19,8 +19,7 @@ namespace WebApiContracts.Mappers
                 Content = feedbackContract.Content,
                 Stars = feedbackContract.Stars,
                 IsAnonymus = feedbackContract.IsAnonymus,
-                Category = feedbackContract.Category,
-                Date = feedbackContract.Date,
+                Category = feedbackContract.Category
             };
         }
 
