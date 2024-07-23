@@ -17,7 +17,7 @@ namespace Application.Services
 			_courseRepository = courseRepository;
 		}
 
-		public async Task<bool> AddCourse(string email, Course course)
+		public async Task<bool> AddCourse(string email, Course course) //works
 		{
 			var teacherCourses = await this._courseRepository.GetTeacherCourses(email);
 
@@ -27,13 +27,15 @@ namespace Application.Services
 			{
 				throw new Exception("Course already exists");
 			}
+			
+			course.setTeacherEmail(email);
 
-			var addingResult = await this._courseRepository.AddCourse(email, course);
+			var addingResult = await this._courseRepository.AddCourse(course);
 
 			return addingResult;
         }
 
-		public async Task<bool> DeleteCourse(string email, string name)
+		public async Task<bool> DeleteCourse(string email, string name)  //works
 		{
 			//var courseCheck = await this._courseRepository.GetCourse(name);
 			var teacherCourses = await this._courseRepository.GetTeacherCourses(email);
@@ -48,61 +50,64 @@ namespace Application.Services
 
 		}
 
-		public async Task<List<CourseDisplay>> GetAllCourses(CourseFilter filter)
+		public List<CourseDisplay> GetAllCourses(CourseFilter filter) //works
 		{
 			IEnumerable<CourseDisplay> courseResult;
 
 			if (filter.isEmpty())
 			{
-				 courseResult = await this._courseRepository.GetAllCourses();
+				courseResult = this._courseRepository.GetAllCourses();
 			}
-
+			else if (filter.SortBy != "")
+			{
+				courseResult = this._courseRepository.GetSortedCourses(filter.SortBy);
+			}
 			else
 			{
-				courseResult = await this._courseRepository.GetCoursesByFilter(filter);
+				courseResult = this._courseRepository.GetCoursesByFilter(filter);
 			}
 				
 			return courseResult.ToList();
 		}
 
-		public async Task<bool> UpdateCourse(string email, string name, Course course)
+		public async Task<bool> UpdateCourse(string email, string name, Course course) //works
 		{
 			//var courseCheck = await this._courseRepository.GetCourse(name);
 			var teacherCourses = await this._courseRepository.GetTeacherCourses(email);
 			if (!teacherCourses.ToList().Contains(name))
 			{
-				throw new Exception("Course does not exist");
+				return false;
 			}
+
+
 
 			var updateResult = await this._courseRepository.UpdateCourse(email,name, course);
 
 			return updateResult;
 		}
-		/*
-		public async Task<List<CourseDisplay>> GetCoursesByFilter(CourseFilter filter)
+		
+		public  List<Course> GetStudentCourses(string studentEmail)  //works
 		{
-			var filteredCourses = await this._courseRepository.GetCoursesByFilter(filter);
+			
 
-			return filteredCourses.ToList();
-
-		}
-		*/
-		public async Task<List<Course>> GetStudentCourses(string studentEmail)
-		{
-			//assume string is verified in frontend?
-
-			var courses = await this._courseRepository.GetCoursesByStudentEmail(studentEmail);
+			var courses = this._courseRepository.GetCoursesByStudentEmail(studentEmail);
 
 			return courses.ToList();
 
 		}
 
-		public async Task<List<CourseDisplay>> GetRelatedCourses(string name)
+		public List<CourseDisplay> GetRelatedCourses(string name) //works
 		{
-			//throw new Exception("tbd");
-			var courses = await this._courseRepository.GetRelatedCourses(name);
+		
+			var courses = this._courseRepository.GetRelatedCourses(name);
 			return courses.ToList();
 
+		}
+
+		public List<CourseDisplay> GetMostPopularCourses() //works
+		{
+			var courses = this._courseRepository.GetCoursesWithMaxEnrollment(2);
+			return courses.ToList();
 		}
 	}
 }

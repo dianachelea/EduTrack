@@ -39,7 +39,7 @@ namespace WebApi
 
 			builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices();
-            builder.Services.DapperConfig();
+           
 
             builder.Services.AddAuthentication(options =>
             {

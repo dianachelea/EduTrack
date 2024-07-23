@@ -39,7 +39,8 @@ namespace Infrastructure.Handlers
                 {
                     new(JwtRegisteredClaimNames.Name, "SummerPracticeAC"),
                     new("admin",user.Role == "admin" ? "true" : "false"),
-                    new("teacher",(user.Role == "teacher" || user.Role == "admin") ? "true" : "false")
+                    new("teacher",(user.Role == "teacher" || user.Role == "admin") ? "true" : "false"),
+                    new("email", user.Email)
                 }),
                 Expires = expiry,
                 Issuer = _configuration.GetSection("JwtSettings:Issuer").Value!,
