@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="dbup" Version="5.0.40" />
+    <PackageReference Include="dbup" Version="5.0.41" />
   </ItemGroup>
 
 </Project>
