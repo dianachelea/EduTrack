@@ -1,4 +1,5 @@
 ﻿using Application.Services;
+using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,16 @@ namespace WebApi.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<bool>> AddFeedback([FromQuery] FeedbackContract feedbackContract)
         {
-            var result = await this._feedbackService.AddFeedback(feedbackContract.MapToFeedback());
+            var result = await _feedbackService.AddFeedback(feedbackContract.MapToFeedback());
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<string>> GetFeedback([FromQuery] FeedbackFiltersContract feedbackFiltersContract)
+        {
+            var result = await _feedbackService.GetFeedback(feedbackFiltersContract.MapToFeedbackFilters());
+
             return Ok(result);
         }
     }

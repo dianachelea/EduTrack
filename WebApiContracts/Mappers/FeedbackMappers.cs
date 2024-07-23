@@ -23,5 +23,20 @@ namespace WebApiContracts.Mappers
                 Date = feedbackContract.Date,
             };
         }
+
+        public static FeedbackFilters MapToFeedbackFilters(this FeedbackFiltersContract feedbackFiltersContract)
+        {
+            return new FeedbackFilters
+            {
+                ByName = feedbackFiltersContract.ByName,
+                ByEmail = feedbackFiltersContract.ByEmail,
+                ByTitle = feedbackFiltersContract.ByTitle,
+                ByCategories = feedbackFiltersContract.ByCategories,
+                StartDate = feedbackFiltersContract.StartDate,
+                EndDate = feedbackFiltersContract.EndDate,
+                Stars = feedbackFiltersContract.Stars,
+                IsAnonymus = feedbackFiltersContract.IsAnonymus
+            };
+        }
     }
 }

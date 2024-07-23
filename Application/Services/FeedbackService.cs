@@ -19,6 +19,7 @@ namespace Application.Services
 
         public async Task<bool> AddFeedback(FeedbackDO feedback)
         {
+            // TODO - data validations
             if (feedback == null) throw new ArgumentNullException(nameof(feedback));
 
             if (!feedback.IsAnonymus)
@@ -47,6 +48,19 @@ namespace Application.Services
             });
 
             return result;
+        }
+
+        public async Task<IEnumerable<FeedbackDO>> GetFeedback(FeedbackFilters feedbackFilters)
+        {
+            // TODO - data validations
+            var fileds = feedbackFilters.GetType().GetFields().All(field => field.GetValue(feedbackFilters) == null);
+            var properties = feedbackFilters.GetType().GetProperties().All(property => property.GetValue(feedbackFilters) == null);
+            if (fileds && properties)
+                return await this._feedbackRepository.GetFeedback();
+
+            var fbacks = await this._feedbackRepository.GetFeedback(feedbackFilters);
+
+            return fbacks;
         }
     }
 }

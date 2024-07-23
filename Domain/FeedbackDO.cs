@@ -51,5 +51,20 @@ namespace Domain
                                      .GetCustomAttributes(typeof(CategoryAttribute), false)
                                      .Cast<CategoryAttribute>()
                                      .FirstOrDefault()?.Value ?? enumValue.ToString();
+    
+        public static TEnum GetEnumFromString<TEnum>(string value) where TEnum : Enum
+        {
+            foreach (var field in typeof(TEnum).GetFields())
+            {
+                var attribute = field.GetCustomAttributes(typeof(CategoryAttribute), false)
+                    .Cast<CategoryAttribute>()
+                    .FirstOrDefault();
+                if (attribute != null && attribute.Value == value)
+                {
+                    return (TEnum)field.GetValue(null);
+                }
+            }
+            throw new ArgumentException($"No matching enum value found for string '{value}'", nameof(value));
+        }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace WebApiContracts
 {
-    public class FeedbackFilters
+    public class FeedbackFiltersContract
     {
         public List<string>? ByName { get; set; }
         public List<string>? ByEmail { get; set; }

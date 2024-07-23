@@ -10,6 +10,6 @@ namespace Application.Interfaces
     public interface IFeedbackRepository
     {
         public Task<bool> AddFeedback(FeedbackDO feedback);
-        public List<FeedbackDO> GetFeedback(List<FeedbackFilters> feedbackFilters);
+        public Task<IEnumerable<FeedbackDO>> GetFeedback(FeedbackFilters? feedbackFilters = null);
     }
 }
