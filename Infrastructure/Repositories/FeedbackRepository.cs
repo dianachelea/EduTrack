@@ -62,11 +62,11 @@ namespace Infrastructure.Repositories
                         [Feedback_email] AS Email,
                         [Feedback_description] AS Content,
                         [Feedback_title] AS Title,
+                        [Feedback_category] AS stringCategory,
                         [Feedback_anonymus] AS IsAnonymus,
                         [Feedback_stars] AS Stars,
-                        [Feedback_date] AS Date 
+                        [Feedback_date] AS Date
                     FROM [SummerPractice].[Feedback]";
-            //  [Feedback_category] AS Category,
 
             var queryBuilder = new StringBuilder(queryStart);
             var parameters = new DynamicParameters();
@@ -117,6 +117,15 @@ namespace Infrastructure.Repositories
                 if (feedbackFilters.ByCategories != null && feedbackFilters.ByCategories.Any())
                 {
                     // TODO
+                    queryBuilder.Append("AND [Feedback_category] IN (");
+                    queryBuilder.Append(string.Join(", ", feedbackFilters
+                                            .ByCategories
+                                            .Select((_, index) => $"@ByCategories{index}")));
+                    queryBuilder.Append(") ");
+                    for (int i = 0; i < feedbackFilters.ByCategories.Count(); i++)
+                    {
+                        parameters.Add($"ByCategories{i}", feedbackFilters.ByCategories[i].GetEnumString(), DbType.String);
+                    }
                 }
 
                 if (feedbackFilters.StartDate.HasValue)
@@ -149,30 +158,25 @@ namespace Infrastructure.Repositories
                     queryBuilder.Append("AND [Feedback_anonymus] = @IsAnonymus ");
                     parameters.Add("IsAnonymus", feedbackFilters.IsAnonymus, DbType.Boolean);
                 }
-
-                /*foreach (var fback in fbacks)
-                {
-                    fback.Category = EnumExtensions.GetEnumFromString<FeedbackCategory>(fback.Category.ToString());
-                }*/
-
-                /*var feedbackDOs = fbacks.Select(feedback => new FeedbackDO
-                {
-                    Name = feedback.Name,
-                    Email = feedback.Email,
-                    Content = feedback.Content,
-                    Title = feedback.Title,
-                    Stars = feedback.Stars,
-                    IsAnonymus = feedback.IsAnonymus,
-                    Category = EnumExtensions.GetEnumFromString<FeedbackCategory>(feedback.Category.ToString()),
-                    Date = feedback.Date
-                }).ToList();*/
             }
             
             var query = queryBuilder.ToString();
             var connection = _databaseContext.GetDbConnection();
             var fbacks = await connection.QueryAsync<FeedbackDO>(query, parameters, _databaseContext.GetDbTransaction());
 
-            return fbacks.ToList();
+            var feedbackDOs = fbacks.Select(feedback => new FeedbackDO
+            {
+                Name = feedback.Name,
+                Email = feedback.Email,
+                Content = feedback.Content,
+                Title = feedback.Title,
+                Stars = feedback.Stars,
+                IsAnonymus = feedback.IsAnonymus,
+                Category = EnumExtensions.GetEnumFromString<FeedbackCategory>(feedback.stringCategory),
+                Date = feedback.Date
+            }).ToList();
+
+            return feedbackDOs.ToList();
         }
     }
 }
