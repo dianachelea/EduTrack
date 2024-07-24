@@ -16,6 +16,5 @@ namespace WebApiContracts
         public int Stars { get; set; }
         public bool IsAnonymus { get; set; }
         public FeedbackCategory Category { get; set; }
-        public DateTime? Date { get; set; }
     }
 }

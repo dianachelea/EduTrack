@@ -16,7 +16,6 @@ namespace Domain
         }
     }
 
-
     public enum FeedbackCategory
     {
         [Category("Content Quality")]
@@ -38,7 +37,8 @@ namespace Domain
         public string Content { get; set; } //in db is Description
         public int Stars { get; set; }
         public bool IsAnonymus { get; set; }
-        public FeedbackCategory Category { get; set; }
+        public FeedbackCategory? Category { get; set; }
+        public string? CategoryString { get; set; }
         public DateTime? Date {  get; set; }
     }
 
@@ -51,5 +51,20 @@ namespace Domain
                                      .GetCustomAttributes(typeof(CategoryAttribute), false)
                                      .Cast<CategoryAttribute>()
                                      .FirstOrDefault()?.Value ?? enumValue.ToString();
+    
+        public static TEnum GetEnumFromString<TEnum>(string value) where TEnum : Enum
+        {
+            foreach (var field in typeof(TEnum).GetFields())
+            {
+                var attribute = field.GetCustomAttributes(typeof(CategoryAttribute), false)
+                    .Cast<CategoryAttribute>()
+                    .FirstOrDefault();
+                if (attribute != null && attribute.Value == value)
+                {
+                    return (TEnum)field.GetValue(null);
+                }
+            }
+            throw new ArgumentException($"No matching enum value found for string '{value}'", nameof(value));
+        }
     }
 }

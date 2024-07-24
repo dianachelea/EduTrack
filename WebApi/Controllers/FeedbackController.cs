@@ -1,4 +1,5 @@
 ﻿using Application.Services;
+using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace WebApi.Controllers
     public class FeedbackController : ControllerBase
     {
         private readonly FeedbackService _feedbackService;
+        private readonly AuthorizationService _authorizationService;
 
         public FeedbackController(FeedbackService feedbackService)
         {
@@ -22,7 +24,16 @@ namespace WebApi.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<bool>> AddFeedback([FromQuery] FeedbackContract feedbackContract)
         {
-            var result = await this._feedbackService.AddFeedback(feedbackContract.MapToFeedback());
+            var result = await _feedbackService.AddFeedback(feedbackContract.MapToFeedback());
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Authorize]  //(Policy = IdentityData.TeacherUserPolicyName)]
+        public async Task<ActionResult<string>> GetFeedback([FromQuery] FeedbackFiltersContract feedbackFiltersContract)
+        {
+            var result = await _feedbackService.GetFeedback(feedbackFiltersContract.MapToFeedbackFilters());
+
             return Ok(result);
         }
     }
