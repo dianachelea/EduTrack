@@ -172,7 +172,7 @@ namespace Infrastructure.Repositories
                 Title = feedback.Title,
                 Stars = feedback.Stars,
                 IsAnonymus = feedback.IsAnonymus,
-                Category = EnumExtensions.GetEnumFromString<FeedbackCategory>(feedback.stringCategory),
+                Category = EnumExtensions.GetEnumFromString<FeedbackCategory>(feedback.CategoryString),
                 Date = feedback.Date
             }).ToList();
 

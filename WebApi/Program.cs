@@ -61,6 +61,8 @@ namespace WebApi
             {
                 options.AddPolicy(IdentityData.AdminUserPolicyName, p => 
                     p.RequireClaim(IdentityData.AdminUserClaimName, "true"));
+                options.AddPolicy(IdentityData.TeacherUserPolicyName, p =>
+                    p.RequireClaim(IdentityData.TeacherUserClaimName, "true"));
             });
 
             builder.Services.AddControllers();
