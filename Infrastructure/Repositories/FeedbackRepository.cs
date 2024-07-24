@@ -62,7 +62,7 @@ namespace Infrastructure.Repositories
                         [Feedback_email] AS Email,
                         [Feedback_description] AS Content,
                         [Feedback_title] AS Title,
-                        [Feedback_category] AS stringCategory,
+                        [Feedback_category] AS CategoryString,
                         [Feedback_anonymus] AS IsAnonymus,
                         [Feedback_stars] AS Stars,
                         [Feedback_date] AS Date

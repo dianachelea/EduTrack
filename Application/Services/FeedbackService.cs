@@ -68,21 +68,28 @@ namespace Application.Services
                 return await this._feedbackRepository.GetFeedback();
 
             // TODO - data validations
-            foreach (var email in feedbackFilters.ByEmail)
+            if (feedbackFilters.ByEmail != null)
             {
-                if (!email.Contains('@'))
+                foreach (var email in feedbackFilters.ByEmail)
                 {
-                    throw new Exception("Email invalid!");
+                    if (!email.Contains('@'))
+                    {
+                        throw new Exception("Email invalid!");
+                    }
                 }
             }
-
-            foreach (var stars in feedbackFilters.Stars)
+            
+            if (feedbackFilters.Stars != null)
             {
-                if (stars < 1 || stars > 5)
+                foreach (var stars in feedbackFilters.Stars)
                 {
-                    throw new Exception("Number of starts is not valid!");
+                    if (stars < 1 || stars > 5)
+                    {
+                        throw new Exception("Number of starts is not valid!");
+                    }
                 }
             }
+            
 
             var fbacks = await this._feedbackRepository.GetFeedback(feedbackFilters);
 
