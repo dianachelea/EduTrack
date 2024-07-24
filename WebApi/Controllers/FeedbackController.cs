@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize]  //(Policy = IdentityData.TeacherUserPolicyName)]
+        [AllowAnonymous]    //[Authorize]  //(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<string>> GetFeedback([FromQuery] FeedbackFiltersContract feedbackFiltersContract)
         {
             var result = await _feedbackService.GetFeedback(feedbackFiltersContract.MapToFeedbackFilters());
