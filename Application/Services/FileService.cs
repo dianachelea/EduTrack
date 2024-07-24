@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
+using Application.Handlers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Domain.Exceptions;
 
 namespace Application.Services
 {
@@ -21,7 +23,7 @@ namespace Application.Services
             var checkFileExistence = await this._fileRepository.GetFile(fileName);
             if (checkFileExistence.ToList().Count == 0 || !File.Exists(path + fileName))
             {
-                throw new Exception("File does not exist");
+                throw new Exception("file not available");
             }
 
             var fileBytes = await File.ReadAllBytesAsync(path + fileName); //should probably get the path from db since it's saved there
@@ -31,6 +33,7 @@ namespace Application.Services
             };
 
             return fileResult;
+
         }
 
         public async Task<bool> SaveFile(IFormFile file) {

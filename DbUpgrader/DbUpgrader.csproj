@@ -7,8 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Scripts\Step00001-Create db schema and user table.sql" />
+  <ItemGroup>    
+	<None Remove="Scripts\Step00001-Create db schema and user table.sql" />
     <None Remove="Scripts\Step00002-Add role to user table.sql" />
     <None Remove="Scripts\Step00003-Add file table.sql" />
     <None Remove="Scripts\Step00004- Alter table Users.sql" />
@@ -24,8 +24,9 @@
 	<None Remove="Scripts\Step00014 - Create table Tokens.sql" />
 	<None Remove="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
 	<None Remove="Scripts\Step00016 - Alter table Lessons column status.sql" />
-
-
+	<None Remove="Scripts\Step100Feedback- Add Category field.sql" />
+	<None Remove="Scripts\Step101Feedback - Add Constraint to Category.sql" />
+	<None Remove="Scripts\Step102Feedback - Add Date field.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,10 +46,13 @@
 	<EmbeddedResource Include="Scripts\Step00014 - Create table Tokens.sql" />
 	<EmbeddedResource Include="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
 	<EmbeddedResource Include="Scripts\Step00016 - Alter table Lessons column status.sql" />
+	<EmbeddedResource Include="Scripts\Step100Feedback- Add Category field.sql" />
+	<EmbeddedResource Include="Scripts\Step101Feedback - Add Constraint to Category.sql" />
+	<EmbeddedResource Include="Scripts\Step102Feedback - Add Date field.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="dbup" Version="5.0.40" />
+    <PackageReference Include="dbup" Version="5.0.41" />
   </ItemGroup>
 
 </Project>

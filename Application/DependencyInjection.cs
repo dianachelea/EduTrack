@@ -12,6 +12,8 @@ namespace Application
 			services.AddScoped<UserService>();
 			services.AddScoped<FileService>();
 			services.AddScoped<NotificationService>();
+            services.AddScoped<FeedbackService>();
+
 			return services;
         }
     }

@@ -5,6 +5,7 @@ using Infrastructure.Handlers;
 using Infrastructure.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Diagnostics;
 using Infrastructure.Utils;
 
 namespace Infrastructure
@@ -23,6 +24,7 @@ namespace Infrastructure
 
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             services.AddScoped<ITokenRepository, TokensRepository>();
 
             return services;
