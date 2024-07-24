@@ -37,8 +37,8 @@ namespace Domain
         public string Content { get; set; } //in db is Description
         public int Stars { get; set; }
         public bool IsAnonymus { get; set; }
-        public FeedbackCategory Category { get; set; }
-        public string stringCategory { get; set; }
+        public FeedbackCategory? Category { get; set; }
+        public string? CategoryString { get; set; }
         public DateTime? Date {  get; set; }
     }
 
