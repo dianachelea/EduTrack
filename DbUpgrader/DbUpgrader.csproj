@@ -21,9 +21,15 @@
     <None Remove="Scripts\Step00011- Create table Attendance.sql" />
 	<None Remove="Scripts\Step00012 - Alter table Lessons add new column.sql" />
 	<None Remove="Scripts\Step00013 - Alter table Courses topics + perequisites.sql" />
+<<<<<<< HEAD
 	<None Remove="Scripts\Step100Feedback- Add Category field.sql" />
 	<None Remove="Scripts\Step101Feedback - Add Constraint to Category.sql" />
 	<None Remove="Scripts\Step102Feedback - Add Date field.sql" />
+=======
+	<None Remove="Scripts\Step00014 - Create table Tokens.sql" />
+	<None Remove="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
+	<None Remove="Scripts\Step00016 - Alter table Lessons column status.sql" />
+>>>>>>> main
 
 
   </ItemGroup>
@@ -42,9 +48,15 @@
     <EmbeddedResource Include="Scripts\Step00011- Create table Attendance.sql" />
 	<EmbeddedResource Include="Scripts\Step00012 - Alter table Lessons add new column.sql" />
 	<EmbeddedResource Include="Scripts\Step00013 - Alter table Courses topics + perequisites.sql" />
+<<<<<<< HEAD
 	<EmbeddedResource Include="Scripts\Step100Feedback- Add Category field.sql" />
 	<EmbeddedResource Include="Scripts\Step101Feedback - Add Constraint to Category.sql" />
 	<EmbeddedResource Include="Scripts\Step102Feedback - Add Date field.sql" />
+=======
+	<EmbeddedResource Include="Scripts\Step00014 - Create table Tokens.sql" />
+	<EmbeddedResource Include="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
+	<EmbeddedResource Include="Scripts\Step00016 - Alter table Lessons column status.sql" />
+>>>>>>> main
   </ItemGroup>
 
   <ItemGroup>
