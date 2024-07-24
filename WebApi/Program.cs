@@ -30,8 +30,18 @@ namespace WebApi
 
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
             });
+			builder.Services.AddCors(options =>
+			{
+				options.AddDefaultPolicy(builder =>
+				{
+					builder.WithOrigins("http://localhost:4200")
+						   .AllowAnyHeader()
+						   .AllowAnyMethod();
+				});
+			});
+			
 
-            builder.Services.AddExceptionHandler<NullReferenceErrorHandler>();
+			builder.Services.AddExceptionHandler<NullReferenceErrorHandler>();
             builder.Services.AddExceptionHandler<GenericErrorHandler>();
 
             builder.Services.AddApplicationServices();
@@ -86,7 +96,9 @@ namespace WebApi
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllers();
+			app.UseCors();
+
+			app.MapControllers();
 
             app.Run();
         }
