@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Interfaces
 {
@@ -10,5 +11,6 @@ namespace Application.Interfaces
         Task<IEnumerable<List<AssignmentGradeDo>>> GetAllAssignmentsSent(string coursename, string lessontitle);
         Task<bool> GradeAssignment(string coursename, string lessontitle, double grade, string studentemail);
         Task<IEnumerable<double>> GetGrade(string coursename, string lessontitle, string studentemail);
+
     }
 }

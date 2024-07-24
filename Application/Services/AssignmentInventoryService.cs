@@ -1,10 +1,12 @@
 ﻿using Application.Interfaces;
 using Domain;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,7 +59,29 @@ namespace Application.Services
 
             return allAssignments;
         }
-        
+
+        public async Task<ActionResult<bool>> EditAssignment([FromQuery] string courseName, string lessonTitle, AssignmentDo content, string FileName)
+        {
+            var assignmentCheck = await this._assignmentsRepository.GetAssignment(courseName, lessonTitle);
+
+            var assignmentEdited = await this._assignmentsRepository.EditAssignment(courseName, lessonTitle, new AssignmentDo
+            {
+                Assignment_name = content.Assignment_name,
+                Assignment_description = content.Assignment_description,
+                Assignment_preview = content.Assignment_preview
+            },FileName);
+
+            return assignmentEdited;
+        }
+
+        public async Task<ActionResult<bool>> DeleteAssignment([FromQuery] string CourseName, string LessonTitle)
+        {
+            var assignmentCheck = await this._assignmentsRepository.GetAssignment(CourseName, LessonTitle);
+
+            var assignmentDeleted = await this._assignmentsRepository.DeleteAssignment(CourseName, LessonTitle);
+
+            return assignmentDeleted;
+        }
 
     }
 }
