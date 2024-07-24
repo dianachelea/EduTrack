@@ -15,16 +15,18 @@ namespace WebApi.Controllers
     public class LessonController : ControllerBase
     {
         private readonly ILessonRepository _lessonService;
-        private readonly ILogger<LessonController> _logger;
+       // private readonly ILogger<LessonController> _logger;
+        private readonly AuthorizationService _authorizationService;
 
-        public LessonController(ILessonRepository lessonService, ILogger<LessonController> logger)
+        public LessonController(ILessonRepository lessonService, AuthorizationService _authorizationService)
         {
+            this._authorizationService = _authorizationService;
             _lessonService = lessonService;
-            _logger = logger;
+            //_logger = logger;
         }
 
         [HttpGet]
-        [AllowAnonymous]
+     //   [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<LessonDisplay>>> GetAllLessons([FromQuery] string courseName)
         {
             var lessons = await _lessonService.GetLessons(courseName);
@@ -32,10 +34,10 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+      //  [Authorize]
         public async Task<ActionResult<Lesson>> GetLesson([FromQuery] string courseTitle, [FromQuery] string lessonTitle)
         {
-            var lesson = await _lessonService.GetLesson(courseTitle, lessonTitle); // Implement this method in your service
+            var lesson = await _lessonService.GetLesson(courseTitle, lessonTitle); 
             if (lesson == null)
             {
                 return NotFound();
@@ -44,7 +46,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = IdentityData.AdminUserPolicyName)]
+      //  [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> AddLesson([FromQuery] string courseTitle, [FromQuery] string teacherEmail, [FromBody] LessonContract lessonContract)
         {
             var result = await _lessonService.AddLesson(courseTitle, teacherEmail, lessonContract.MaptoLesson());
@@ -52,7 +54,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPatch]
-        [Authorize(Policy = IdentityData.AdminUserPolicyName)]
+      //  [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> EditLesson([FromQuery] string lessonTitle, [FromBody] LessonContract lessonContract)
         {
             var result = await _lessonService.UpdateLesson(lessonTitle, lessonContract.MaptoLesson());
@@ -60,10 +62,10 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Policy = IdentityData.AdminUserPolicyName)]
+     //   [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> DeleteLesson([FromQuery] string courseName, [FromQuery] string lessonTitle)
         {
-            var result = await _lessonService.DeleteLesson(courseName, lessonTitle); // Implement this method in your service
+            var result = await _lessonService.DeleteLesson(courseName, lessonTitle); 
             return Ok(result);
         }
 

@@ -14,8 +14,8 @@ namespace Domain
 
         [Column("Lesson_Content")]
         public string Lesson_Content { get; set; }
-        public DateTime StartDate { get; set; }
-        [Column("LessonStatus")]
-        public string LessonStatus { get; set; }
+    //    public DateTime StartDate { get; set; }
+     //   [Column("LessonStatus")]
+     //   public string LessonStatus { get; set; }
     }
 }

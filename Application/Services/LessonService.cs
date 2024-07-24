@@ -21,14 +21,14 @@ namespace Application.Services
             return await _lessonRepository.ChangeStatus(courseName, lessonTitle, status);
         }
 
-        public async Task<bool> MakeAttendance(string courseName, string lessonTitle, List<User> users)
+        public async Task<bool> MakeAttendance(string courseName, string lessonTitle, List<Student> students)
         {
-            return await _attendanceRepository.MakeAttendance(courseName, lessonTitle, users);
+            return await _attendanceRepository.MakeAttendance(courseName, lessonTitle, students);
         }
 
-        public async Task<List<Attendance>> GetAllAttendance(string courseName, string teacherEmail)
+        public async Task<List<Attendance>> GetAttendance(string courseName, string teacherEmail)
         {
-            return await _attendanceRepository.GetAllAttendance(courseName, teacherEmail);
+            return await _attendanceRepository.GetAttendance(courseName, teacherEmail);
         }
     }
 }

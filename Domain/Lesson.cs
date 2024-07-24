@@ -22,15 +22,12 @@ namespace Domain
         [Column("Lesson_Content")]
         public string Lesson_Content { get; set;}
 
-        public LessonDisplay LessonDetails { get; set;}
         [Column("Assignment_file")]
         public string Assignment_file {  get; set;}
 
         [Column("LessonStatus")]
         public string LessonStatus { get; set; }
-        public DateTime StartDate { get; set; }
-
-
+ //       public DateTime StartDate { get; set; }
     }
 
 

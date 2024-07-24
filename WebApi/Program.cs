@@ -8,6 +8,7 @@ using Infrastructure;
 using Infrastructure.Handlers;
 using Microsoft.IdentityModel.Tokens;
 using WebApiContracts;
+using Infrastructure.Utils;
 
 namespace WebApi
 {
@@ -34,8 +35,11 @@ namespace WebApi
             builder.Services.AddExceptionHandler<NullReferenceErrorHandler>();
             builder.Services.AddExceptionHandler<GenericErrorHandler>();
 
+            builder.Services.DapperConfig();
+
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices();
+
 
             builder.Services.AddAuthentication(options =>
             {
@@ -59,17 +63,20 @@ namespace WebApi
             });
             builder.Services.AddAuthorization(options =>
             {
-                options.AddPolicy(IdentityData.AdminUserPolicyName, p => 
+                options.AddPolicy(IdentityData.AdminUserPolicyName, p =>
                     p.RequireClaim(IdentityData.AdminUserClaimName, "true"));
+                options.AddPolicy(IdentityData.TeacherUserPolicyName, p =>
+                    p.RequireClaim(IdentityData.TeacherUserClaimName, "true"));
             });
 
             builder.Services.AddControllers();
+
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
 
-            app.UseExceptionHandler(_ => {});
+            app.UseExceptionHandler(_ => { });
 
             if (app.Environment.IsDevelopment())
             {
@@ -78,7 +85,7 @@ namespace WebApi
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 
