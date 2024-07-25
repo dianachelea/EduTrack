@@ -12,7 +12,7 @@ namespace Domain
 		public string LastName { get; set; }
 		
 		[Column("Email")]
-		public string	Email { get; set; }
+        public string Email { get; set; }
 		//public int Id{ get; set; }
 
 	}

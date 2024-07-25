@@ -49,7 +49,9 @@ namespace Application.Services
 				Password = hashedPassword,
 				Email = credentials.Email,
 				Role = "user",
-				Phone = credentials.Phone
+				Phone = credentials.Phone,
+				FirstName = credentials.FirstName,
+				LastName = credentials.LastName
 			});
 
 			return registerResult;
@@ -63,7 +65,9 @@ namespace Application.Services
 				Password = hashedPassword,
 				Email = credentials.Email,
 				Role = "teacher",
-				Phone = credentials.Phone
+				Phone = credentials.Phone,
+				FirstName = credentials.FirstName,
+				LastName = credentials.LastName
 			});
 
 			return registerResult;
@@ -79,7 +83,9 @@ namespace Application.Services
 				Password = hashedPassword,
 				Email = credentials.Email,
 				Role = "admin",
-				Phone = credentials.Phone
+				Phone = credentials.Phone,
+				FirstName = credentials.FirstName,
+				LastName = credentials.LastName
 			});
 
 			return registerResult;

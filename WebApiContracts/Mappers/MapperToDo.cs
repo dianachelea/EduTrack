@@ -1,4 +1,6 @@
 ﻿using Domain;
+using System.Xml.Linq;
+using WebApi.Controllers;
 
 namespace WebApiContracts.Mappers
 {
@@ -25,6 +27,29 @@ namespace WebApiContracts.Mappers
                 Email = credentials.Email
             };
         } 
+        public static Student MapToUser(this UserContract user)
+        {
+            return new Student
+			{
+                Email = user.Email
+            };
+        } 
+        public static Lesson MaptoLesson(this LessonContract credentials) 
+        {
+            return new Lesson
+            {
+                Name = credentials.Name,
+                Description = credentials.Description,
+               // Assignment_name = credentials.Assignment_name,
+                //Assignment_description = credentials.Assignment_description,
+                //Assignment_file = credentials.Assignment_file,
+              //  LessonStatus = credentials.LessonStatus,
+               // Assignment_preview = credentials.Assignment_preview,
+            //    StartDate = credentials.StartDate,
+                Lesson_Content = credentials.Lesson_Content
+
+            };
+        }
 
     }
 }

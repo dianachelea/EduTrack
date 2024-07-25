@@ -6,11 +6,11 @@ namespace Application.Services
     public class AuthorizationService
     {
         private readonly IPasswordHasher _passwordHasher;
-        private readonly IUsersRepository _authenticationRepository;
+        private readonly IAuthenticationRepository _authenticationRepository;
         private readonly IIdentityHandler _identityHandler;
 
         public AuthorizationService(IPasswordHasher passwordHasher,
-            IUsersRepository authenticationRepository,
+            IAuthenticationRepository authenticationRepository,
             IIdentityHandler identityHandler)
         {
             _passwordHasher = passwordHasher;
@@ -18,11 +18,9 @@ namespace Application.Services
             _authenticationRepository = authenticationRepository;
         }
 
-        
-
         public async Task<User> LoginUser(UserCredentials credentials)
         {
-            var userHashed = await this._authenticationRepository.GetUserInfo(credentials.Email);
+            var userHashed = await this._authenticationRepository.GetUser(credentials.Email);
 
             if (!_passwordHasher.Verify(userHashed.FirstOrDefault().Password, credentials.Password))
             {
@@ -30,7 +28,7 @@ namespace Application.Services
             }
 
             var result = new User
-			{
+            {
                 Username = userHashed.FirstOrDefault().Username,
                 Email = userHashed.FirstOrDefault().Email,
                 Role = userHashed.FirstOrDefault().Role,
@@ -44,7 +42,7 @@ namespace Application.Services
 
         public async Task<bool> GiveUserAdminRights(string email)
         {
-            var userCheck = await this._authenticationRepository.GetUserInfo(email);
+            var userCheck = await this._authenticationRepository.GetUser(email);
 
             if (userCheck.ToList().Count == 0)
             {

@@ -37,11 +37,11 @@ namespace Infrastructure.Handlers
             {
                 Subject = new ClaimsIdentity(jwtBearerAuthenticatedClient, new List<Claim>
                 {
-                    new(JwtRegisteredClaimNames.Name, "SummerPracticeAC"),
-                    new("admin",user.Role == "admin" ? "true" : "false"),
-                    new("teacher",(user.Role == "teacher" || user.Role == "admin") ? "true" : "false"),
-                    new("email", user.Email)
-                }),
+					new(JwtRegisteredClaimNames.Name, "SummerPracticeAC"),
+					new("admin",user.Role == "admin" ? "true" : "false"),
+					new("teacher",(user.Role == "teacher" || user.Role == "admin") ? "true" : "false"),
+					new("email", user.Email)
+				}),
                 Expires = expiry,
                 Issuer = _configuration.GetSection("JwtSettings:Issuer").Value!,
                 Audience = _configuration.GetSection("JwtSettings:Audience").Value!,

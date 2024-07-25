@@ -5,7 +5,6 @@ using Infrastructure.Handlers;
 using Infrastructure.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
-using Microsoft.AspNetCore.Diagnostics;
 using Infrastructure.Utils;
 
 namespace Infrastructure
@@ -18,19 +17,22 @@ namespace Infrastructure
 
             services.AddScoped<IIdentityHandler, IdentityHandler>();
             services.AddScoped<IPasswordHasher, PasswordHandler>();
-            services.AddScoped<IGenerateToken, GenerateToken>();
-            services.AddScoped<ISendNotification, SendEmailNotification>();
-            services.AddScoped<ILinkCreator, LinkCreator>();
 
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<ILessonRepository, LessonRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+            services.AddScoped<IFileRepository, FileRepository>();
+
+            services.AddScoped<IGenerateToken, GenerateToken>();
+            services.AddScoped<ILinkCreator, LinkCreator>();
+            services.AddScoped<ISendNotification, SendEmailNotification>();
+
+            services.AddScoped<ICoursesRepository, CourseRepository>();
             services.AddScoped<IGradesRepository, GradesRepository>();
             services.AddScoped<IAssignmentsRepository, AssignmentsRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
-            services.AddScoped<IFileRepository, FileRepository>();
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
-
-            services.AddScoped<ICoursesRepository, CourseRepository>();
             services.AddScoped<ITokenRepository, TokensRepository>();
-
             return services;
         }
     }

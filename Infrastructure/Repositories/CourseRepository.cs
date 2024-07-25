@@ -276,8 +276,8 @@ namespace Infrastructure.Repositories
 
 		public IEnumerable<Attendance> GetStudentAttendance(string courseName, string studentEmail) //works
 		{
-			var query = "SELECT [SummerPractice].[Attendance].[Email] AS [StudentEmail] , [SummerPractice].[Attendance].[Attendance_verify] AS [Attended], " +
-				"[SummerPractice].[Lessons].[Lesson_name] AS [LessonName] FROM [SummerPractice].[Attendance] INNER JOIN " +
+			var query = "SELECT [SummerPractice].[Attendance].[Email] , [SummerPractice].[Attendance].[Attendance_verify], " +
+				"[SummerPractice].[Lessons].[Lesson_name] FROM [SummerPractice].[Attendance] INNER JOIN " +
 				"[SummerPractice].[Lessons] ON [SummerPractice].[Attendance].[Lesson_id] = [SummerPractice].[Lessons].[Lesson_id] " +
 				"WHERE [SummerPractice].[Attendance].[Email] = @Email AND [SummerPractice].[Lessons].[Course_id] = " +
 				"(SELECT [Course_id] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name)";
