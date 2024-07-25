@@ -80,7 +80,7 @@ namespace WebApi.Controllers
             var students = users.Select(u => u.MapToUser()).ToList();
 			var result = await _lessonService.MakeAttendance(courseName, lessonTitle, students); 
             return Ok(result);
-        }
+        }/*
         [HttpGet]
      //   [Authorize]
         public async Task<ActionResult<List<Attendance>>> GetAttendance([FromQuery] string courseName)
@@ -90,13 +90,14 @@ namespace WebApi.Controllers
             // Call get Student attendance from CoursesService
 			var result = await _lessonService.GetSAttendance(courseName, email);
 			return Ok(result);
-        }
+        }*/
         [HttpGet]
      //   [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<Dictionary<string, List<Attendance>>>> GetAllAttendace([FromQuery] string courseName)
         {
 			Dictionary<string,List<Attendance>> attendance = new Dictionary<string, List<Attendance>>();
 			var lessons = await _lessonInventory.GetAllLessons(courseName);
+
 			foreach (var lesson in lessons)
 			{
 			    var result = await _lessonService.GetAttendance(courseName, lesson.Name);

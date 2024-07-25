@@ -5,6 +5,7 @@ using Infrastructure.Handlers;
 using Infrastructure.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
+using Infrastructure.Utils;
 
 namespace Infrastructure
 {
@@ -22,12 +23,16 @@ namespace Infrastructure
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
 
-            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IGenerateToken, GenerateToken>();
             services.AddScoped<ILinkCreator, LinkCreator>();
             services.AddScoped<ISendNotification, SendEmailNotification>();
 
             services.AddScoped<ICoursesRepository, CourseRepository>();
+            services.AddScoped<IGradesRepository, GradesRepository>();
+            services.AddScoped<IAssignmentsRepository, AssignmentsRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+            services.AddScoped<ITokenRepository, TokensRepository>();
             return services;
         }
     }
