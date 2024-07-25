@@ -115,12 +115,12 @@ namespace Infrastructure.Repositories
 			if (filter.SortBy != "")
 			{
 				query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
-				" WHERE [Name_course] = @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] = @Prerequisites";
+				" WHERE [Name_course] LIKE @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] = @Prerequisites";
 
 				var sortDirection = filter.SortBy.ToLower() == "desc" ? "DESC" : "ASC";
 				query += " ORDER BY [Name_course] " + sortDirection;
 
-				parameters.Add("Name", filter.Title, DbType.String);
+				parameters.Add("Name", '%'+filter.Title+'%', DbType.String);
 				parameters.Add("Categories", filter.Categories);
 				parameters.Add("Difficulties", filter.Difficulties);
 				parameters.Add("Prerequisites", filter.Prerequistes.ToString());
@@ -130,10 +130,10 @@ namespace Infrastructure.Repositories
 			else
 			{
 				query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
-				"WHERE [Name_course] = @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] IN @Prerequisites";
+				"WHERE [Name_course] LIKE @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] IN @Prerequisites";
 
 
-				parameters.Add("Name", filter.Title, DbType.String);
+				parameters.Add("Name", '%' + filter.Title + '%', DbType.String);
 				parameters.Add("Categories", filter.Categories);
 				parameters.Add("Difficulties", filter.Difficulties);
 				parameters.Add("Prerequisites", filter.Prerequistes);

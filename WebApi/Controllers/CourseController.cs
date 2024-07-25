@@ -31,7 +31,7 @@ namespace WebApi.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		public ActionResult<List<CourseDisplay>> GetAllCourses([FromQuery] CourseFilterContract filterContract) //check filter
+		public async Task<ActionResult<List<CourseDisplay>>> GetAllCourses([FromQuery] CourseFilterContract filterContract) //check filter
 		{
 
 			List<CourseDisplay> result = this._courseInventoryService.GetAllCourses(filterContract.MapToCourseFilter());
@@ -40,6 +40,13 @@ namespace WebApi.Controllers
 			{
 				return NotFound();
 			}
+
+			foreach (var course in result)
+			{
+				var file = await _fileService.GetFile(course.Image);
+				course.ImageContents = file.FileContents;
+			}
+
 			return Ok(result);
 
 		}
@@ -138,7 +145,7 @@ namespace WebApi.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		public ActionResult<List<CourseDisplay>> GetMostPopularCourses() //works
+		public async Task<ActionResult<List<CourseDisplay>>> GetMostPopularCourses() //works
 		{
 			List<CourseDisplay> result = this._courseInventoryService.GetMostPopularCourses();
 
@@ -146,6 +153,13 @@ namespace WebApi.Controllers
 			{
 				return NotFound();
 			}
+
+			foreach (var course in result)
+			{
+				var file = await _fileService.GetFile(course.Image);
+				course.ImageContents = file.FileContents;
+			}
+
 			return Ok(result);
 		}
 
@@ -176,14 +190,17 @@ namespace WebApi.Controllers
 
 		[HttpGet]
 		[AllowAnonymous]
-		public ActionResult<Course> GetCourse([FromQuery] string courseName) //works
+		public async Task<ActionResult<CourseInfoPage>> GetCourse([FromQuery] string courseName) //works
 		{
 			var result = this._courseService.GetCoursePresentation(courseName); //returns partial info
 
 			if (result != null)
 			{
+				var file = await _fileService.GetFile(result.Image);
+				result.ImageContents = file.FileContents;
 				return Ok(result);
 			}
+
 			return NotFound();
 
 		}

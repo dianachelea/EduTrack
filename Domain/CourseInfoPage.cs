@@ -37,6 +37,8 @@ namespace Domain
 		[Column("Time")]
 		public int Duration { get; set; }
 
+		public Byte[] ImageContents	{ get; set; }
+
 	
 	}
 }

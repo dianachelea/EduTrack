@@ -50,6 +50,17 @@ namespace Infrastructure.Utils
 							prop.GetCustomAttributes(false)
 								.OfType<ColumnAttribute>()
 								.Any(predicate: attr => attr.Name == columnName))));*/
+
+			DefaultTypeMap.MatchNamesWithUnderscores = true;
+			SqlMapper.SetTypeMap(
+				typeof(CourseInfoPage),
+				new CustomPropertyTypeMap(
+					typeof(CourseInfoPage),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));
 		}
     }
 }
