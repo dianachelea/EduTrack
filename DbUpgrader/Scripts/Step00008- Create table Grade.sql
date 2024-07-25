@@ -4,9 +4,11 @@ IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Grade
 BEGIN
     CREATE TABLE [SummerPractice].[Grade](
         [Email] NVARCHAR(50),
+        [Solution] NVARCHAR(1000),
+        [Solution_title] NVARCHAR(50),
         [Lesson_id] UNIQUEIDENTIFIER,
         [FileName] NVARCHAR(50) NOT NULL,
-        [Grade] INT NOT NULL,
+        [Grade] FLOAT NOT NULL,
         CONSTRAINT CHK_Grade CHECK (Grade >= 0 AND Grade <= 10), 
         FOREIGN KEY (Email) REFERENCES [SummerPractice].[User](Email),
         FOREIGN KEY (Lesson_id) REFERENCES [SummerPractice].[Lessons](Lesson_id),

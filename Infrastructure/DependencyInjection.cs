@@ -22,6 +22,8 @@ namespace Infrastructure
             services.AddScoped<ISendNotification, SendEmailNotification>();
             services.AddScoped<ILinkCreator, LinkCreator>();
 
+            services.AddScoped<IGradesRepository, GradesRepository>();
+            services.AddScoped<IAssignmentsRepository, AssignmentsRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
