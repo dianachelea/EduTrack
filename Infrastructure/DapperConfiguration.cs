@@ -10,6 +10,29 @@ namespace Infrastructure
 		public static void DapperConfig(this IServiceCollection services)
 		{
 			DefaultTypeMap.MatchNamesWithUnderscores = true;
+
+			DefaultTypeMap.MatchNamesWithUnderscores = true;
+			SqlMapper.SetTypeMap(
+				typeof(CourseDisplay),
+				new CustomPropertyTypeMap(
+					typeof(CourseDisplay),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));
+
+			SqlMapper.SetTypeMap(
+			   typeof(Course),
+			   new CustomPropertyTypeMap(
+				   typeof(Course),
+				   (type, columnName) =>
+					   type.GetProperties()?.FirstOrDefault(prop =>
+						   prop.GetCustomAttributes(false)
+							   .OfType<ColumnAttribute>()
+							   .Any(predicate: attr => attr.Name == columnName))));
+
+
 			SqlMapper.SetTypeMap(
 				typeof(UserCredentials),
 				new CustomPropertyTypeMap(
@@ -19,6 +42,18 @@ namespace Infrastructure
 							prop.GetCustomAttributes(false)
 								.OfType<ColumnAttribute>()
 								.Any(predicate: attr => attr.Name == columnName))));
+
+			
+			SqlMapper.SetTypeMap(
+				typeof(CourseInfoPage),
+				new CustomPropertyTypeMap(
+					typeof(CourseInfoPage),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));
+
 			SqlMapper.SetTypeMap(
 				typeof(LessonDisplay),
 				new CustomPropertyTypeMap(

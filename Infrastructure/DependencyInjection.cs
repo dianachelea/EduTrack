@@ -22,6 +22,11 @@ namespace Infrastructure
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
 
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IGenerateToken, GenerateToken>();
+            services.AddScoped<ILinkCreator, LinkCreator>();
+            services.AddScoped<ISendNotification, SendEmailNotification>();
+
             services.AddScoped<ICoursesRepository, CourseRepository>();
             return services;
         }

@@ -18,29 +18,6 @@ namespace Application.Services
             _authenticationRepository = authenticationRepository;
         }
 
-        public async Task<bool> RegisterUser(UserCredentials credentials)
-        {
-            var userCheck = await this._authenticationRepository.GetUser(credentials.Email);
-
-            if (userCheck.ToList().Count != 0)
-            {
-                throw new Exception("User already registered");
-                //throw new NullReferenceException("User already registered");
-            }
-
-            var hashedPassword = this._passwordHasher.Hash(credentials.Password);
-            var registerResult = await this._authenticationRepository.RegisterUser(new UserCredentials
-            {
-                Username = credentials.Username,
-                Password = hashedPassword,
-                Email = credentials.Email,
-                Role = "user",
-                Phone= credentials.Phone
-            });
-
-            return registerResult;
-        }
-
         public async Task<User> LoginUser(UserCredentials credentials)
         {
             var userHashed = await this._authenticationRepository.GetUser(credentials.Email);
