@@ -10,11 +10,11 @@ namespace Domain
 
     public class Attendance
     {
-        //[Column("Attendance_verify")]
+        [Column("Attendance_verify")]
         public bool Attended { get; set; }
-        //[Column("Email")]
+        [Column("Email")]
         public string StudentEmail { get; set; }
-        //[Column("Lesson_name")]
+        [Column("Lesson_name")]
         public string LessonName { get; set; }
     }
 }

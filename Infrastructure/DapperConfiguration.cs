@@ -19,6 +19,33 @@ namespace Infrastructure
 							prop.GetCustomAttributes(false)
 								.OfType<ColumnAttribute>()
 								.Any(predicate: attr => attr.Name == columnName))));
+			SqlMapper.SetTypeMap(
+				typeof(LessonDisplay),
+				new CustomPropertyTypeMap(
+					typeof(LessonDisplay),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));
+			SqlMapper.SetTypeMap(
+				typeof(Lesson),
+				new CustomPropertyTypeMap(
+					typeof(Lesson),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));
+			SqlMapper.SetTypeMap(
+				typeof(Attendance),
+				new CustomPropertyTypeMap(
+					typeof(Attendance),
+					(type, columnName) =>
+						type.GetProperties()?.FirstOrDefault(prop =>
+							prop.GetCustomAttributes(false)
+								.OfType<ColumnAttribute>()
+								.Any(predicate: attr => attr.Name == columnName))));
 		}
 	}
 }

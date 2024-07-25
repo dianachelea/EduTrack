@@ -18,18 +18,29 @@ namespace Infrastructure.Repositories
         {
             _databaseContext = databaseContext;
         }
-        public async Task<List<Attendance>> GetStudentAttendance(string studentEmail)
+        public async Task<List<Attendance>> GetStudentAttendance(string courseName, string studentEmail)
         {
-            var getAttendanceQuery = @"
-                SELECT A.[Lesson_id], A.[Attendance_verify]
+			var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName";
+			var getAttendanceQuery = @"
+                SELECT L.[Lesson_name], A.[Attendance_verify], U.[Email] AS Email
                 FROM [SummerPractice].[Attendance] A
-                INNER JOIN [SummerPractice].[Users] U ON A.[Email] = U.[Email]
-                WHERE U.[Email] = @StudentEmail";
+                INNER JOIN [SummerPractice].[User] U ON A.[Email] = U.[Email] 
+                INNER JOIN [SummerPractice].[Lessons] L ON A.[Lesson_id] = L.[Lesson_id]
+                WHERE U.[Email] =  @StudentEmail AND L.[Course_id] = @CourseId";
 
             var connection = _databaseContext.GetDbConnection();
-            var attendanceRecords = await connection.QueryAsync<Attendance>(
+
+			var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
+				getCourseIdQuery,
+				new { CourseName = courseName },
+				_databaseContext.GetDbTransaction()
+			);
+			if (courseId == default)
+				return new List<Attendance>();
+
+			var attendanceRecords = await connection.QueryAsync<Attendance>(
                 getAttendanceQuery,
-                new { StudentEmail = studentEmail },
+                new { StudentEmail = studentEmail, CourseId = courseId },
                 _databaseContext.GetDbTransaction()
             );
 
@@ -37,8 +48,8 @@ namespace Infrastructure.Repositories
         }
         public async Task<bool> MakeAttendance(string courseName, string lessonTitle, List<Student> students)
         {
-            var getCourseIdQuery = "SELECT Id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName";
-            var getLessonIdQuery = "SELECT Id FROM [SummerPractice].[Lessons] WHERE [Lesson_name] = @LessonTitle AND [Course_id] = @CourseId";
+            var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName";
+            var getLessonIdQuery = "SELECT Lesson_id FROM [SummerPractice].[Lessons] WHERE [Lesson_name] = @LessonTitle AND [Course_id] = @CourseId";
             var insertAttendanceQuery = @"
         MERGE INTO [SummerPractice].[Attendance] AS target
         USING (SELECT @Email AS Email, @LessonId AS Lesson_id, @AttendanceVerify AS Attendance_verify) AS source
@@ -50,24 +61,24 @@ namespace Infrastructure.Repositories
             VALUES (source.Email, source.Lesson_id, source.Attendance_verify);";
 
             var connection = _databaseContext.GetDbConnection();
-            var courseId = await connection.QuerySingleOrDefaultAsync<int>(
+            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { CourseName = courseName },
                 _databaseContext.GetDbTransaction()
             );
 
-            if (courseId == 0)
+            if (courseId == default)
             {
                 return false;
             }
 
-            var lessonId = await connection.QuerySingleOrDefaultAsync<int>(
+            var lessonId = await connection.QuerySingleOrDefaultAsync<Guid>(
                 getLessonIdQuery,
                 new { LessonTitle = lessonTitle, CourseId = courseId },
                 _databaseContext.GetDbTransaction()
             );
 
-            if (lessonId == 0)
+            if (lessonId == default)
             {
                 return false;
             }
@@ -79,7 +90,7 @@ namespace Infrastructure.Repositories
 
                 var parameters = new DynamicParameters();
                 parameters.Add("Email", student.Email, DbType.String);
-                parameters.Add("LessonId", lessonId, DbType.Int32);
+                parameters.Add("LessonId", lessonId, DbType.Guid);
                 parameters.Add("AttendanceVerify", attendanceVerify ? 1 : 0, DbType.Boolean);
 
                 var result = await connection.ExecuteAsync(insertAttendanceQuery, parameters, _databaseContext.GetDbTransaction());
@@ -94,33 +105,33 @@ namespace Infrastructure.Repositories
 
         public async Task<List<Attendance>> GetAttendance(string courseName, string lessonTitle)
         {
-            var getCourseIdQuery = "SELECT Id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName";
-            var getLessonIdQuery = "SELECT Id FROM [SummerPractice].[Lessons] WHERE [Lesson_name] = @LessonTitle AND [Course_id] = @CourseId";
+            var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName";
+            var getLessonIdQuery = "SELECT Lesson_id FROM [SummerPractice].[Lessons] WHERE [Lesson_name] = @LessonTitle AND [Course_id] = @CourseId";
             var getAttendanceQuery = @"
-                SELECT A.[Email], A.[Lesson_id], A.[Attendance_verify]
+                SELECT A.[Email], L.[Lesson_name], A.[Attendance_verify]
                 FROM [SummerPractice].[Attendance] A
-                INNER JOIN [SummerPractice].[Lessons] L ON A.[Lesson_id] = L.[Id]
-                WHERE L.[Id] = @LessonId";
+                INNER JOIN [SummerPractice].[Lessons] L ON A.[Lesson_id] = L.[Lesson_id]
+                WHERE L.[Lesson_id] = @LessonId";
 
             var connection = _databaseContext.GetDbConnection();
-            var courseId = await connection.QuerySingleOrDefaultAsync<int>(
+            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { CourseName = courseName },
                 _databaseContext.GetDbTransaction()
             );
 
-            if (courseId == 0)
+            if (courseId == default)
             {
                 return new List<Attendance>();
             }
 
-            var lessonId = await connection.QuerySingleOrDefaultAsync<int>(
+            var lessonId = await connection.QuerySingleOrDefaultAsync<Guid>(
                 getLessonIdQuery,
                 new { LessonTitle = lessonTitle, CourseId = courseId },
                 _databaseContext.GetDbTransaction()
             );
 
-            if (lessonId == 0)
+            if (lessonId == default)
             {
                 return new List<Attendance>();
             }

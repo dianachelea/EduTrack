@@ -9,7 +9,7 @@ namespace Application.Interfaces
 {
     public interface IAttendanceRepository
     {
-        Task<List<Attendance>> GetStudentAttendance(string studentEmail);
+        Task<List<Attendance>> GetStudentAttendance(string courseName, string studentEmail);
         Task<bool> MakeAttendance(string courseName, string lessonTitle, List<Student> students);
         Task<List<Attendance>> GetAttendance(string courseName, string lessonTitle);
     }

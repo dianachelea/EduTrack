@@ -10,7 +10,7 @@ namespace Application.Interfaces
     public interface ILessonRepository
     {
         Task<IEnumerable<LessonDisplay>> GetLessons(string courseName);
-        Task<Lesson> GetLesson(string lessonTitle, string teacherEmail);
+        Task<Lesson> GetLesson(string courseName, string lessonTitle);
         Task<bool> UpdateLesson(string lessonTitle, Lesson lesson);
         Task<bool> AddLesson(string courseTitle, string teacherEmail, Lesson lessonData);
         Task<bool> DeleteLesson(string courseName, string lessonTitle);

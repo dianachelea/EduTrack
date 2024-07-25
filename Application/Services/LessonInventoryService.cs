@@ -13,9 +13,14 @@ namespace Application.Services
             _lessonRepository = lessonRepository;
         }
 
-        public async Task<Lesson> GetLesson(string lessonTitle, string teacherEmail)
+        public async Task<IEnumerable<LessonDisplay>> GetAllLessons(string courseName)
         {
-            return await _lessonRepository.GetLesson(lessonTitle, teacherEmail);
+            return await _lessonRepository.GetLessons(courseName);
+        } 
+
+        public async Task<Lesson> GetLesson(string courseName, string lessonTitle)
+        {
+            return await _lessonRepository.GetLesson(courseName, lessonTitle);
         }
 
         public async Task<bool> UpdateLesson(string lessonTitle, Lesson lessonDo)

@@ -9,12 +9,14 @@ namespace Application.Services
     {
         private readonly ILessonRepository _lessonRepository;
         private readonly IAttendanceRepository _attendanceRepository; 
+        private readonly LessonInventoryService _lessonInventory; 
 
-        public LessonService(ILessonRepository lessonRepository, IAttendanceRepository attendanceRepository)
+        public LessonService(ILessonRepository lessonRepository, IAttendanceRepository attendanceRepository, LessonInventoryService lessonInventory)
         {
             _lessonRepository = lessonRepository;
             _attendanceRepository = attendanceRepository;
-        }
+			_lessonInventory = lessonInventory;
+		}
 
         public async Task<bool> ChangeStatus(string courseName, string lessonTitle, string status)
         {
@@ -26,9 +28,15 @@ namespace Application.Services
             return await _attendanceRepository.MakeAttendance(courseName, lessonTitle, students);
         }
 
-        public async Task<List<Attendance>> GetAttendance(string courseName, string teacherEmail)
+        public async Task<List<Attendance>> GetAttendance(string courseName, string lessonTitle)
         {
-            return await _attendanceRepository.GetAttendance(courseName, teacherEmail);
+			return await _attendanceRepository.GetAttendance(courseName, lessonTitle);
         }
+        public async Task<List<Attendance>> GetSAttendance(string courseName, string email)
+        {
+			return await _attendanceRepository.GetStudentAttendance(courseName, email);
+        }
+
+
     }
 }
