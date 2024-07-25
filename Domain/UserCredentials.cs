@@ -2,6 +2,7 @@
 
 namespace Domain
 {
+	[Table("User")]
     public class UserCredentials
     {
 		[Column("Username")]

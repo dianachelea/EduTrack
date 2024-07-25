@@ -8,6 +8,7 @@ using Infrastructure;
 using Infrastructure.Handlers;
 using Microsoft.IdentityModel.Tokens;
 using WebApiContracts;
+using Infrastructure.Utils;
 
 namespace WebApi
 {
@@ -44,9 +45,11 @@ namespace WebApi
 			builder.Services.AddExceptionHandler<NullReferenceErrorHandler>();
             builder.Services.AddExceptionHandler<GenericErrorHandler>();
 
-            builder.Services.AddApplicationServices();
+			builder.Services.DapperConfig();
+
+			builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices();
-            builder.Services.DapperConfig();
+           
 
             builder.Services.AddAuthentication(options =>
             {
