@@ -11,8 +11,10 @@ namespace Application.Services
 	public class CourseService
 	{
 		private readonly ICoursesRepository _courseRepository;
+	
 		public CourseService(ICoursesRepository courseRepository) {
 			_courseRepository = courseRepository;
+		
 		}
 
 		public Course GetCourse(string name) //works
@@ -25,9 +27,11 @@ namespace Application.Services
 
 		public CourseInfoPage GetCoursePresentation(string name) //works
 		{
-			var course = this._courseRepository.GetCourseForPage(name);
+			var course = this._courseRepository.GetCourseForPage(name).ToList().First();
+			
+			
 
-			return course.ToList().First();
+			return course;
 
 		}
 

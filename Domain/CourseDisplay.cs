@@ -25,6 +25,8 @@ namespace Domain
 		[Column("Preview")]
 		public string ShortDescription { get; set; }
 
+		public Byte[] ImageContents { get; set; }
+
 
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Domain;
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,14 +58,17 @@ namespace Application.Services
 			if (filter.isEmpty())
 			{
 				courseResult = this._courseRepository.GetAllCourses();
-			}
+               
+            }
 			else if (filter.SortBy != "")
 			{
 				courseResult = this._courseRepository.GetSortedCourses(filter.SortBy);
+				
 			}
 			else
 			{
 				courseResult = this._courseRepository.GetCoursesByFilter(filter);
+				
 			}
 				
 			return courseResult.ToList();
@@ -100,6 +104,7 @@ namespace Application.Services
 		{
 		
 			var courses = this._courseRepository.GetRelatedCourses(name);
+			
 			return courses.ToList();
 
 		}
@@ -107,6 +112,7 @@ namespace Application.Services
 		public List<CourseDisplay> GetMostPopularCourses() //works
 		{
 			var courses = this._courseRepository.GetCoursesWithMaxEnrollment(2);
+			
 			return courses.ToList();
 		}
 	}
