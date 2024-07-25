@@ -13,6 +13,7 @@ namespace Application
 			services.AddScoped<FileService>();
 			services.AddScoped<NotificationService>();
             services.AddScoped<FeedbackService>();
+            services.AddScoped<StatisticsService>();
 
 			return services;
         }

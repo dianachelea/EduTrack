@@ -82,7 +82,7 @@ namespace Application.Services
             if (feedbackFilters.Stars != null)
             {
                 foreach (var stars in feedbackFilters.Stars)
-                {
+                {   
                     if (stars < 1 || stars > 5)
                     {
                         throw new Exception("Number of starts is not valid!");

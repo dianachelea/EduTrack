@@ -15,9 +15,10 @@ namespace WebApi.Controllers
         private readonly FeedbackService _feedbackService;
         private readonly AuthorizationService _authorizationService;
 
-        public FeedbackController(FeedbackService feedbackService)
+        public FeedbackController(FeedbackService feedbackService, AuthorizationService authorizationService)
         {
             _feedbackService = feedbackService;
+            _authorizationService = authorizationService;
         }
 
         [HttpPost]
