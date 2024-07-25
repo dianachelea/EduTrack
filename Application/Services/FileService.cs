@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
+using Application.Handlers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Domain.Exceptions;
 
 namespace Application.Services
 {
@@ -32,6 +34,7 @@ namespace Application.Services
             };
 
             return fileResult;
+
         }
 
         public async Task<bool> SaveFile(IFormFile file) {
