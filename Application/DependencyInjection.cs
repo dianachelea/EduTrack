@@ -15,7 +15,11 @@ namespace Application
 			services.AddScoped<UserService>();
 			services.AddScoped<FileService>();
 			services.AddScoped<NotificationService>();
-			return services;
+            services.AddScoped<FeedbackService>();
+            services.AddScoped<AssignmentService>();
+            services.AddScoped<AssignmentInventoryService>();
+
+            return services;
         }
     }
 }
