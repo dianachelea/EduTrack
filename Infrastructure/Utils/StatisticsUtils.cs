@@ -70,7 +70,7 @@ namespace Infrastructure.Utils
 
             var connection = _databaseContext.GetDbConnection();
             var allCoursesCompleted = await connection.QueryAsync<(string courseName, double percentage)>(query, parameters, _databaseContext.GetDbTransaction());
-            var coursesCompleted = allCoursesCompleted.Average(item => item.percentage);   // TODO - calculate the mean
+            var coursesCompleted = allCoursesCompleted.Average(item => item.percentage);
 
             query = @"WITH TotalAssignments AS (
                         SELECT 
@@ -128,7 +128,7 @@ namespace Infrastructure.Utils
                         TA.Email;";
 
             var allAssignmentsCompleted = await connection.QueryAsync<(string courseName, double percentage)>(query, parameters, _databaseContext.GetDbTransaction());
-            var assignmentsCompleted = allAssignmentsCompleted.Average(item => item.percentage);   // TODO - calculate the mean
+            var assignmentsCompleted = allAssignmentsCompleted.Average(item => item.percentage);
 
             query = @"SELECT 
                         C.Name_course,
@@ -150,25 +150,31 @@ namespace Infrastructure.Utils
                         L.Course_id;";
 
             var allCoursesGrades = await connection.QueryAsync<(string courseName, double grade)>(query, parameters, _databaseContext.GetDbTransaction());
-            var coursesGrade = allCoursesGrades.Average(item => item.grade);   // TODO - calculate the mean
+            var coursesGrade = allCoursesGrades.Average(item => item.grade);
 
             var statistics = new StatisticsDO
             {
-                CoursesCompleted = (int)coursesCompleted,
+                CoursesCompleted = (coursesCompleted % 1 >= 0.5) 
+                                    ? (int)Math.Ceiling(coursesCompleted) 
+                                    : (int)Math.Floor(coursesCompleted),
                 AllCoursesCompleted = allCoursesCompleted.ToDictionary(
-                                                                            pair => pair.courseName,
-                                                                            pair => (int)(pair.percentage)
-                                                                            ),
-                AssignmentsCompleted = (int)assignmentsCompleted,
+                                                                    pair => pair.courseName,
+                                                                    pair => (int)(pair.percentage)
+                                                                    ),
+                AssignmentsCompleted = (assignmentsCompleted % 1 >= 0.5) 
+                                    ? (int)Math.Ceiling(assignmentsCompleted) 
+                                    : (int)Math.Floor(assignmentsCompleted),
                 AllAssignmentsCompleted = allAssignmentsCompleted.ToDictionary(
-                                                                            pair => pair.courseName,
-                                                                            pair => (int)(pair.percentage)
-                                                                            ),
-                CoursesGrade = (int)coursesGrade,
+                                                                    pair => pair.courseName,
+                                                                    pair => (int)(pair.percentage)
+                                                                    ),
+                CoursesGrade = (coursesGrade % 1 >= 0.5)
+                            ? (int)Math.Ceiling(coursesGrade)
+                            : (int)Math.Floor(coursesGrade),
                 AllCoursesGrades = allCoursesGrades.ToDictionary(
-                                                                            pair => pair.courseName,
-                                                                            pair => (int)(pair.grade)
-                                                                            )
+                                                                    pair => pair.courseName,
+                                                                    pair => (int)(pair.grade)
+                                                                    )
             };
 
             return statistics;
@@ -198,7 +204,7 @@ namespace Infrastructure.Utils
                                 [CentricSummerPractice].[SummerPractice].[Courses] C
                                 ON SC.Course_id = C.Course_id
                             WHERE 
-                                SC.Email = @TeacherEmailParam
+                                SC.Email = @Email
                         ),
                         -- Calculate the number of attended lessons per course
                         AttendedLessons AS (
@@ -215,7 +221,7 @@ namespace Infrastructure.Utils
                         )
                         -- Calculate the attendance percentage for each course managed by the specified teacher
                         SELECT 
-                            TC.Course_id,
+                            --TC.Course_id,
                             TC.Name_course,
                             (ISNULL(AL.AttendedLessonCount, 0) * 100.0 / TL.TotalLessonCount) AS AttendancePercentage
                         FROM 
@@ -233,27 +239,121 @@ namespace Infrastructure.Utils
             parameters.Add("Email", email);
 
             var connection = _databaseContext.GetDbConnection();
-            var allCoursesCompleted = await connection.QueryAsync<Dictionary<string, int>>(query, parameters, _databaseContext.GetDbTransaction());
-            var coursesCompleted = 0;   // TODO - calculate the mean
+            var allCoursesCompleted = await connection.QueryAsync<(string courseName, double percentage)>(query, parameters, _databaseContext.GetDbTransaction());
+            var coursesCompleted = allCoursesCompleted.Average(item => item.percentage);
 
-            query = @"";
+            query = @"WITH TeacherCourses AS (
+                        SELECT 
+                            SC.Course_id,
+                            C.Name_course
+                        FROM 
+                            [CentricSummerPractice].[SummerPractice].[Students-Courses] SC
+                        INNER JOIN 
+                            [CentricSummerPractice].[SummerPractice].[Courses] C
+                            ON SC.Course_id = C.Course_id
+                        WHERE 
+                            SC.Email = @Email
+                    ),
+                    TotalAssignments AS (
+                        SELECT 
+                            L.Course_id,
+                            COUNT(G.Grade) AS TotalAssignmentCount
+                        FROM 
+                            [CentricSummerPractice].[SummerPractice].[Grade] G
+                        INNER JOIN 
+                            [CentricSummerPractice].[SummerPractice].[Lessons] L
+                            ON G.Lesson_id = L.Lesson_id
+                        GROUP BY 
+                            L.Course_id
+                    ),
+                    PassedAssignments AS (
+                        SELECT 
+                            L.Course_id,
+                            COUNT(G.Grade) AS PassedAssignmentCount
+                        FROM 
+                            [CentricSummerPractice].[SummerPractice].[Grade] G
+                        INNER JOIN 
+                            [CentricSummerPractice].[SummerPractice].[Lessons] L
+                            ON G.Lesson_id = L.Lesson_id
+                        WHERE 
+                            G.Grade >= 5
+                        GROUP BY 
+                            L.Course_id
+                    )
+                    SELECT 
+                        --TC.Course_id,
+                        TC.Name_course,
+                        (ISNULL(PA.PassedAssignmentCount, 0) * 100.0 / ISNULL(TA.TotalAssignmentCount, 1)) AS PassingGradePercentage
+                    FROM 
+                        TeacherCourses TC
+                    LEFT JOIN 
+                        TotalAssignments TA
+                        ON TC.Course_id = TA.Course_id
+                    LEFT JOIN 
+                        PassedAssignments PA
+                        ON TC.Course_id = PA.Course_id
+                    ORDER BY 
+                        TC.Course_id;";
 
-            var allAssignmentsCompleted = await connection.QueryAsync<Dictionary<string, int>>(query, parameters, _databaseContext.GetDbTransaction());
-            var assignmentsCompleted = 0;   // TODO - calculate the mean
+            var allAssignmentsCompleted = await connection.QueryAsync<(string courseName, double percentage)>(query, parameters, _databaseContext.GetDbTransaction());
+            var assignmentsCompleted = allAssignmentsCompleted.Average(item => item.percentage);
 
-            query = @"";
+            query = @"WITH TeacherCourses AS (
+                        SELECT 
+                            SC.Course_id,
+                            C.Name_course
+                        FROM 
+                            [CentricSummerPractice].[SummerPractice].[Students-Courses] SC
+                        INNER JOIN 
+                            [CentricSummerPractice].[SummerPractice].[Courses] C
+                            ON SC.Course_id = C.Course_id
+                        WHERE 
+                            SC.Email = @Email
+                    )
+                    SELECT 
+                        --TC.Course_id,
+                        TC.Name_course,
+                        CAST(AVG(CAST(G.Grade AS FLOAT)) AS DECIMAL(10, 2)) AS MeanGrade
+                    FROM 
+                        TeacherCourses TC
+                    INNER JOIN 
+                        [CentricSummerPractice].[SummerPractice].[Lessons] L
+                        ON TC.Course_id = L.Course_id
+                    INNER JOIN 
+                        [CentricSummerPractice].[SummerPractice].[Grade] G
+                        ON L.Lesson_id = G.Lesson_id
+                    GROUP BY 
+                        TC.Course_id,
+                        TC.Name_course
+                    ORDER BY 
+                        TC.Course_id;";
 
-            var allCoursesGrades = await connection.QueryAsync<Dictionary<string, int>>(query, parameters, _databaseContext.GetDbTransaction());
-            var coursesGrade = 0;   // TODO - calculate the mean
+            var allCoursesGrades = await connection.QueryAsync<(string courseName, double grade)>(query, parameters, _databaseContext.GetDbTransaction());
+            var coursesGrade = allCoursesGrades.Average(item => item.grade);
 
             var statistics = new StatisticsDO
             {
-                CoursesCompleted = coursesCompleted,
-                AllCoursesCompleted = allCoursesCompleted.FirstOrDefault(),
-                AssignmentsCompleted = assignmentsCompleted,
-                AllAssignmentsCompleted = allAssignmentsCompleted.FirstOrDefault(),
-                CoursesGrade = coursesGrade,
-                AllCoursesGrades = allCoursesGrades.FirstOrDefault()
+                CoursesCompleted = (coursesCompleted % 1 >= 0.5) 
+                                    ? (int)Math.Ceiling(coursesCompleted) 
+                                    : (int)Math.Floor(coursesCompleted),
+                AllCoursesCompleted = allCoursesCompleted.ToDictionary(
+                                                                    pair => pair.courseName,
+                                                                    pair => (int)(pair.percentage)
+                                                                    ),
+                AssignmentsCompleted = (assignmentsCompleted % 1 >= 0.5)
+                            ? (int)Math.Ceiling(assignmentsCompleted)
+                            : (int)Math.Floor(assignmentsCompleted),
+                AllAssignmentsCompleted = allAssignmentsCompleted.ToDictionary(
+                                                                    pair => pair.courseName,
+                                                                    pair => (int)(pair.percentage)
+                                                                    ),
+                CoursesGrade = (coursesGrade % 1 >= 0.5)
+                            ? (int)Math.Ceiling(coursesGrade)
+                            : (int)Math.Floor(coursesGrade),
+                AllCoursesGrades = allCoursesGrades.ToDictionary(
+                                                                    pair => pair.courseName,
+                                                                    pair => (int)(pair.grade)
+                                                                    )
             };
 
             return statistics;

@@ -26,8 +26,8 @@ namespace WebApi.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<StatisticsDO>> GetStudentStats()
         {
-            var email = "student1@example.com";
-            //var email = User.FindFirstValue(ClaimTypes.Email);
+            //var email = "student1@example.com";
+            var email = User.FindFirstValue(ClaimTypes.Email);
             var result = await _statisticsService.GetStudentStats(email);
 
             return Ok(result);
