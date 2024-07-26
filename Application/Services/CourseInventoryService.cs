@@ -59,12 +59,12 @@ namespace Application.Services
 			{
 				courseResult = this._courseRepository.GetAllCourses();
                
-            }
+            }/*
 			else if (filter.SortBy != "")
 			{
 				courseResult = this._courseRepository.GetSortedCourses(filter.SortBy);
 				
-			}
+			}*/
 			else
 			{
 				courseResult = this._courseRepository.GetCoursesByFilter(filter);

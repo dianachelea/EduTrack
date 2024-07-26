@@ -2,8 +2,13 @@
 using Dapper;
 using Domain;
 using Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Http.Extensions;
+using System;
 using System.Data;
+using System.Linq;
+using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Infrastructure.Repositories
@@ -42,10 +47,10 @@ namespace Infrastructure.Repositories
 
 		public async Task<bool> DeleteCourse(string email, string name) //works
 		{
-			
+
 
 			var query = "DELETE FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
-			
+
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
 			parameters.Add("Name", name, DbType.String);
@@ -72,7 +77,7 @@ namespace Infrastructure.Repositories
 			parameters.Add("Category", course.Category, DbType.String);
 			parameters.Add("Difficulty", course.Difficulty, DbType.String);
 			parameters.Add("Duration", course.Duration, DbType.Int32);
-			parameters.Add("ImageData",course.Image, DbType.String);
+			parameters.Add("ImageData", course.Image, DbType.String);
 			parameters.Add("LearningTopics", course.LearningTopics, DbType.String);
 			parameters.Add("Prerequisites", course.Prerequisites, DbType.String);
 			parameters.Add("TeacherEmail", email, DbType.String);
@@ -95,7 +100,7 @@ namespace Infrastructure.Repositories
 		}
 
 
-		public IEnumerable<CourseDisplay> GetSortedCourses(string order) //works
+/*		public IEnumerable<CourseDisplay> GetSortedCourses(string order) //works
 		{
 			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]";
 			var sortDirection = order.ToLower() == "desc" ? "DESC" : "ASC";
@@ -104,46 +109,51 @@ namespace Infrastructure.Repositories
 			var connection = _databaseContext.GetDbConnection();
 			var courses = connection.Query<CourseDisplay>(query);
 			return courses;
-		}
+		}*/
 
 		public IEnumerable<CourseDisplay> GetCoursesByFilter(CourseFilter filter) //works
 		{
 			var query = "";
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
-			
+
+			query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
+			"WHERE [Name_course] LIKE @Name ";
+			//OR [Difficulty] IN @Difficulties OR [Category] IN @Categories
+			if (filter.Prerequistes.Any())
+				query += ConstructFilter(filter.Prerequistes, "Perequisites", ref parameters);
+			if (filter.Difficulties.Any())
+				query += ConstructFilter(filter.Difficulties, "Difficulty", ref parameters);
+			if (filter.Categories.Any())
+				query += ConstructFilter(filter.Categories, "Category", ref parameters);
+
 			if (filter.SortBy != "")
 			{
-				query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
-				" WHERE [Name_course] LIKE @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] = @Prerequisites";
-
 				var sortDirection = filter.SortBy.ToLower() == "desc" ? "DESC" : "ASC";
 				query += " ORDER BY [Name_course] " + sortDirection;
-
-				parameters.Add("Name", '%'+filter.Title+'%', DbType.String);
-				parameters.Add("Categories", filter.Categories);
-				parameters.Add("Difficulties", filter.Difficulties);
-				parameters.Add("Prerequisites", filter.Prerequistes.ToString());
-				
 			}
 
-			else
-			{
-				query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
-				"WHERE [Name_course] LIKE @Name OR [Category] IN @Categories OR [Difficulty] IN @Difficulties OR [Perequisites] IN @Prerequisites";
-
-
-				parameters.Add("Name", '%' + filter.Title + '%', DbType.String);
-				parameters.Add("Categories", filter.Categories);
-				parameters.Add("Difficulties", filter.Difficulties);
-				parameters.Add("Prerequisites", filter.Prerequistes);
-
-			}
-
+			parameters.Add("Name", '%' + filter.Title + '%', DbType.String);
+			
 
 			var filterResults = connection.Query<CourseDisplay>(query, parameters);
 			return filterResults;
+		}
 
+		private string ConstructFilter(List<string> filter, string columnName, ref DynamicParameters parameters)
+		{
+			string query = "";
+			query += $" AND [{columnName}] IN ( ";
+			for (int index = 0; index < filter.Count() - 1; index++)
+			{
+				query += $"@{columnName}{index}, ";
+				parameters.Add($"{columnName}{index}", filter[index], DbType.String);
+			}
+			query += $"@{columnName}{filter.Count() - 1}";
+			parameters.Add($"{columnName}{filter.Count() - 1}", filter.Last(), DbType.String);
+			query += " ) ";
+
+			return query;
 		}
 
 
@@ -219,7 +229,7 @@ namespace Infrastructure.Repositories
 			query = "SELECT [First_name], [Last_Name],[Email] FROM [SummerPractice].[User] WHERE [Email] IN @Emails";
 			var students = connection.Query<Student>(query, new { Emails = emails }, _databaseContext.GetDbTransaction());
 
-			
+
 			return students;
 
 		}
@@ -248,7 +258,7 @@ namespace Infrastructure.Repositories
 				" ORDER BY COUNT([Email]) DESC";
 
 			var connection = _databaseContext.GetDbConnection();
-			
+
 			var ids = connection.Query<Guid>(query).ToList();
 
 			query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
