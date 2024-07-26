@@ -14,6 +14,7 @@ namespace Application.Interfaces
 		Task<bool> UpdateCourse(string email, string name, Course course);
 		Task<bool> DeleteCourse(string email, string name);
 		IEnumerable<CourseDisplay> GetAllCourses();
+		CourseFilter GetFilters(CourseFilter filter);
 		IEnumerable<CourseDisplay> GetCoursesByFilter(CourseFilter filter);
 		IEnumerable<Course> GetCoursesByStudentEmail(string studentEmail);
 	

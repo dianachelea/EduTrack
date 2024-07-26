@@ -3,6 +3,7 @@ using Dapper;
 using Domain;
 using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc.Cors;
 using System;
 using System.Data;
 using System.Linq;
@@ -113,15 +114,33 @@ namespace Infrastructure.Repositories
 
 		public IEnumerable<CourseDisplay> GetCoursesByFilter(CourseFilter filter) //works
 		{
-			var query = "";
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
 
-			query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]" +
-			"WHERE [Name_course] LIKE @Name ";
+			string? query;
+			if (filter.Prerequistes.Any())
+				query = @"
+				WITH SplitPrerequisites AS (
+					SELECT 
+						[Name_course],[Category],[Perequisites],[Difficulty],[ImageData],[Preview],
+						TRIM(value) AS [Prerequisite]
+					FROM 
+						CentricSummerPractice.[SummerPractice].[Courses]
+					CROSS APPLY 
+						STRING_SPLIT([Perequisites], ',')
+				)
+				SELECT DISTINCT 
+					[Name_course], [Perequisites], [Difficulty], [ImageData], [Preview]
+				FROM 
+					SplitPrerequisites
+				";
+			else
+				query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]";
+			query += "WHERE [Name_course] LIKE @Name "; 
+
 			//OR [Difficulty] IN @Difficulties OR [Category] IN @Categories
 			if (filter.Prerequistes.Any())
-				query += ConstructFilter(filter.Prerequistes, "Perequisites", ref parameters);
+				query += ConstructFilter(filter.Prerequistes, "Prerequisite", ref parameters);
 			if (filter.Difficulties.Any())
 				query += ConstructFilter(filter.Difficulties, "Difficulty", ref parameters);
 			if (filter.Categories.Any())
@@ -137,7 +156,56 @@ namespace Infrastructure.Repositories
 			
 
 			var filterResults = connection.Query<CourseDisplay>(query, parameters);
+
+			// Filter in c# for Prerequisites
+			//if (filter.Prerequistes.Any())
+			//	filterResults.Where(result => filter.Prerequistes.All(prereq => result.Prerequisites.Split(", ").Contains(prereq)));
+
 			return filterResults;
+		}
+		
+		public CourseFilter GetFilters(CourseFilter filter) //works
+		{
+			var connection = _databaseContext.GetDbConnection();
+			var parameters = new DynamicParameters();
+
+			string query = "SELECT [Category] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
+			parameters.Add("Name", '%' + filter.Title + '%', DbType.String);
+			var categories = connection.Query<string>(query, parameters);
+
+			query = "SELECT [Difficulty] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
+			if (filter.Categories.Any())
+				query += ConstructFilter(filter.Categories, "Category", ref parameters);
+			var difficulty = connection.Query<string>(query, parameters);
+
+			query = @"
+				WITH SplitPrerequisites AS (
+					SELECT DISTINCT
+						[Name_course], [Category], [Perequisites], [Difficulty], [ImageData], [Preview],
+						value AS Prerequisite
+					FROM [CentricSummerPractice].[SummerPractice].[Courses]
+					CROSS APPLY STRING_SPLIT([Perequisites], ',')
+				)
+				SELECT DISTINCT
+					TRIM(Prerequisite) AS Prerequisite
+				FROM SplitPrerequisites
+				WHERE [Name_course] LIKE @Name 
+				";
+			query += "";
+			if (filter.Categories.Any())
+				query += ConstructFilter(filter.Categories, "Category", ref parameters);
+			if (filter.Difficulties.Any())
+				query += ConstructFilter(filter.Difficulties, "Difficulty", ref parameters);
+			var prereq = connection.Query<string>(query, parameters);
+
+			
+
+			return new CourseFilter
+			{
+				Categories = categories.ToList(),
+				Difficulties = difficulty.ToList(),
+				Prerequistes = prereq.ToList()
+			};
 		}
 
 		private string ConstructFilter(List<string> filter, string columnName, ref DynamicParameters parameters)

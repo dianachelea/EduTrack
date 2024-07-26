@@ -50,6 +50,15 @@ namespace WebApi.Controllers
 			return Ok(result);
 
 		}
+		[HttpGet]
+		[AllowAnonymous]
+		public async Task<ActionResult<CourseFilter>> GetFilters([FromQuery] CourseFilterContract filterContract) //check filter
+		{
+
+			var result = this._courseInventoryService.GetFilters(filterContract.MapToCourseFilter());
+			return Ok(result);
+
+		}
 
 		[HttpPost]
 		[Authorize(Policy = IdentityData.TeacherUserPolicyName)]

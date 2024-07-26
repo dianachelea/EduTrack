@@ -73,6 +73,10 @@ namespace Application.Services
 				
 			return courseResult.ToList();
 		}
+		public CourseFilter GetFilters(CourseFilter filter) //works
+		{
+			return this._courseRepository.GetFilters(filter);
+		}
 
 		public async Task<bool> UpdateCourse(string email, string name, Course course) //works
 		{
