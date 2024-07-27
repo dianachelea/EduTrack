@@ -24,6 +24,12 @@
 	<None Remove="Scripts\Step00014 - Create table Tokens.sql" />
 	<None Remove="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
 	<None Remove="Scripts\Step00016 - Alter table Lessons column status.sql" />
+	<None Remove="Scripts\Step00017- Alter table Students-Courses change PK.sql" />
+	<None Remove="Scripts\Step00018- Alter Table Courses Image.sql" />
+	<None Remove="Scripts\Step00019- Alter Table Students-Courses.sql" />
+	<None Remove="Scripts\Step00020- Feedback- Add Category field.sql" />
+	<None Remove="Scripts\Step00021- Feedback - Add Constraint to Category.sql" />
+	<None Remove="Scripts\Step00022- Feedback - Add Date field.sql" />
 
 
   </ItemGroup>
@@ -42,8 +48,15 @@
     <EmbeddedResource Include="Scripts\Step00011- Create table Attendance.sql" />
 	<EmbeddedResource Include="Scripts\Step00012 - Alter table Lessons add new column.sql" />
 	<EmbeddedResource Include="Scripts\Step00013 - Alter table Courses topics + perequisites.sql" />
+	<EmbeddedResource Include="Scripts\Step00014 - Create table Tokens.sql" />
 	<EmbeddedResource Include="Scripts\Step00015 - Alter table Courses teacher owner.sql" />
     <EmbeddedResource Include="Scripts\Step00016 - Alter table Lessons column status.sql" />
+    <EmbeddedResource Include="Scripts\Step00017- Alter table Students-Courses change PK.sql" />
+    <EmbeddedResource Include="Scripts\Step00018- Alter Table Courses Image.sql" />
+    <EmbeddedResource Include="Scripts\Step00019- Alter Table Students-Courses.sql" />
+    <EmbeddedResource Include="Scripts\Step00020- Feedback- Add Category field.sql" />
+    <EmbeddedResource Include="Scripts\Step00021- Feedback - Add Constraint to Category.sql" />
+    <EmbeddedResource Include="Scripts\Step00022- Feedback - Add Date field.sql" />
 
   </ItemGroup>
 
