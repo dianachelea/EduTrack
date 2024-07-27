@@ -25,5 +25,13 @@ namespace Application.Services
             var result = await _statistics.GetStudentStats(email);
             return result;
         }
+        public async Task<StatisticsDO> GetTeacherStats(string email)
+        {
+            if (email == null) { throw new ArgumentNullException("email"); }
+            if (!email.Contains('@')) { throw new ArgumentException("Email is invalid"); }
+
+            var result = await _statistics.GetTeacherStats(email);
+            return result;
+        }
     }
 }

@@ -23,12 +23,29 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<StatisticsDO>> GetStudentStats()
         {
             //var email = "student1@example.com";
             var email = User.FindFirstValue(ClaimTypes.Email);
             var result = await _statisticsService.GetStudentStats(email);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        public async Task<ActionResult<StatisticsDO>> GetTeacherStats()
+        {
+            //var email = "teacher1@example.com";
+            var claims = User.Claims;
+            foreach (var claim in claims)
+            {
+                Console.WriteLine($"{claim.Type}: {claim.Value}");
+            }
+
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var result = await _statisticsService.GetTeacherStats(email);
 
             return Ok(result);
         }
