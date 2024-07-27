@@ -13,12 +13,10 @@ namespace WebApi.Controllers
     public class FeedbackController : ControllerBase
     {
         private readonly FeedbackService _feedbackService;
-        private readonly AuthorizationService _authorizationService;
 
         public FeedbackController(FeedbackService feedbackService, AuthorizationService authorizationService)
         {
             _feedbackService = feedbackService;
-            _authorizationService = authorizationService;
         }
 
         [HttpPost]
@@ -30,7 +28,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]    //[Authorize]  //(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<string>> GetFeedback([FromQuery] FeedbackFiltersContract feedbackFiltersContract)
         {
             var result = await _feedbackService.GetFeedback(feedbackFiltersContract.MapToFeedbackFilters());

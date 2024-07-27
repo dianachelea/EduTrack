@@ -67,7 +67,6 @@ namespace Application.Services
             if (fileds && properties)
                 return await this._feedbackRepository.GetFeedback();
 
-            // TODO - data validations
             if (feedbackFilters.ByEmail != null)
             {
                 foreach (var email in feedbackFilters.ByEmail)
