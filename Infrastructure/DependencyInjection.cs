@@ -17,6 +17,13 @@ namespace Infrastructure
 
             services.AddScoped<IIdentityHandler, IdentityHandler>();
             services.AddScoped<IPasswordHasher, PasswordHandler>();
+<<<<<<< HEAD
+=======
+            services.AddScoped<IGenerateToken, GenerateToken>();
+            services.AddScoped<ISendNotification, SendEmailNotification>();
+            services.AddScoped<ILinkCreator, LinkCreator>();
+            services.AddScoped<IStatistics, StatisticsUtils>();
+>>>>>>> zaco
 
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<ILessonRepository, LessonRepository>();

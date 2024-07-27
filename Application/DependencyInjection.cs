@@ -15,11 +15,16 @@ namespace Application
             services.AddScoped<FileService>();
             services.AddScoped<NotificationService>();
             services.AddScoped<FeedbackService>();
+<<<<<<< HEAD
             services.AddScoped<AssignmentInventoryService>();
             services.AddScoped<AssignmentService>();
             
             services.AddScoped<CourseInventoryService>();
 			services.AddScoped<CourseService>();
+=======
+            services.AddScoped<StatisticsService>();
+
+>>>>>>> zaco
 			return services;
         }
     }

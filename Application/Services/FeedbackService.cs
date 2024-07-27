@@ -22,16 +22,6 @@ namespace Application.Services
         {
             if (feedback == null) throw new ArgumentNullException(nameof(feedback));
 
-            // Data validations
-            if (!feedback.Email.Contains('@'))
-            {
-                throw new Exception("Email invalid!");
-            }
-            if (feedback.Stars < 1 || feedback.Stars > 5)
-            {
-                throw new Exception("Number of starts is not valid!");
-            }
-
             if (!feedback.IsAnonymus)
             {
                 if (feedback.Name == "-" && feedback.Email == "-")
@@ -44,6 +34,16 @@ namespace Application.Services
                     feedback.Name = "-";
                     feedback.Email = "-";
                 }
+            }
+
+            // Data validations
+            if (!feedback.Email.Contains('@') && !feedback.IsAnonymus)
+            {
+                throw new Exception("Email invalid!");
+            }
+            if (feedback.Stars < 1 || feedback.Stars > 5)
+            {
+                throw new Exception("Number of starts is not valid!");
             }
 
             var result = await this._feedbackRepository.AddFeedback(new FeedbackDO
@@ -67,7 +67,6 @@ namespace Application.Services
             if (fileds && properties)
                 return await this._feedbackRepository.GetFeedback();
 
-            // TODO - data validations
             if (feedbackFilters.ByEmail != null)
             {
                 foreach (var email in feedbackFilters.ByEmail)
@@ -82,7 +81,7 @@ namespace Application.Services
             if (feedbackFilters.Stars != null)
             {
                 foreach (var stars in feedbackFilters.Stars)
-                {
+                {   
                     if (stars < 1 || stars > 5)
                     {
                         throw new Exception("Number of starts is not valid!");
