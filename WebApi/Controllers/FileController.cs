@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult> GetFile(string fileName)
         {
             var result = await this._fileService.GetFile(fileName);
@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult> SaveFile(IFormFile file)
         {
             var result = await this._fileService.SaveFile(file);
