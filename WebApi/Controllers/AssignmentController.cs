@@ -27,7 +27,7 @@ namespace WebApi.Controllers
 
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         //[Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<string>> GetAssignment([FromQuery] string CourseName, string LessonTitle)
         {
@@ -38,6 +38,7 @@ namespace WebApi.Controllers
 
         
         [HttpPost]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> AddAssignment([FromQuery] AssignmentContentContract assignmentContract, string CourseName, string LessonTitle, IFormFile file)
         {
             var resultSaveFile = await this._fileService.SaveFile(file);
@@ -51,6 +52,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<AssignmentSolutionDo>> GetSolution([FromQuery] string CourseName, string LessonTitle,string StudentEmail)
         {
             var result = await this._assignmentService.GetStudentSolution(CourseName, LessonTitle, StudentEmail);
@@ -59,6 +61,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<bool>> Solve([FromQuery] AssignmentSolutionContract solutionContract, string CourseName, string LessonTitle, string StudentEmail, IFormFile file)
         {
             var resultSaveFile = await this._fileService.SaveFile(file);
@@ -72,6 +75,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<AssignmentGradeDo>>> GetAllAssignmentsSent([FromQuery] string CourseName, string LessonTitle)
         {
             var result = await this._assignmentService.GetAllAssignmentsSent(CourseName, LessonTitle);
@@ -79,6 +83,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<AssignmentGradeDo>>> GetGrade([FromQuery] string CourseName, string LessonTitle, string StudentEmail)
         {
             var result = await this._assignmentService.GetGrade(CourseName, LessonTitle, StudentEmail);
@@ -86,6 +91,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> GradeAssignment([FromQuery] string CourseName, string LessonTitle, double Grade, string StudentEmail)
         {
             var result = await this._assignmentService.GradeAssignment(CourseName, LessonTitle, Grade, StudentEmail);
@@ -93,6 +99,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<AssignmentGradeDo>>> GetStudentAssignments([FromQuery] string CourseName , string StudentEmail)
         {
             var result = await this._assignmentInventoryService.GetStudentAssignments(CourseName, StudentEmail);
@@ -100,6 +107,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPatch]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> EditAssignment([FromQuery] AssignmentContentContract Content, string CourseName, string LessonTitle, IFormFile file)
         {
             var resultSaveFile = await this._fileService.SaveFile(file);
@@ -113,6 +121,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> DeleteAssignment([FromQuery]string CourseName, string LessonTitle)
         {
             var result = await this._assignmentInventoryService.DeleteAssignment(CourseName, LessonTitle);

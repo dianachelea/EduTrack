@@ -70,23 +70,22 @@ namespace WebApi.Controllers
 			if (email == null || email.Split('@')[1] != "teacher.com")
 			{
 				return Forbid();
-			}
-			
+            }
 
-			var checkFile = await this._fileService.GetFile(courseContract.Image.FileName);
+            var result = false;
 
-			var result = false;
-
-			if (checkFile == null)
+            try
 			{
-				var saveFileResult = await this._fileService.SaveFile(courseContract.Image);
-				if (saveFileResult == true)
-					result = await this._courseInventoryService.AddCourse(email, courseContract.MapToCourse());
-			}
-			else
+				var checkFile = await this._fileService.GetFile(courseContract.Image.FileName);
+
+                result = await this._courseInventoryService.AddCourse(email, courseContract.MapToCourse());
+            }
+			catch (Exception ex) 
 			{
-				result = await this._courseInventoryService.AddCourse(email, courseContract.MapToCourse());
-			}
+                var saveFileResult = await this._fileService.SaveFile(courseContract.Image);
+                if (saveFileResult == true)
+                    result = await this._courseInventoryService.AddCourse(email, courseContract.MapToCourse());
+            }
 
 			if (result == true)
 			{

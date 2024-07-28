@@ -8,11 +8,7 @@ namespace Application.Services
     {
         private IFileRepository _fileRepository;
 
-<<<<<<< HEAD
-        private static readonly List<string> allowedExtensions = new() { ".jpeg", ".cvs", ".png", ".pdf", ".jpg" };
-=======
         private static readonly List<string> allowedExtensions = new() { ".jpeg", ".cvs", ".png", ".pdf", ".rar", ".zip" };
->>>>>>> zaco
 
         public FileService(IFileRepository fileRepository)
         {
@@ -25,12 +21,7 @@ namespace Application.Services
             var fileDetails = checkFileExistence.FirstOrDefault();
             if (checkFileExistence.ToList().Count == 0 || !File.Exists(fileDetails.Path))
             {
-<<<<<<< HEAD
-                //throw new Exception("File does not exist");
-                return null;
-=======
                 throw new Exception("File does not exist");
->>>>>>> zaco
             }
 
             var fileBytes = await File.ReadAllBytesAsync(fileDetails.Path);
