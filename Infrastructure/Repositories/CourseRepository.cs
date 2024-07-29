@@ -169,11 +169,11 @@ namespace Infrastructure.Repositories
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
 
-			string query = "SELECT [Category] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
+			string query = "SELECT DISTINCT [Category] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
 			parameters.Add("Name", '%' + filter.Title + '%', DbType.String);
 			var categories = connection.Query<string>(query, parameters);
 
-			query = "SELECT [Difficulty] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
+			query = "SELECT DISTINCT [Difficulty] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
 			if (filter.Categories.Any())
 				query += ConstructFilter(filter.Categories, "Category", ref parameters);
 			var difficulty = connection.Query<string>(query, parameters);
@@ -248,7 +248,7 @@ namespace Infrastructure.Repositories
 
 		public IEnumerable<CourseInfoPage> GetCourseForPage(string name) //works
 		{
-			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview], [Description], [Time], [Learning_topics], [Category] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name";
+			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview], [Description], [Time], [Learning_topics], [Category], [TeacherEmail] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name";
 
 			var connection = _databaseContext.GetDbConnection();
 			var course = connection.Query<CourseInfoPage>(query, new { Name = name });

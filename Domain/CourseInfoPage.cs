@@ -37,8 +37,11 @@ namespace Domain
 		[Column("Time")]
 		public int Duration { get; set; }
 
+		[Column("TeacherEmail")]
+		public string TeacherEmail { get; set; }
+
 		public Byte[] ImageContents	{ get; set; }
 
-	
+		
 	}
 }
