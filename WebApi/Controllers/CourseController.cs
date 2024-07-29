@@ -67,7 +67,7 @@ namespace WebApi.Controllers
 			//var email = "teacher1@teacher.com";
 			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null || email.Split('@')[1] != "teacher.com")
+			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
 			{
 				return Forbid();
             }
@@ -100,7 +100,7 @@ namespace WebApi.Controllers
 		public async Task<ActionResult<bool>> DeleteCourse([FromQuery] string courseName) //works
 		{
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null || email.Split('@')[1] != "teacher.com")
+			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
 			{
 				return Forbid();
 			}
@@ -121,7 +121,7 @@ namespace WebApi.Controllers
 		{
 			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null || email.Split('@')[1] != "teacher.com")
+			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
 			{
 				return Forbid();
 			}
@@ -170,6 +170,33 @@ namespace WebApi.Controllers
 
 			return Ok(result);
 		}
+		[HttpGet]
+		[Authorize]
+		public async Task<ActionResult<List<CourseDisplay>>> GetStudentEnrolledCourses() //works
+		{
+			var role = User.FindFirstValue(ClaimTypes.Role);
+			if(role == null || role != "student")
+				return Forbid();
+			
+			var email = User.FindFirstValue(ClaimTypes.Email);
+			if(email==null)
+				return Forbid();
+			
+			List<CourseDisplay> result = this._courseInventoryService.GetMostPopularCourses();
+
+			if (result.Count == 0)
+			{
+				return NotFound();
+			}
+
+			foreach (var course in result)
+			{
+				var file = await _fileService.GetFile(course.Image);
+				course.ImageContents = file.FileContents;
+			}
+
+			return Ok(result);
+		}
 
 		[HttpPost]
 		[Authorize]
@@ -179,7 +206,7 @@ namespace WebApi.Controllers
 			//get student email
 			var studentEmail = User.FindFirstValue(ClaimTypes.Email);
 
-			if (studentEmail == null || studentEmail.Split('@')[1] != "student.com")
+			if (studentEmail == null/* || studentEmail.Split('@')[1] != "student.com"*/)
 			{
 				return Forbid();
 
@@ -219,7 +246,7 @@ namespace WebApi.Controllers
 		{
 			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null || email.Split('@')[1] != "teacher.com")
+			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
 			{
 				return Forbid();
 			}
@@ -242,7 +269,7 @@ namespace WebApi.Controllers
 			//var email = "student2@student.com";
 			var studentEmail = User.FindFirstValue(ClaimTypes.Email);
 
-			if (studentEmail == null || studentEmail.Split('@')[1] != "student.com")
+			if (studentEmail == null/* || studentEmail.Split('@')[1] != "student.com"*/)
 			{
 				return Forbid();
 

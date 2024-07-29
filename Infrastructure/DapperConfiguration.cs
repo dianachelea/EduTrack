@@ -31,6 +31,15 @@ namespace Infrastructure
 						   prop.GetCustomAttributes(false)
 							   .OfType<ColumnAttribute>()
 							   .Any(predicate: attr => attr.Name == columnName))));
+			SqlMapper.SetTypeMap(
+			   typeof(UserInfo),
+			   new CustomPropertyTypeMap(
+				   typeof(UserInfo),
+				   (type, columnName) =>
+					   type.GetProperties()?.FirstOrDefault(prop =>
+						   prop.GetCustomAttributes(false)
+							   .OfType<ColumnAttribute>()
+							   .Any(predicate: attr => attr.Name == columnName))));
 
 
 			SqlMapper.SetTypeMap(

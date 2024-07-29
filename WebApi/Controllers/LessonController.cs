@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Domain;
 using Application.Interfaces;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Security.Claims;
 
 namespace WebApi.Controllers
 {
@@ -27,7 +28,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-     //   [AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<LessonDisplay>>> GetAllLessons([FromQuery] string courseName)
         {
             // Apel din serivciu de courses Inventory
@@ -36,7 +37,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-      //  [Authorize]
+        [Authorize]
         public async Task<ActionResult<Lesson>> GetLesson([FromQuery] string courseTitle, [FromQuery] string lessonTitle)
         {
             var lesson = await _lessonInventory.GetLesson(courseTitle, lessonTitle); 
@@ -48,17 +49,19 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-      //  [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> AddLesson([FromQuery] string courseTitle, [FromBody] LessonContract lessonContract)
         {
-            string teacherEmail = "teacher@teacher.com"; // "User.Identity.Email
+			var teacherEmail = User.FindFirstValue(ClaimTypes.Email);
+			if (teacherEmail == null)
+				return Forbid();
 
 			var result = await _lessonInventory.AddLesson(courseTitle, teacherEmail, lessonContract.MaptoLesson());
             return Ok(result);
         }
 
         [HttpPatch]
-      //  [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> EditLesson([FromQuery] string lessonTitle, [FromBody] LessonContract lessonContract)
         {
             var result = await _lessonInventory.UpdateLesson(lessonTitle, lessonContract.MaptoLesson());
@@ -66,7 +69,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-     //   [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> DeleteLesson([FromQuery] string courseName, [FromQuery] string lessonTitle)
         {
             var result = await _lessonInventory.DeleteLesson(courseName, lessonTitle); 
@@ -74,7 +77,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-     //   [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> MakeAttendance([FromQuery] string courseName, [FromQuery] string lessonTitle, [FromBody] List<UserContract> users)
         {
             var students = users.Select(u => u.MapToUser()).ToList();
@@ -92,7 +95,7 @@ namespace WebApi.Controllers
 			return Ok(result);
         }*/
         [HttpGet]
-     //   [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<Dictionary<string, List<Attendance>>>> GetAllAttendace([FromQuery] string courseName)
         {
 			Dictionary<string,List<Attendance>> attendance = new Dictionary<string, List<Attendance>>();

@@ -4,7 +4,7 @@ namespace Application.Interfaces
 {
     public interface IUsersRepository
     {
-        Task<IEnumerable<UserCredentials>> GetUserInfo(string email);
+        Task<IEnumerable<UserInfo>> GetUserInfo(string email);
         Task<bool> RegisterUser(UserCredentials credentials);
         Task<bool> GiveUserAdminRights(string email);
         Task<bool> UpdatePassword(string email, string newPassword);
