@@ -38,6 +38,7 @@ namespace Application.Services
 			_linkCreator = linkCreator;
 			_logger = logger;
 			_notificationSender = notificationSender;
+			_usersRepository = usersRepository;
 		}
 
 		public async Task<bool> RegisterUser(UserCredentials credentials)
@@ -139,6 +140,13 @@ namespace Application.Services
 			var users = await _usersRepository.GetAllStudents();
 
 			return users;
+		}
+
+		public async Task<UserInfo> GetUserInfo(string email)
+		{
+			var user = await _usersRepository.GetUserInfo(email);
+
+			return user.FirstOrDefault();
 		}
 
 		/// <summary>

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Application.Services;
 using WebApiContracts;
 using WebApiContracts.Mappers;
+using System.Security.Claims;
 
 namespace WebApi.Controllers
 {
@@ -81,6 +82,17 @@ namespace WebApi.Controllers
 		{
 			var result = await this._authorizationService.GiveUserAdminRights(email);
 
+			return Ok(result);
+		}
+		[HttpGet]
+		[Authorize]
+		public async Task<ActionResult<string>> GetUserInfo()
+		{
+			var email = User.FindFirstValue(ClaimTypes.Email);
+			if (email == null)
+				return Forbid();
+
+			var result = await this._userService.GetUserInfo(email);
 			return Ok(result);
 		}
 

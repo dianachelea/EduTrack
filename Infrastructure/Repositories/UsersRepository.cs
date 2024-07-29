@@ -16,12 +16,12 @@ namespace Infrastructure.Repositories
             this._databaseContext = databaseContext;
         }
 
-        public Task<IEnumerable<UserCredentials>> GetUserInfo(string email)
+        public Task<IEnumerable<UserInfo>> GetUserInfo(string email)
         {
-            var sql = "SELECT [Username], [Password], [Email], [Role], [First_Name], [Last_name], [Phone_number] FROM [SummerPractice].[User] WHERE [Email] = @Email";
+            var sql = "SELECT [Username], [Email], [Role], [First_name], [Last_Name], [Phone_number] FROM [SummerPractice].[User] WHERE [Email] = @Email";
 
             var connection = _databaseContext.GetDbConnection();
-            var users = connection.QueryAsync<UserCredentials>(sql, new {Email = email});
+            var users = connection.QueryAsync<UserInfo>(sql, new {Email = email});
             return users;
         }
 
