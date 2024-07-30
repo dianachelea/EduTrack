@@ -59,9 +59,6 @@ namespace Infrastructure.Repositories
 
 			var query = "DELETE FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
 
-			//var connection = _databaseContext.GetDbConnection();
-			//parameters = new DynamicParameters();
-			//parameters.Add("Name", name, DbType.String);
 			parameters.Add("TeacherEmail", email, DbType.String);
 			var finalResult = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
 
@@ -106,18 +103,6 @@ namespace Infrastructure.Repositories
 			return courses;
 
 		}
-
-
-/*		public IEnumerable<CourseDisplay> GetSortedCourses(string order) //works
-		{
-			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]";
-			var sortDirection = order.ToLower() == "desc" ? "DESC" : "ASC";
-			query += " ORDER BY [Name_course] " + sortDirection;
-
-			var connection = _databaseContext.GetDbConnection();
-			var courses = connection.Query<CourseDisplay>(query);
-			return courses;
-		}*/
 
 		public IEnumerable<CourseDisplay> GetCoursesByFilter(CourseFilter filter) //works
 		{
@@ -263,14 +248,14 @@ namespace Infrastructure.Repositories
 		}
 
 
-		public IEnumerable<Course> GetCoursesByStudentEmail(string studentEmail) //works
+		public IEnumerable<CourseDisplay> GetCoursesByStudentEmail(string studentEmail) //works
 		{
 			var query = "SELECT * FROM  [SummerPractice].[Courses] LEFT JOIN [SummerPractice].[Students-Courses] " +
 				"ON  [SummerPractice].[Courses].[Course_id] = [SummerPractice].[Students-Courses].[Course_id] " +
 				"WHERE [SummerPractice].[Students-Courses].[Email] = @Email";
 
 			var connection = _databaseContext.GetDbConnection();
-			var courses = connection.Query<Course>(query, new { Email = studentEmail });
+			var courses = connection.Query<CourseDisplay>(query, new { Email = studentEmail });
 			return courses;
 		}
 

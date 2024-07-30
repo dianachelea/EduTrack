@@ -112,20 +112,19 @@ namespace WebApi.Controllers
 		{
 			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			
-			var checkFile = await this._fileService.GetFile(courseContract.Image.FileName);
-
 			var result = false;
 
-			if (checkFile == null)
+			try
+			{
+				var checkFile = await this._fileService.GetFile(courseContract.Image.FileName);
+
+				result = await this._courseInventoryService.UpdateCourse(email, courseName, courseContract.MapToCourse());
+			}
+			catch (Exception ex)
 			{
 				var saveFileResult = await this._fileService.SaveFile(courseContract.Image);
 				if (saveFileResult == true)
-					 result = await this._courseInventoryService.UpdateCourse(email, courseName, courseContract.MapToCourse());
-			}
-			else
-			{
-				     result = await this._courseInventoryService.UpdateCourse(email, courseName, courseContract.MapToCourse());
+					result = await this._courseInventoryService.UpdateCourse(email, courseName, courseContract.MapToCourse());
 			}
 
 			if (result == true)
@@ -160,15 +159,10 @@ namespace WebApi.Controllers
 		[Authorize]
 		public async Task<ActionResult<List<CourseDisplay>>> GetStudentEnrolledCourses() //works
 		{
-			var role = User.FindFirstValue(ClaimTypes.Role);
-			if(role == null || role != "student")
-				return Forbid();
-			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if(email==null)
-				return Forbid();
-			
-			List<CourseDisplay> result = this._courseInventoryService.GetMostPopularCourses();
+
+
+			List<CourseDisplay> result = this._courseInventoryService.GetStudentCourses(email);
 
 			if (result.Count == 0)
 			{
