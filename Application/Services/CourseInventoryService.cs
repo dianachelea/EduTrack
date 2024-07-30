@@ -22,8 +22,7 @@ namespace Application.Services
 		{
 			var teacherCourses = await this._courseRepository.GetTeacherCourses(email);
 
-			//var courseCheck = await this._courseRepository.GetCourse(course.Name);
-			//courseCheck.ToList().Count != 0 ||
+			
 			if (teacherCourses.ToList().Contains(course.Name))
 			{
 				throw new Exception("Course already exists");
@@ -38,7 +37,7 @@ namespace Application.Services
 
 		public async Task<bool> DeleteCourse(string email, string name)  //works
 		{
-			//var courseCheck = await this._courseRepository.GetCourse(name);
+			
 			var teacherCourses = await this._courseRepository.GetTeacherCourses(email);
 			if (!teacherCourses.ToList().Contains(name))
 			{
@@ -59,12 +58,7 @@ namespace Application.Services
 			{
 				courseResult = this._courseRepository.GetAllCourses();
                
-            }/*
-			else if (filter.SortBy != "")
-			{
-				courseResult = this._courseRepository.GetSortedCourses(filter.SortBy);
-				
-			}*/
+            }
 			else
 			{
 				courseResult = this._courseRepository.GetCoursesByFilter(filter);
@@ -80,7 +74,7 @@ namespace Application.Services
 
 		public async Task<bool> UpdateCourse(string email, string name, Course course) //works
 		{
-			//var courseCheck = await this._courseRepository.GetCourse(name);
+			
 			var teacherCourses = await this._courseRepository.GetTeacherCourses(email);
 			if (!teacherCourses.ToList().Contains(name))
 			{

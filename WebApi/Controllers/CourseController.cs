@@ -64,13 +64,9 @@ namespace WebApi.Controllers
 		[Authorize(Policy = IdentityData.TeacherUserPolicyName)]
 		public async Task<ActionResult<bool>> AddCourse([FromForm] CourseContract courseContract) //works
 		{
-			//var email = "teacher1@teacher.com";
+			
 			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
-			{
-				return Forbid();
-            }
 
             var result = false;
 
@@ -100,12 +96,7 @@ namespace WebApi.Controllers
 		public async Task<ActionResult<bool>> DeleteCourse([FromQuery] string courseName) //works
 		{
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
-			{
-				return Forbid();
-			}
 			
-			//var email = "teacher1@teacher.com";
 			var result = await this._courseInventoryService.DeleteCourse(email, courseName);
 
 			if (result == true)
@@ -121,12 +112,7 @@ namespace WebApi.Controllers
 		{
 			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
-			{
-				return Forbid();
-			}
 			
-			//var email = "teacher1@teacher.com";
 			var checkFile = await this._fileService.GetFile(courseContract.Image.FileName);
 
 			var result = false;
@@ -203,15 +189,7 @@ namespace WebApi.Controllers
 		public async Task<ActionResult<bool>> EnrollToCourse([FromBody] string courseName) //works
 		{
 			
-			//get student email
 			var studentEmail = User.FindFirstValue(ClaimTypes.Email);
-
-			if (studentEmail == null/* || studentEmail.Split('@')[1] != "student.com"*/)
-			{
-				return Forbid();
-
-			}
-			
 
 			var result = await this._courseService.EnrollToCourse(courseName, studentEmail);
 
@@ -246,13 +224,7 @@ namespace WebApi.Controllers
 		{
 			
 			var email = User.FindFirstValue(ClaimTypes.Email);
-			if (email == null/* || email.Split('@')[1] != "teacher.com"*/)
-			{
-				return Forbid();
-			}
 			
-			//var email = "teacher@teacher.com";
-
 			List<Student> result = this._courseService.GetAllStudentsEnrolled(courseName, email);
 
 			if (result.Count == 0)
@@ -266,14 +238,7 @@ namespace WebApi.Controllers
 		[Authorize]
 		public ActionResult<List<Attendance>> GetStudentAttendance([FromQuery] string courseName) //works
 		{
-			//var email = "student2@student.com";
 			var studentEmail = User.FindFirstValue(ClaimTypes.Email);
-
-			if (studentEmail == null/* || studentEmail.Split('@')[1] != "student.com"*/)
-			{
-				return Forbid();
-
-			}
 
 			var result = this._courseService.GetStudentAttendance(courseName, studentEmail);
 
