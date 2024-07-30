@@ -88,7 +88,7 @@ namespace Application.Services
 			return updateResult;
 		}
 		
-		public  List<Course> GetStudentCourses(string studentEmail)  //works
+		public  List<CourseDisplay> GetStudentCourses(string studentEmail)  //works
 		{
 			
 

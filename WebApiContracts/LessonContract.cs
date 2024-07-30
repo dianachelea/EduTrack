@@ -22,13 +22,15 @@ namespace WebApiContracts
         public string Assignment_preview { get; set; }*/
         [Column("Lesson_Content")]
         public string Lesson_Content { get; set; }
+		[Column("Lesson_date")]
+		public DateTime StartDate { get; set; }
 
-        /*[Column("Assignment_file")]
+		/*[Column("Assignment_file")]
         public string Assignment_file { get; set; }*/
 
-      //  [Column("LessonStatus")]
-      //  public string LessonStatus { get; set; }
-      //  public DateTime StartDate { get; set; }
+		//  [Column("LessonStatus")]
+		//  public string LessonStatus { get; set; }
 
-    }
+
+	}
 }

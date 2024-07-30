@@ -60,6 +60,16 @@ namespace WebApi.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        public async Task<ActionResult<bool>> ChangeLessonStatus([FromQuery] string courseTitle, [FromQuery] string lessonTitle, [FromQuery] string status)
+        {
+			var teacherEmail = User.FindFirstValue(ClaimTypes.Email);
+
+			var result = await _lessonService.ChangeLessonStatus(courseTitle, lessonTitle, status, teacherEmail);
+            return Ok(result);
+        }
+
         [HttpPatch]
         [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> EditLesson([FromQuery] string lessonTitle, [FromBody] LessonContract lessonContract)
@@ -83,17 +93,8 @@ namespace WebApi.Controllers
             var students = users.Select(u => u.MapToUser()).ToList();
 			var result = await _lessonService.MakeAttendance(courseName, lessonTitle, students); 
             return Ok(result);
-        }/*
-        [HttpGet]
-     //   [Authorize]
-        public async Task<ActionResult<List<Attendance>>> GetAttendance([FromQuery] string courseName)
-        {
-            var email = "user@yahoo.com"; // User.Identity.Email
+        }
 
-            // Call get Student attendance from CoursesService
-			var result = await _lessonService.GetSAttendance(courseName, email);
-			return Ok(result);
-        }*/
         [HttpGet]
         [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<Dictionary<string, List<Attendance>>>> GetAllAttendace([FromQuery] string courseName)
