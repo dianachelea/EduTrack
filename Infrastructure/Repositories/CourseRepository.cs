@@ -49,12 +49,19 @@ namespace Infrastructure.Repositories
 		public async Task<bool> DeleteCourse(string email, string name) //works
 		{
 
-
-			var query = "DELETE FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
+			var deleteAssociatedLesson = "DELETE FROM [SummerPractice].[Lessons] WHERE [Course_id] = (SELECT [Course_id] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name)";
 
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
 			parameters.Add("Name", name, DbType.String);
+
+			var result = await connection.ExecuteAsync(deleteAssociatedLesson, parameters, _databaseContext.GetDbTransaction());
+
+			var query = "DELETE FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
+
+			//var connection = _databaseContext.GetDbConnection();
+			//parameters = new DynamicParameters();
+			//parameters.Add("Name", name, DbType.String);
 			parameters.Add("TeacherEmail", email, DbType.String);
 			var finalResult = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
 
