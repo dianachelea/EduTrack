@@ -15,7 +15,7 @@ namespace Infrastructure.Utils
 		{
 			var fromAddress = new MailAddress("ionut.porumbel23@gmail.com", "EduTrack");
 			var toAddress = new MailAddress(email, "User");
-			const string fromPassword = "enter email pass";
+			const string fromPassword = "evkf kdzg xfnt foau";
 			const string subject = "Edutrack Notification";
 
 			var smtp = new SmtpClient

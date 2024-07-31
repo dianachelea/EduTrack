@@ -361,7 +361,16 @@ namespace Infrastructure.Repositories
 			return result;
 		}
 
+		public bool IsStudentEnrolledIntroCourse(string studentEmail, string courseName)
+		{
+			var query = "SELECT COUNT([SummerPractice].[Courses].[Name_course]) FROM[SummerPractice].[Courses] LEFT JOIN[SummerPractice].[Students-Courses] "+
+				"ON[SummerPractice].[Courses].[Course_id] = [SummerPractice].[Students-Courses].[Course_id]"+
+				"WHERE[SummerPractice].[Students-Courses].[Email] = @Email AND [SummerPractice].[Courses].[Name_course] = @CourseName";
 
+			var connection = _databaseContext.GetDbConnection();
+			var courses = connection.QueryFirstOrDefault<int>(query, new { Email = studentEmail, CourseName=courseName });
+			return courses == 1;
+		}
 
 	}
 }

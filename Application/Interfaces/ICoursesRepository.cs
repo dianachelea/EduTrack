@@ -28,6 +28,7 @@ namespace Application.Interfaces
 		
 		IEnumerable<Attendance>  GetStudentAttendance(string courseName, string studentEmail);
 		IEnumerable<CourseInfoPage> GetCourseForPage(string name);
+		bool IsStudentEnrolledIntroCourse(string studentEmail, string courseName);
 		//IEnumerable<CourseDisplay> GetSortedCourses(string order);
 	}
 }

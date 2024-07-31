@@ -90,12 +90,15 @@ namespace Application.Services
 		
 		public  List<CourseDisplay> GetStudentCourses(string studentEmail)  //works
 		{
-			
-
 			var courses = this._courseRepository.GetCoursesByStudentEmail(studentEmail);
 
 			return courses.ToList();
+		}		
+		public bool IsStudentEnrolledIntroCourse(string studentEmail, string courseName)  //works
+		{
+			var result = this._courseRepository.IsStudentEnrolledIntroCourse(studentEmail, courseName);
 
+			return result;
 		}
 
 		public List<CourseDisplay> GetRelatedCourses(string name) //works

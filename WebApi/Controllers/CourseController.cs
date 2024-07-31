@@ -157,11 +157,15 @@ namespace WebApi.Controllers
 		}
 		[HttpGet]
 		[Authorize]
-		public async Task<ActionResult<List<CourseDisplay>>> GetStudentEnrolledCourses() //works
+		public async Task<ActionResult<List<CourseDisplay>>> GetStudentEnrolledCourses([FromQuery] string courseName = "") //works
 		{
 			var email = User.FindFirstValue(ClaimTypes.Email);
 
+			// check if student is enrolled to a specific course
+			if (courseName != "")
+				return Ok(this._courseInventoryService.IsStudentEnrolledIntroCourse(email, courseName));
 
+			// get all courses that the student is enrolled in
 			List<CourseDisplay> result = this._courseInventoryService.GetStudentCourses(email);
 
 			if (result.Count == 0)
