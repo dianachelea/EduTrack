@@ -229,6 +229,19 @@ namespace WebApi.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Policy =IdentityData.TeacherUserPolicyName)]
+        public async Task<IActionResult> GetTeacherCourses(string email)
+        {
+            var courses = await _courseService.GetTeacherCourses(email);
+            if (courses == null)
+            {
+                return NotFound();
+            }
+            return Ok(courses);
+        }
+
+
+        [HttpGet]
 		[Authorize]
 		public ActionResult<List<Attendance>> GetStudentAttendance([FromQuery] string courseName) //works
 		{

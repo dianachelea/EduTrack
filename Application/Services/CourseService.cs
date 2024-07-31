@@ -66,8 +66,12 @@ namespace Application.Services
 
 			return attendance.ToList();
 		}
+        public async Task<IEnumerable<string>> GetTeacherCourses(string email)
+        {
+            var courses = await _courseRepository.GetTeacherCourses(email);
+            return courses;
+        }
 
-		
 
-	}
+    }
 }
