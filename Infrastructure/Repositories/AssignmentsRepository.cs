@@ -250,25 +250,19 @@ namespace Infrastructure.Repositories
 
 
 
-        public async Task<IEnumerable<List<AssignmentDo>>> GetStudentAssignments(string coursename, string studentemail)
+        public async Task<IEnumerable<AssignmentGradeDo>> GetStudentAssignments(string coursename, string studentemail)
         {
             var sql = @"
-                SELECT 
-                    [Assignment_name] AS AssignmentName,
-                    [Assignment_description] AS AssignmentDesc,
-                    [Assignment_preview] AS AssignmentPrev,
-                    [Assignment_file] AS AssignmentFile
-                FROM [SummerPractice].[Lessons]
-                WHERE [Course_id] = (
-                    SELECT [Course_id] 
+               SELECT 
+                    Grade AS Grade, L.Lesson_name AS Lesson
+                FROM [SummerPractice].[Grade] G Inner Join [SummerPractice].[Lessons] L On G.Lesson_id = L.Lesson_id
+
+                Where G.Email = @studentEmail AND L.Course_id IN (
+                SELECT [Course_id] 
                     FROM [SummerPractice].[Courses] 
-                    WHERE [Name_course] = @courseName 
+                    WHERE [Name_course] = @courseName
                 )
-                AND [Course_id] = (
-                    SELECT [Course_id] 
-                    FROM [SummerPractice].[Students-Courses] 
-                    WHERE [Email] = @studentEmail 
-                )";
+                ";
 
 
             var connection = _databaseContext.GetDbConnection();
@@ -279,21 +273,19 @@ namespace Infrastructure.Repositories
             );
 
             var assignments = data
-                .Select(row => new AssignmentDo
+                .Select(row => new AssignmentGradeDo
                 {
-                    Assignment_name = (string)row.AssignmentName,
-                    Assignment_description = (string)row.AssignmentDesc,
-                    Assignment_file = (string)row.AssignmentFile,
-                    Assignment_preview = (string)row.AssignmentPrev
-                })
+                    Grade = (double)row.Grade,
+                    Lesson_name = (string)row.Lesson,
+				})
                 .ToList();
 
-            var groupedAssignments = assignments
-                .GroupBy(a => a.Assignment_name)
+            /*var groupedAssignments = assignments
+				.GroupBy(a => a.Assignment_name)
                 .Select(g => g.ToList())
-                .ToList();
+                .ToList();*/
 
-            return groupedAssignments;
+            return assignments;
         }
 
         private string GetParentDirectoryOfCurrent()

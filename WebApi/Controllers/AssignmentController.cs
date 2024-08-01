@@ -115,9 +115,10 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<List<AssignmentGradeDo>>> GetStudentAssignments([FromQuery] string CourseName , string StudentEmail)
+        public async Task<ActionResult<List<AssignmentGradeDo>>> GetStudentAssignments([FromQuery] string CourseName)
         {
-            var result = await this._assignmentInventoryService.GetStudentAssignments(CourseName, StudentEmail);
+			var StudentEmail = User.FindFirstValue(ClaimTypes.Email);
+			var result = await this._assignmentInventoryService.GetStudentAssignments(CourseName, StudentEmail);
             return Ok(result);
         }
 

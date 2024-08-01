@@ -48,7 +48,7 @@ namespace Application.Services
             return addAssignmentResult;
         }
 
-        public Task<IEnumerable<List<AssignmentDo>>> GetStudentAssignments(string coursename, string studentEmail)
+        public Task<IEnumerable<AssignmentGradeDo>> GetStudentAssignments(string coursename, string studentEmail)
         {
             var allAssignments = this._assignmentsRepository.GetStudentAssignments(coursename, studentEmail);
 
