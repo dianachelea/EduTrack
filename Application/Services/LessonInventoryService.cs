@@ -8,7 +8,15 @@ namespace Application.Services
     {
         private readonly ILessonRepository _lessonRepository;
 
-        public LessonInventoryService(ILessonRepository lessonRepository)
+		enum LessonStatus
+		{
+			not_started,
+			wait_for_start,
+			in_progress,
+			finished
+		}
+
+		public LessonInventoryService(ILessonRepository lessonRepository)
         {
             _lessonRepository = lessonRepository;
         }
@@ -20,7 +28,12 @@ namespace Application.Services
 
         public async Task<Lesson> GetLesson(string courseName, string lessonTitle)
         {
-            return await _lessonRepository.GetLesson(courseName, lessonTitle);
+            var lesson = await _lessonRepository.GetLesson(courseName, lessonTitle);
+            if(lesson.LessonStatus == LessonStatus.not_started.ToString() 
+                && lesson.StartDate.DayOfYear ==  DateTime.Now.DayOfYear)
+                lesson.LessonStatus = LessonStatus.wait_for_start.ToString();
+
+			return lesson;
         }
 
         public async Task<bool> UpdateLesson(string lessonTitle, Lesson lessonDo)

@@ -45,7 +45,7 @@ namespace WebApiContracts.Mappers
                 //Assignment_file = credentials.Assignment_file,
               //  LessonStatus = credentials.LessonStatus,
                // Assignment_preview = credentials.Assignment_preview,
-            //    StartDate = credentials.StartDate,
+                StartDate = credentials.StartDate,
                 Lesson_Content = credentials.Lesson_Content
 
             };

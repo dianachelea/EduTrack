@@ -49,12 +49,16 @@ namespace Infrastructure.Repositories
 		public async Task<bool> DeleteCourse(string email, string name) //works
 		{
 
-
-			var query = "DELETE FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
+			var deleteAssociatedLesson = "DELETE FROM [SummerPractice].[Lessons] WHERE [Course_id] = (SELECT [Course_id] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name)";
 
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
 			parameters.Add("Name", name, DbType.String);
+
+			var result = await connection.ExecuteAsync(deleteAssociatedLesson, parameters, _databaseContext.GetDbTransaction());
+
+			var query = "DELETE FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name AND [TeacherEmail]= @TeacherEmail";
+
 			parameters.Add("TeacherEmail", email, DbType.String);
 			var finalResult = await connection.ExecuteAsync(query, parameters, _databaseContext.GetDbTransaction());
 
@@ -99,18 +103,6 @@ namespace Infrastructure.Repositories
 			return courses;
 
 		}
-
-
-/*		public IEnumerable<CourseDisplay> GetSortedCourses(string order) //works
-		{
-			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview] FROM [SummerPractice].[Courses]";
-			var sortDirection = order.ToLower() == "desc" ? "DESC" : "ASC";
-			query += " ORDER BY [Name_course] " + sortDirection;
-
-			var connection = _databaseContext.GetDbConnection();
-			var courses = connection.Query<CourseDisplay>(query);
-			return courses;
-		}*/
 
 		public IEnumerable<CourseDisplay> GetCoursesByFilter(CourseFilter filter) //works
 		{
@@ -169,11 +161,11 @@ namespace Infrastructure.Repositories
 			var connection = _databaseContext.GetDbConnection();
 			var parameters = new DynamicParameters();
 
-			string query = "SELECT [Category] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
+			string query = "SELECT DISTINCT [Category] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
 			parameters.Add("Name", '%' + filter.Title + '%', DbType.String);
 			var categories = connection.Query<string>(query, parameters);
 
-			query = "SELECT [Difficulty] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
+			query = "SELECT DISTINCT [Difficulty] FROM [SummerPractice].[Courses] WHERE [Name_course] LIKE @Name";
 			if (filter.Categories.Any())
 				query += ConstructFilter(filter.Categories, "Category", ref parameters);
 			var difficulty = connection.Query<string>(query, parameters);
@@ -248,7 +240,7 @@ namespace Infrastructure.Repositories
 
 		public IEnumerable<CourseInfoPage> GetCourseForPage(string name) //works
 		{
-			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview], [Description], [Time], [Learning_topics], [Category] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name";
+			var query = "SELECT [Name_course], [Perequisites], [Difficulty], [ImageData], [Preview], [Description], [Time], [Learning_topics], [Category], [TeacherEmail] FROM [SummerPractice].[Courses] WHERE [Name_course] = @Name";
 
 			var connection = _databaseContext.GetDbConnection();
 			var course = connection.Query<CourseInfoPage>(query, new { Name = name });
@@ -256,14 +248,14 @@ namespace Infrastructure.Repositories
 		}
 
 
-		public IEnumerable<Course> GetCoursesByStudentEmail(string studentEmail) //works
+		public IEnumerable<CourseDisplay> GetCoursesByStudentEmail(string studentEmail) //works
 		{
 			var query = "SELECT * FROM  [SummerPractice].[Courses] LEFT JOIN [SummerPractice].[Students-Courses] " +
 				"ON  [SummerPractice].[Courses].[Course_id] = [SummerPractice].[Students-Courses].[Course_id] " +
 				"WHERE [SummerPractice].[Students-Courses].[Email] = @Email";
 
 			var connection = _databaseContext.GetDbConnection();
-			var courses = connection.Query<Course>(query, new { Email = studentEmail });
+			var courses = connection.Query<CourseDisplay>(query, new { Email = studentEmail });
 			return courses;
 		}
 

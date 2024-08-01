@@ -16,7 +16,7 @@ namespace Application.Interfaces
 		IEnumerable<CourseDisplay> GetAllCourses();
 		CourseFilter GetFilters(CourseFilter filter);
 		IEnumerable<CourseDisplay> GetCoursesByFilter(CourseFilter filter);
-		IEnumerable<Course> GetCoursesByStudentEmail(string studentEmail);
+		IEnumerable<CourseDisplay> GetCoursesByStudentEmail(string studentEmail);
 	
 		IEnumerable<CourseDisplay> GetRelatedCourses(string name);
 		Task<IEnumerable<string>> GetTeacherCourses(string email);

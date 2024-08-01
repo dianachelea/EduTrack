@@ -30,6 +30,8 @@
 	<None Remove="Scripts\Step00020- Feedback- Add Category field.sql" />
 	<None Remove="Scripts\Step00021- Feedback - Add Constraint to Category.sql" />
 	<None Remove="Scripts\Step00022- Feedback - Add Date field.sql" />
+	<None Remove="Scripts\Step00023 - Lessons - Alter Table added Lesson Date.sql" />
+	<None Remove="Scripts\Step00024 - Lessons - Alter Table change status default value.sql" />
 
 
   </ItemGroup>
@@ -56,6 +58,8 @@
     <EmbeddedResource Include="Scripts\Step00019- Alter Table Students-Courses.sql" />
     <EmbeddedResource Include="Scripts\Step00020- Feedback- Add Category field.sql" />
     <EmbeddedResource Include="Scripts\Step00021- Feedback - Add Constraint to Category.sql" />
+    <EmbeddedResource Include="Scripts\Step00024 - Lessons - Alter Table change status default value.sql" />
+    <EmbeddedResource Include="Scripts\Step00023 - Lessons - Alter Table added Lesson Date.sql" />
     <EmbeddedResource Include="Scripts\Step00022- Feedback - Add Date field.sql" />
 
   </ItemGroup>

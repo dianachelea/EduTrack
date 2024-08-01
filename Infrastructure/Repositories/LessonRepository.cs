@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<LessonDisplay>> GetLessons(string courseName)
         {
             var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName";
-            var getLessonsQuery = "SELECT [Lesson_name] , [Lesson_description] " +
+            var getLessonsQuery = "SELECT [Lesson_name], [Lesson_description], [Lesson_date] " +
                                   "FROM [SummerPractice].[Lessons] WHERE [Course_id] = @CourseId";
 
             var connection = _databaseContext.GetDbConnection();
@@ -69,7 +69,7 @@ namespace Infrastructure.Repositories
             var getTeacherEmailQuery = "SELECT TeacherEmail FROM [SummerPractice].[Courses] WHERE Course_id = (SELECT Course_id FROM [SummerPractice].[Lessons] WHERE [Lesson_name] = @LessonTitle)";
             var updateLessonQuery = "UPDATE [SummerPractice].[Lessons] " +
                                     "SET [Lesson_name] = @NewLessonName, [Lesson_description] = @LessonDescription, " +
-                                    "[Lesson_Content] = @LessonContent " +
+									"[Lesson_Content] = @LessonContent, [Lesson_date] = @LessonDate " +
                                     "WHERE [Lesson_name] = @LessonTitle AND [Course_id] = @CourseId";
 
             var connection = _databaseContext.GetDbConnection();
@@ -104,6 +104,7 @@ namespace Infrastructure.Repositories
             parameters.Add("AssignmentFile", lesson.Assignment_file, DbType.Binary);
             parameters.Add("AssignmentPreview", lesson.Assignment_preview, DbType.String);*/
             parameters.Add("LessonContent", lesson.Lesson_Content, DbType.String);
+            parameters.Add("LessonDate", lesson.StartDate, DbType.DateTime);
             parameters.Add("LessonTitle", lessonTitle, DbType.String);
             parameters.Add("CourseId", courseId, DbType.Guid);
 
@@ -116,8 +117,8 @@ namespace Infrastructure.Repositories
         {
             var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseTitle AND [TeacherEmail] = @TeacherEmail";
             var insertLessonQuery = "INSERT INTO [SummerPractice].[Lessons] " +
-                                    "([Course_id], [Lesson_name], [Lesson_description], [Lesson_Content]) " +
-                                    "VALUES (@Course_id, @LessonName, @LessonDescription, @LessonContent)";
+									"([Course_id], [Lesson_name], [Lesson_description], [Lesson_Content], [Lesson_date]) " +
+									"VALUES (@Course_id, @LessonName, @LessonDescription, @LessonContent, @LessonDate)";
 
             var connection = _databaseContext.GetDbConnection();
 
@@ -136,6 +137,7 @@ namespace Infrastructure.Repositories
             parameters.Add("LessonName", lessonData.Name, DbType.String);
             parameters.Add("LessonDescription", lessonData.Description, DbType.String);
             parameters.Add("LessonContent", lessonData.Lesson_Content, DbType.String);
+            parameters.Add("LessonDate", lessonData.StartDate, DbType.DateTime);
 
             var result = await connection.ExecuteAsync(insertLessonQuery, parameters, _databaseContext.GetDbTransaction());
             return result != 0;
@@ -167,18 +169,18 @@ namespace Infrastructure.Repositories
             return result != 0;
         }
 
-        public async Task<bool> ChangeStatus(string courseName, string lessonTitle, string status)
+        public async Task<bool> ChangeStatus(string courseName, string lessonTitle, string status, string teacherEmail)
         {
-            var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName";
+            var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [Name_course] = @CourseName AND [TeacherEmail]= @TeacherEmail";
             var updateLessonStatusQuery = "UPDATE [SummerPractice].[Lessons] " +
                                           "SET [LessonStatus] = @Status " +
                                           "WHERE [Lesson_name] = @LessonTitle AND [Course_id] = @CourseId";
 
             var connection = _databaseContext.GetDbConnection();
 
-            var courseId = await connection.QuerySingleOrDefaultAsync<int>(
+            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
                 getCourseIdQuery,
-                new { CourseName = courseName },
+                new { CourseName = courseName, TeacherEmail = teacherEmail },
                 _databaseContext.GetDbTransaction()
             );
 
