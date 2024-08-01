@@ -19,7 +19,7 @@ namespace Infrastructure.Utils
 
 		public string CreateLink(string path)
 		{
-			return _configuration.GetSection("JwtSettings:Audience").Value + path;
+			return "http://localhost:4200/" + path;
 		}
 	}
 }
