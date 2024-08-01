@@ -21,14 +21,14 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<bool>> AddFeedback([FromQuery] FeedbackContract feedbackContract)
+        public async Task<ActionResult<bool>> AddFeedback([FromBody] FeedbackContract feedbackContract)
         {
             var result = await _feedbackService.AddFeedback(feedbackContract.MapToFeedback());
             return Ok(result);
         }
 
         [HttpGet]
-        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.AdminUserPolicyName)]
         public async Task<ActionResult<string>> GetFeedback([FromQuery] FeedbackFiltersContract feedbackFiltersContract)
         {
             var result = await _feedbackService.GetFeedback(feedbackFiltersContract.MapToFeedbackFilters());

@@ -20,6 +20,8 @@ namespace Domain.Exceptions
             : base($"The file exceeds the maximum allowed size of {maxSize} bytes.")
         {
         }
+
+        
     }
 
     public class FileTypeNotSupportedException : Exception
