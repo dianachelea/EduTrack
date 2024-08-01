@@ -77,12 +77,9 @@ public class AssignmentInventoryServiceTests
         // Arrange
         var courseName = "TestCourse";
         var studentEmail = "student@example.com";
-        var assignments = new List<List<AssignmentDo>>
+        var assignments = new List<AssignmentGradeDo>
         {
-            new List<AssignmentDo>
-            {
-                new AssignmentDo { Assignment_name = "Assignment1", Assignment_description = "Description1" }
-            }
+                new AssignmentGradeDo {Grade=4.2, Lesson_name="Lectie", Student= new StudentDo{ Email="student@example.com",First_name="Test", Last_Name="Name"} }
         };
         _assignmentsRepository.GetStudentAssignments(courseName, studentEmail).Returns(assignments);
 
@@ -99,7 +96,7 @@ public class AssignmentInventoryServiceTests
         // Arrange
         var courseName = "TestCourse";
         var studentEmail = "student@example.com";
-        _assignmentsRepository.GetStudentAssignments(courseName, studentEmail).Returns((IEnumerable<List<AssignmentDo>>)null);
+        _assignmentsRepository.GetStudentAssignments(courseName, studentEmail).Returns((IEnumerable<AssignmentGradeDo>)null);
 
         // Act
         Func<Task> act = async () => await _assignmentInventoryService.GetStudentAssignments(courseName, studentEmail);

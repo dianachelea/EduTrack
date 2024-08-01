@@ -28,11 +28,14 @@ public class LessonServiceTests
         // Arrange
         var courseName = "TestCourse";
         var lessonTitle = "Lesson1";
-        var status = "Completed";
-        _lessonRepository.ChangeStatus(courseName, lessonTitle, status).Returns(true);
+        var status = "in_progress";
+        var teacher = "teacher@teacher.com";
+
+        _lessonRepository.GetLesson(courseName, lessonTitle).Returns(new Lesson {teacherEmail= "teacher@teacher.com", Name= "Lesson1",Description="Desc", Lesson_Content="Content", LessonStatus = "not_started", StartDate = DateTime.Now });
+        _lessonRepository.ChangeStatus(courseName, lessonTitle, status, teacher).Returns(true);
 
         // Act
-        var result = await _lessonService.ChangeStatus(courseName, lessonTitle, status);
+        var result = await _lessonService.ChangeLessonStatus(courseName, lessonTitle, status, teacher);
 
         // Assert
         result.Should().BeTrue();

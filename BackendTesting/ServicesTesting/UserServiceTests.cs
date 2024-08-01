@@ -80,7 +80,16 @@ public class UserServiceTests
             LastName = "User"
         };
 
-        _authenticationRepository.GetUserInfo(credentials.Email).Returns(new List<UserCredentials> { credentials });
+        _authenticationRepository.GetUserInfo(credentials.Email).Returns(new List<UserInfo> { 
+            new UserInfo {
+                Email= "testuser@example.com",
+                FirstName= "Test",
+                LastName= "User",
+                Phone= "123456789",
+				Password= "password",
+                Role="user"
+			} 
+        });
 
         Func<Task> act = async () => await _userService.RegisterUser(credentials);
 
@@ -126,7 +135,7 @@ public class UserServiceTests
         var link = "resetpasswordlink";
         var notificationMessage = "EduTrack - Empower your learning, Achieve your goals!\n\n" + link + "\n\n\tThank you, \n\tEduTrack Team!";
 
-        _authenticationRepository.GetUserInfo(email).Returns(new List<UserCredentials> { new UserCredentials { Email = email } });
+        _authenticationRepository.GetUserInfo(email).Returns(new List<UserInfo> { new UserInfo { Email = email } });
         _generateToken.GenerateToken(32).Returns(token);
         _linkCreator.CreateLink(Arg.Any<string>()).Returns(link);
         _tokenRepository.AddToken(Arg.Any<ValidationTokenDo>()).Returns(true);
@@ -144,7 +153,7 @@ public class UserServiceTests
     {
         var email = "unregistered@example.com";
 
-        _authenticationRepository.GetUserInfo(email).Returns(new List<UserCredentials>());
+        _authenticationRepository.GetUserInfo(email).Returns(new List<UserInfo>());
 
         Func<Task> act = async () => await _userService.RecoverPassword(email);
 
