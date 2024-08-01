@@ -196,15 +196,12 @@ namespace Infrastructure.Utils
                         -- Get the courses managed by the specified teacher
                         TeacherCourses AS (
                             SELECT 
-                                SC.Course_id,
-                                C.Name_course
+                                Course_id,
+                                Name_course
                             FROM 
-                                [CentricSummerPractice].[SummerPractice].[Students-Courses] SC
-                            INNER JOIN 
-                                [CentricSummerPractice].[SummerPractice].[Courses] C
-                                ON SC.Course_id = C.Course_id
+                                [CentricSummerPractice].[SummerPractice].[Courses]
                             WHERE 
-                                SC.Email = @Email
+                                TeacherEmail = @Email
                         ),
                         -- Calculate the number of attended lessons per course
                         AttendedLessons AS (
@@ -244,15 +241,12 @@ namespace Infrastructure.Utils
 
             query = @"WITH TeacherCourses AS (
                         SELECT 
-                            SC.Course_id,
-                            C.Name_course
+                            Course_id,
+                            Name_course
                         FROM 
-                            [CentricSummerPractice].[SummerPractice].[Students-Courses] SC
-                        INNER JOIN 
-                            [CentricSummerPractice].[SummerPractice].[Courses] C
-                            ON SC.Course_id = C.Course_id
+                            [CentricSummerPractice].[SummerPractice].[Courses]
                         WHERE 
-                            SC.Email = @Email
+                            TeacherEmail = @Email
                     ),
                     TotalAssignments AS (
                         SELECT 
@@ -300,15 +294,12 @@ namespace Infrastructure.Utils
 
             query = @"WITH TeacherCourses AS (
                         SELECT 
-                            SC.Course_id,
-                            C.Name_course
+                            Course_id,
+                            Name_course
                         FROM 
-                            [CentricSummerPractice].[SummerPractice].[Students-Courses] SC
-                        INNER JOIN 
-                            [CentricSummerPractice].[SummerPractice].[Courses] C
-                            ON SC.Course_id = C.Course_id
+                            [CentricSummerPractice].[SummerPractice].[Courses]
                         WHERE 
-                            SC.Email = @Email
+                            TeacherEmail = @Email
                     )
                     SELECT 
                         --TC.Course_id,
