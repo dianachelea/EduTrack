@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
+        [Authorize(Policy = IdentityData.AdminUserPolicyName)]
         public async Task<ActionResult<string>> GetFeedback([FromQuery] FeedbackFiltersContract feedbackFiltersContract)
         {
             var result = await _feedbackService.GetFeedback(feedbackFiltersContract.MapToFeedbackFilters());
