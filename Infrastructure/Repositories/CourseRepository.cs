@@ -371,6 +371,15 @@ namespace Infrastructure.Repositories
 			var courses = connection.QueryFirstOrDefault<int>(query, new { Email = studentEmail, CourseName=courseName });
 			return courses == 1;
 		}
+		public bool IsUserCourseOwner(string email, string courseName)
+		{
+			var query = "SELECT COUNT([SummerPractice].[Courses].[Name_course]) FROM[SummerPractice].[Courses] "+
+				"WHERE[SummerPractice].[Courses].TeacherEmail = @Email AND[SummerPractice].[Courses].[Name_course] = @CourseName";
+
+			var connection = _databaseContext.GetDbConnection();
+			var courses = connection.QueryFirstOrDefault<int>(query, new { Email = email, CourseName = courseName });
+			return courses >= 1;
+		}
 
 	}
 }

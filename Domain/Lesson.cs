@@ -28,6 +28,8 @@ namespace Domain
         public string LessonStatus { get; set; }
 		[Column("Lesson_date")]
 		public DateTime StartDate { get; set; }
+		[Column("TeacherEmail")]
+		public string teacherEmail { get; set; }
 	}
 
 

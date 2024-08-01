@@ -100,6 +100,12 @@ namespace Application.Services
 
 			return result;
 		}
+		public bool IsUserCourseOwner(string email, string courseName)  //works
+		{
+			var result = this._courseRepository.IsUserCourseOwner(email, courseName);
+
+			return result;
+		}
 
 		public List<CourseDisplay> GetRelatedCourses(string name) //works
 		{

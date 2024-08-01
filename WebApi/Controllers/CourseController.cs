@@ -182,6 +182,15 @@ namespace WebApi.Controllers
 			return Ok(result);
 		}
 
+		[HttpGet]
+		[Authorize]
+		public async Task<ActionResult<List<CourseDisplay>>> IsUserCourseOwner([FromQuery] string courseName) //works
+		{
+			var email = User.FindFirstValue(ClaimTypes.Email);
+
+			return Ok(this._courseInventoryService.IsUserCourseOwner(email, courseName));
+		}
+
 		[HttpPost]
 		[Authorize]
 		public async Task<ActionResult<bool>> EnrollToCourse([FromBody] string courseName) //works

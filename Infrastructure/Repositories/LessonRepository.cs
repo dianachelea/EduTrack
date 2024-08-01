@@ -26,7 +26,7 @@ namespace Infrastructure.Repositories
 
             var connection = _databaseContext.GetDbConnection();
 
-            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
+            var courseId = await connection.QueryFirstOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { CourseName = courseName },
                 _databaseContext.GetDbTransaction()
@@ -54,7 +54,7 @@ namespace Infrastructure.Repositories
 
             var connection = _databaseContext.GetDbConnection();
 
-            var lesson = await connection.QuerySingleOrDefaultAsync<Lesson>(
+            var lesson = await connection.QueryFirstOrDefaultAsync<Lesson>(
                 getLessonQuery,
                 new { LessonTitle = lessonTitle, CourseName=courseName },
                 _databaseContext.GetDbTransaction()
@@ -74,7 +74,7 @@ namespace Infrastructure.Repositories
 
             var connection = _databaseContext.GetDbConnection();
 
-            var teacherEmail = await connection.QuerySingleOrDefaultAsync<string>(
+            var teacherEmail = await connection.QueryFirstOrDefaultAsync<string>(
                 getTeacherEmailQuery,
                 new { LessonTitle = lessonTitle },
                 _databaseContext.GetDbTransaction()
@@ -85,7 +85,7 @@ namespace Infrastructure.Repositories
                 return false; 
             }
 
-            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
+            var courseId = await connection.QueryFirstOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { TeacherEmail = teacherEmail },
                 _databaseContext.GetDbTransaction()
@@ -122,7 +122,7 @@ namespace Infrastructure.Repositories
 
             var connection = _databaseContext.GetDbConnection();
 
-            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
+            var courseId = await connection.QueryFirstOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { CourseTitle = courseTitle, TeacherEmail = teacherEmail },
                 _databaseContext.GetDbTransaction()
@@ -150,7 +150,7 @@ namespace Infrastructure.Repositories
 
             var connection = _databaseContext.GetDbConnection();
 
-            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
+            var courseId = await connection.QueryFirstOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { CourseName = courseName, },
                 _databaseContext.GetDbTransaction()
@@ -178,7 +178,7 @@ namespace Infrastructure.Repositories
 
             var connection = _databaseContext.GetDbConnection();
 
-            var courseId = await connection.QuerySingleOrDefaultAsync<Guid>(
+            var courseId = await connection.QueryFirstOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { CourseName = courseName, TeacherEmail = teacherEmail },
                 _databaseContext.GetDbTransaction()

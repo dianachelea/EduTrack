@@ -3,6 +3,7 @@ using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 using WebApiContracts;
 using WebApiContracts.Mappers;
 
@@ -41,14 +42,26 @@ namespace WebApi.Controllers
         [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> AddAssignment([FromQuery] AssignmentContentContract assignmentContract, string CourseName, string LessonTitle, IFormFile file)
         {
-            var resultSaveFile = await this._fileService.SaveFile(file);
-            if (resultSaveFile) 
+			try
+			{
+				var checkFile = await this._fileService.GetFile(file.FileName);
+
+				return Ok(await this._assignmentInventoryService.AddAssignment(CourseName, LessonTitle, assignmentContract.MapTestToDomain(), file.FileName));
+			}
+			catch (Exception ex)
+			{
+				var saveFileResult = await this._fileService.SaveFile(file);
+				if (saveFileResult == true)
+					return Ok(await this._assignmentInventoryService.AddAssignment(CourseName, LessonTitle, assignmentContract.MapTestToDomain(), file.FileName));
+			}
+			//var resultSaveFile = await this._fileService.SaveFile(file);
+           /* if (resultSaveFile) 
             {
                 var result = await this._assignmentInventoryService.AddAssignment(CourseName, LessonTitle, assignmentContract.MapTestToDomain(), file.FileName);
                 return Ok(result);
-            }
+            }*/
                 
-            return Ok(resultSaveFile);
+            return Ok(false);
         }
 
         [HttpGet]
@@ -62,9 +75,11 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<bool>> Solve([FromQuery] AssignmentSolutionContract solutionContract, string CourseName, string LessonTitle, string StudentEmail, IFormFile file)
+        public async Task<ActionResult<bool>> Solve([FromQuery] AssignmentSolutionContract solutionContract, string CourseName, string LessonTitle, IFormFile file)
         {
-            var resultSaveFile = await this._fileService.SaveFile(file);
+			string StudentEmail = User.FindFirstValue(ClaimTypes.Email);
+
+			var resultSaveFile = await this._fileService.SaveFile(file);
             if (resultSaveFile)
             {
                 var result = await this._assignmentService.SolveAssignment(CourseName, LessonTitle, StudentEmail, solutionContract.MapTestToDomain(),file.FileName);
@@ -110,14 +125,30 @@ namespace WebApi.Controllers
         [Authorize(Policy = IdentityData.TeacherUserPolicyName)]
         public async Task<ActionResult<bool>> EditAssignment([FromQuery] AssignmentContentContract Content, string CourseName, string LessonTitle, IFormFile file)
         {
-            var resultSaveFile = await this._fileService.SaveFile(file);
-            if (resultSaveFile)
-            {
-                var result = await this._assignmentInventoryService.EditAssignment(CourseName, LessonTitle, Content.MapTestToDomain(), file.FileName);
-                return Ok(result);
-            }
+			try
+			{
+				var checkFile = await this._fileService.GetFile(file.FileName);
 
-            return Ok(resultSaveFile);
+				return Ok(await this._assignmentInventoryService.EditAssignment(CourseName, LessonTitle, Content.MapTestToDomain(), file.FileName));
+			}
+			catch (Exception ex)
+			{
+				var saveFileResult = await this._fileService.SaveFile(file);
+				if (saveFileResult == true)
+					return Ok(await this._assignmentInventoryService.EditAssignment(CourseName, LessonTitle, Content.MapTestToDomain(), file.FileName));
+			}
+
+			/*if (file != null)
+            {
+                var resultSaveFile = await this._fileService.SaveFile(file);
+                if (resultSaveFile)
+                {
+                    var result = await this._assignmentInventoryService.EditAssignment(CourseName, LessonTitle, Content.MapTestToDomain(), file.FileName);
+                    return Ok(result);
+                }
+				return Ok(resultSaveFile);
+			}*/
+           return Ok(false);
         }
 
         [HttpDelete]
