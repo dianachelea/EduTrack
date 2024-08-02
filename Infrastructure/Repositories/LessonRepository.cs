@@ -65,12 +65,12 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> UpdateLesson(string lessonTitle, Lesson lesson)
         {
-            var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [TeacherEmail] = @TeacherEmail";
+            //var getCourseIdQuery = "SELECT Course_id FROM [SummerPractice].[Courses] WHERE [TeacherEmail] = @TeacherEmail";
             var getTeacherEmailQuery = "SELECT TeacherEmail FROM [SummerPractice].[Courses] WHERE Course_id = (SELECT Course_id FROM [SummerPractice].[Lessons] WHERE [Lesson_name] = @LessonTitle)";
             var updateLessonQuery = "UPDATE [SummerPractice].[Lessons] " +
                                     "SET [Lesson_name] = @NewLessonName, [Lesson_description] = @LessonDescription, " +
 									"[Lesson_Content] = @LessonContent, [Lesson_date] = @LessonDate " +
-                                    "WHERE [Lesson_name] = @LessonTitle AND [Course_id] = @CourseId";
+									"WHERE [Lesson_name] = @LessonTitle AND [Course_id] IN  (SELECT Course_id FROM [SummerPractice].[Courses] WHERE [TeacherEmail] = @TeacherEmail)";
 
             var connection = _databaseContext.GetDbConnection();
 
@@ -84,17 +84,17 @@ namespace Infrastructure.Repositories
             {
                 return false; 
             }
-
+/*
             var courseId = await connection.QueryFirstOrDefaultAsync<Guid>(
                 getCourseIdQuery,
                 new { TeacherEmail = teacherEmail },
                 _databaseContext.GetDbTransaction()
-            );
+            );*/
 
-            if (courseId == default)
+           /* if (courseId == default)
             {
                 return false; 
-            }
+            }*/
 
             var parameters = new DynamicParameters();
             parameters.Add("NewLessonName", lesson.Name, DbType.String);
@@ -106,7 +106,7 @@ namespace Infrastructure.Repositories
             parameters.Add("LessonContent", lesson.Lesson_Content, DbType.String);
             parameters.Add("LessonDate", lesson.StartDate, DbType.DateTime);
             parameters.Add("LessonTitle", lessonTitle, DbType.String);
-            parameters.Add("CourseId", courseId, DbType.Guid);
+            parameters.Add("TeacherEmail", teacherEmail, DbType.String);
 
             var result = await connection.ExecuteAsync(updateLessonQuery, parameters, _databaseContext.GetDbTransaction());
             return result != 0;
